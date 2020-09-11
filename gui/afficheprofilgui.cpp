@@ -12,3 +12,14 @@ AfficheProfilGui::~AfficheProfilGui()
 {
 	delete ui;
 }
+
+
+void AfficheProfilGui::desactivePage(int numPage, bool etat){
+	ui->tabWidget->setTabEnabled(numPage, etat);
+}
+
+
+void AfficheProfilGui::on_pushButton_fermer_clicked()
+{
+	hide();
+}

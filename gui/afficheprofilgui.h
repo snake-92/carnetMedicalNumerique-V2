@@ -15,6 +15,11 @@ public:
 	explicit AfficheProfilGui(QWidget *parent = nullptr);
 	~AfficheProfilGui();
 
+	void desactivePage(int numPage, bool etat);
+
+private slots:
+	void on_pushButton_fermer_clicked();
+
 private:
 	Ui::AfficheProfilGui *ui;
 };

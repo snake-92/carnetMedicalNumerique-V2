@@ -92,6 +92,7 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 
 void AppliGui::on_pushButton_afficheProfil_clicked()
 {
+	fenetreAfficheInfos->desactivePage(1, false); // deactive la partie des données privées
 	fenetreAfficheInfos->exec();
 }
 
@@ -118,7 +119,7 @@ void AppliGui::on_pushButton_affiche_privateData_clicked()
 	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
-
+		fenetreAfficheInfos->desactivePage(1, true); // active la partie des données privées
 		fenetreAfficheInfos->exec();
 	}
 }
