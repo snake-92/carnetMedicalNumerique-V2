@@ -77,7 +77,7 @@ void AppliGui::closeEvent(QCloseEvent*)
 void AppliGui::on_pushButton_creerProfil_clicked()
 {
 	// demander le mot de passe
-	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe");
+	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
 	/* si les autres profils auront des mots de passe, faudra recuperer le pseudo dans le fichier temp
 	   et rajouter le mot de passe dans la creation de profil  */
@@ -99,7 +99,7 @@ void AppliGui::on_pushButton_afficheProfil_clicked()
 void AppliGui::on_pushButton_modifProfil_clicked()
 {
 	// demander le mot de passe
-	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe");
+	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
 	/* si les autres profils auront des mots de passe, faudra recuperer le pseudo dans le fichier temp
 	   et rajouter le mot de passe dans la creation de profil  */
@@ -114,7 +114,13 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 
 void AppliGui::on_pushButton_affiche_privateData_clicked()
 {
+	// demander le mot de passe
+	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+
+		fenetreAfficheInfos->exec();
+	}
 }
 
 
@@ -178,7 +184,7 @@ void AppliGui::supprimer_profil(){
 											  QMessageBox::Ok);
 
 			// demander le mot de passe
-			QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe");
+			QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
 			if(choice == QMessageBox::Ok){
 
