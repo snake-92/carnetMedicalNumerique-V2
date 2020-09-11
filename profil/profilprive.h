@@ -16,6 +16,18 @@ public:
 	void saveMotDePasse(QString pseudo, QString pwd);
 	QString getMotDePasse(QString pseudo);
 
+	void ajouterAllergie(QString allergie);
+	void ajouterAntecedentPerso(QString perso);
+	void ajouterAntecedentFamil(QString famille);
+	void ajouterPrescription(QString prescipt);
+	void ajouterVaccin(QString vac);
+
+	QStringList getAllergies();
+	QStringList getAntecedentPerso();
+	QStringList getAntecedentFamil();
+	QStringList getPrescription();
+	QStringList getVaccin();
+
 protected:
 
 	QString mdp; // mot de passe
@@ -24,7 +36,7 @@ protected:
 	QStringList antecedentsPersonnel;
 	QStringList antecedentsFamiliaux;
 	QStringList prescriptions;
-	QMap<QString, QString> vaccinEtDate;
+	QStringList vaccin;
 	QMap<QString, QString> derniereConsultation; // + date
 };
 

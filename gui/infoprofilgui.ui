@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>603</width>
-    <height>901</height>
+    <width>604</width>
+    <height>735</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -834,7 +834,65 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_18">
                 <item>
-                 <widget class="QPlainTextEdit" name="plainTextEdit"/>
+                 <layout class="QHBoxLayout" name="horizontalLayout_48">
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer_25">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_17">
+                    <property name="text">
+                     <string>Saisir et ajouter</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_24">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_42">
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_allergie"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_allergie">
+                  <property name="text">
+                   <string>Ajouter</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_43">
+                  <item>
+                   <widget class="QListView" name="listView_allergie"/>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -850,7 +908,65 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_19">
                 <item>
-                 <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+                 <layout class="QHBoxLayout" name="horizontalLayout_49">
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer_26">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_18">
+                    <property name="text">
+                     <string>Saisir et ajouter</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_27">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_44">
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_antPerso"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_AntecedentPerso">
+                  <property name="text">
+                   <string>Ajouter</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_45">
+                  <item>
+                   <widget class="QListView" name="listView_antPerso"/>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -866,7 +982,65 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_20">
                 <item>
-                 <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+                 <layout class="QHBoxLayout" name="horizontalLayout_50">
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer_28">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_19">
+                    <property name="text">
+                     <string>Saisir et ajouter</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_29">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_46">
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_AntFamil"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_AntecedentFamil">
+                  <property name="text">
+                   <string>Ajouter</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_47">
+                  <item>
+                   <widget class="QListView" name="listView_antFamil"/>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -881,15 +1055,147 @@
             <number>10</number>
            </property>
            <item>
-            <widget class="QGroupBox" name="groupBox_15">
+            <widget class="QGroupBox" name="groupBox_18">
              <property name="title">
-              <string>GroupBox</string>
+              <string>Prescriptions</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_16">
+             <layout class="QVBoxLayout" name="verticalLayout_29">
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_40">
+               <layout class="QVBoxLayout" name="verticalLayout_30">
                 <item>
-                 <widget class="QTextEdit" name="textEdit"/>
+                 <layout class="QHBoxLayout" name="horizontalLayout_51">
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer_30">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_20">
+                    <property name="text">
+                     <string>Saisir et ajouter</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_31">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_52">
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_prescrip"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_prescri">
+                  <property name="text">
+                   <string>Ajouter</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_53">
+                  <item>
+                   <widget class="QListView" name="listView_prescrip"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_19">
+             <property name="title">
+              <string>Vaccins</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_31">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_32">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_54">
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer_32">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_21">
+                    <property name="text">
+                     <string>Saisir et ajouter</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_33">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_55">
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_vaccin"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_vaccin">
+                  <property name="text">
+                   <string>Ajouter</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_56">
+                  <item>
+                   <widget class="QListView" name="listView_vaccin"/>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>

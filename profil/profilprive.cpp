@@ -49,3 +49,44 @@ QString ProfilPrive::getMotDePasse(QString pseudo){ // lit le fichier du mot de 
 	pwd = decrypter(readPwd); // decrypte le texte
 	return pwd;
 }
+
+
+void ProfilPrive::ajouterAllergie(QString allergie){
+	allergies << allergie;
+}
+
+void ProfilPrive::ajouterAntecedentPerso(QString perso){
+	antecedentsPersonnel << perso;
+}
+
+void ProfilPrive::ajouterAntecedentFamil(QString famille){
+	antecedentsFamiliaux << famille;
+}
+
+void ProfilPrive::ajouterPrescription(QString prescipt){
+	prescriptions << prescipt;
+}
+
+void ProfilPrive::ajouterVaccin(QString vac){
+	vaccin << vac;
+}
+
+QStringList ProfilPrive::getAllergies(){
+	return allergies;
+}
+
+QStringList ProfilPrive::getAntecedentPerso(){
+	return antecedentsPersonnel;
+}
+
+QStringList ProfilPrive::getAntecedentFamil(){
+	return antecedentsFamiliaux;
+}
+
+QStringList ProfilPrive::getPrescription(){
+	return prescriptions;
+}
+
+QStringList ProfilPrive::getVaccin(){
+	return vaccin;
+}
