@@ -16,6 +16,9 @@ public:
 	void saveMotDePasse(QString pseudo, QString pwd);
 	QString getMotDePasse(QString pseudo);
 
+	void creerFichierPrive(QString pseudo);
+	void saveProfilPriveInFile();
+
 	void ajouterAllergie(QString allergie);
 	void ajouterAntecedentPerso(QString perso);
 	void ajouterAntecedentFamil(QString famille);
@@ -31,6 +34,7 @@ public:
 protected:
 
 	QString mdp; // mot de passe
+	QFile privateFile;
 
 	QStringList allergies;
 	QStringList antecedentsPersonnel;

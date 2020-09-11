@@ -34,6 +34,16 @@ private slots:
 
 	void on_toolButton_clicked();
 
+	void on_pushButton_allergie_clicked();
+
+	void on_pushButton_AntecedentPerso_clicked();
+
+	void on_pushButton_AntecedentFamil_clicked();
+
+	void on_pushButton_prescri_clicked();
+
+	void on_pushButton_vaccin_clicked();
+
 private:
 	bool pseudoExist(QString);
 	bool verifieChampDeSaisi();

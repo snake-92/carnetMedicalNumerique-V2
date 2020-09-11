@@ -1,4 +1,5 @@
 #include "utilisateur.h"
+#include "../fonctions/fonctions.h"
 
 Utilisateur::Utilisateur()
 {
@@ -16,7 +17,7 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 	QFile file;
 	file.setFileName(PROFILPATH+pseudo+"/"+pseudo+EXTPUBLIC);
 
-	// charger les données du profil avec le nom pseudo
+	// charger les données publiques du profil avec le nom pseudo
 	QDomDocument xmlBOM;
 	file.open(QFile::ReadOnly | QFile::Text);
 
@@ -77,6 +78,79 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 	}
 
 	file.close();
+
+	// charger les données privées
+	bool allerg = false, antPerso = false, antFam = false, prescri = false, vac = false;
+	QString ligne;
+	QFile filePriv;
+	filePriv.setFileName(PROFILPATH+pseudo+"/"+pseudo+EXTPRIVATE);
+	if (filePriv.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QTextStream out(&filePriv);
+		while(!out.atEnd()){
+			out >> ligne;
+			if(decrypter(ligne) == "Allergies"){
+				allerg = true;
+				continue;
+			}else if(decrypter(ligne) == "fin_allergies"){
+				allerg = false;
+				continue;
+			}
+
+			if(decrypter(ligne) == "Ante_Perso"){
+				antPerso = true;
+				continue;
+			}else if(decrypter(ligne) == "fin_Ante_Perso"){
+				antPerso = false;
+				continue;
+			}
+
+			if(decrypter(ligne) == "Ant_Famille"){
+				antFam = true;
+				continue;
+			}
+			else if(decrypter(ligne) == "fin_Ant_Famille"){
+				antFam = false;
+				continue;
+			}
+
+			if(decrypter(ligne) == "Prescriptions"){
+				prescri = true;
+				continue;
+			}
+			else if(decrypter(ligne) == "fin_Prescriptions"){
+				prescri = false;
+				continue;
+			}
+
+			if(decrypter(ligne) == "Vaccins"){
+				vac = true;
+				continue;
+			}
+			else if(decrypter(ligne) == "fin_Vaccins"){
+				vac = false;
+				continue;
+			}
+
+			if(allerg){
+				profilChoisi->ajouterAllergie(decrypter(ligne));
+			}
+			if(antPerso){
+				profilChoisi->ajouterAntecedentPerso(decrypter(ligne));
+			}
+			if(antFam){
+				profilChoisi->ajouterAntecedentFamil(decrypter(ligne));
+			}
+			if(prescri){
+				profilChoisi->ajouterPrescription(decrypter(ligne));
+			}
+			if(vac){
+				profilChoisi->ajouterVaccin(decrypter(ligne));
+			}
+
+		}
+
+		filePriv.close();
+	}
 }
 
 

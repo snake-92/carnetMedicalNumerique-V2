@@ -51,7 +51,8 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			pseudoExistDeja = pseudoExist(pseudoProfil);
 
 			if(!pseudoExistDeja){// test si le profil existe déjà
-				nouveauProfil.creerFichierPublic(pseudoProfil);
+				nouveauProfil.creerFichierPublic(pseudoProfil); // fichier public
+				nouveauProfil.creerFichierPrive(pseudoProfil); // fichier privé
 				emit newprofil(pseudoProfil); // envoi l'information de creation de profil
 			}else{
 				QMessageBox::warning(this, tr("Création de profil"),
@@ -65,6 +66,7 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			// recuperation des infos
 			if(adminProfil){
 				nouveauProfil.creerFichierPublic(ui->lineEdit_prenom->text()); // specifie que c'est la creation du profil admin avec le "true"
+				nouveauProfil.creerFichierPrive(ui->lineEdit_prenom->text()); // fichier privé
 				ecrireDansFichierTemp(ui->lineEdit_prenom->text()); // enregistrement du prenom de l'admin dans le fichier temp
 				nouveauProfil.setInAdmin(true); // signifie que le profil est admin
 			}else{
@@ -87,9 +89,36 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
 			nouveauProfil.setPersonContact(ui->lineEdit_nomContact->text(), ui->lineEdit_telContact->text());
 
-			// TODO : recuperer les donnees privées
-
 			nouveauProfil.saveProfilInFiles(); // enregistrement des données dans le fichier publique
+
+			// recuperer les donnees privées
+			QStringList listText;
+			listText = ui->textBrowser_allergie->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterAllergie(listText[i]);
+			}
+
+			listText = ui->textBrowser_antPerso->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterAntecedentPerso(listText[i]);
+			}
+
+			listText = ui->textBrowser_antFamil->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterAntecedentFamil(listText[i]);
+			}
+
+			listText = ui->textBrowser_Prescrip->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterPrescription(listText[i]);
+			}
+
+			listText = ui->textBrowser_vaccin->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterVaccin(listText[i]);
+			}
+
+			nouveauProfil.saveProfilPriveInFile(); // remplissage du fichier privé
 
 			this->setResult(1);
 			hide();
@@ -179,6 +208,24 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 
 	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
 	// TODO: groupe sangin
+
+	// données privées
+	QStringList maux;
+	maux = profil->getAllergies();
+	for(int i=0; i<maux.length(); i++)
+		ui->textBrowser_allergie->append(maux[i]);
+	maux = profil->getAntecedentPerso();
+	for(int i=0; i<maux.length(); i++)
+		ui->textBrowser_antPerso->append(maux[i]);
+	maux = profil->getAntecedentFamil();
+	for(int i=0; i<maux.length(); i++)
+		ui->textBrowser_antFamil->append(maux[i]);
+	maux = profil->getPrescription();
+	for(int i=0; i<maux.length(); i++)
+		ui->textBrowser_Prescrip->append(maux[i]);
+	maux = profil->getVaccin();
+	for(int i=0; i<maux.length(); i++)
+		ui->textBrowser_vaccin->append(maux[i]);
 }
 
 
@@ -210,6 +257,13 @@ void InfoProfilGui::clearAllQlineEdit(){
 	ui->checkBox_medecin->setChecked(false);
 	ui->checkBox_profession->setChecked(false);
 	ui->checkBox_goupeSanguin->setChecked(false);
+
+	// initialiser tous dans la partie privée
+	ui->textBrowser_allergie->clear();
+	ui->textBrowser_antPerso->clear();
+	ui->textBrowser_antFamil->clear();
+	ui->textBrowser_Prescrip->clear();
+	ui->textBrowser_vaccin->clear();
 }
 
 
@@ -227,4 +281,36 @@ void InfoProfilGui::on_toolButton_clicked()
 
 void InfoProfilGui::desactivePage(int numPage, bool etat){
 	ui->tabWidget->setTabEnabled(numPage, etat);
+}
+
+
+// ------------------ les boutons ajouter
+void InfoProfilGui::on_pushButton_allergie_clicked()
+{
+	ui->textBrowser_allergie->append(ui->lineEdit_allergie->text());
+	ui->lineEdit_allergie->clear();
+}
+
+void InfoProfilGui::on_pushButton_AntecedentPerso_clicked()
+{
+	ui->textBrowser_antPerso->append(ui->lineEdit_antPerso->text());
+	ui->lineEdit_antPerso->clear();
+}
+
+void InfoProfilGui::on_pushButton_AntecedentFamil_clicked()
+{
+	ui->textBrowser_antFamil->append(ui->lineEdit_AntFamil->text());
+	ui->lineEdit_AntFamil->clear();
+}
+
+void InfoProfilGui::on_pushButton_prescri_clicked()
+{
+	ui->textBrowser_Prescrip->append(ui->lineEdit_prescrip->text());
+	ui->lineEdit_prescrip->clear();
+}
+
+void InfoProfilGui::on_pushButton_vaccin_clicked()
+{
+	ui->textBrowser_vaccin->append(ui->lineEdit_vaccin->text());
+	ui->lineEdit_vaccin->clear();
 }
