@@ -107,6 +107,7 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		fenetreRempliInfos->setEnableModif(true); // autorise les modifications
+		fenetreRempliInfos->clearAllQlineEdit();
 		fenetreRempliInfos->setQlineEditWithDatas(user->getProfil());
 		fenetreRempliInfos->exec();
 	}

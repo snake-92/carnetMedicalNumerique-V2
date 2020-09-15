@@ -70,6 +70,10 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 				ecrireDansFichierTemp(ui->lineEdit_prenom->text()); // enregistrement du prenom de l'admin dans le fichier temp
 				nouveauProfil.setInAdmin(true); // signifie que le profil est admin
 			}else{
+				if(EnableModif){
+					nouveauProfil.creerFichierPublic(lireDansFichierTemp()); // fichier public
+					nouveauProfil.creerFichierPrive(lireDansFichierTemp()); // fichier privé
+				}
 				nouveauProfil.setInAdmin(false); // signifie que le profil n'est pas admin
 			}
 
