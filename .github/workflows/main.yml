@@ -1,0 +1,37 @@
+name: Test Installing Qt
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        version: ['5.7', '5.9', '5.12.0', '5.15.1']
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: "npm ci"
+        run: npm ci
+
+      - name: "npm run build"
+        run: npm run build
+
+      - name: Install Qt with options
+        uses: ./
+        with:
+          modules: 'qtwebengine'
+          version: ${{ matrix.version }}
+
+      - name: Configure test project on windows
+        if: startsWith(matrix.os, 'windows')
+        run: |
+          call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          dir %Qt5_DIR%/lib/cmake
+          qmake
+        shell: cmd
