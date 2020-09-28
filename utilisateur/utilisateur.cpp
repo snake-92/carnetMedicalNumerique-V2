@@ -43,6 +43,8 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 			profilChoisi->setTaille(element.text().toInt());
 		else if(element.tagName()=="poids")
 			profilChoisi->setPoids(element.text().toDouble());
+		else if(element.tagName()=="groupe")
+			profilChoisi->setGroupSanguin(element.text());
 		else if(element.tagName()=="date")
 			profilChoisi->setDateNaissance(element.text());
 		else if(element.tagName()=="tel")

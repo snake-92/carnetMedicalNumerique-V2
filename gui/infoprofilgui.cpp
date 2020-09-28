@@ -91,7 +91,7 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			nouveauProfil.setTel(ui->lineEdit_tel->text(), ui->checkBox_Tel->isChecked());
 			nouveauProfil.setProfession(ui->lineEdit_profession->text(), ui->checkBox_profession->isChecked());
 			nouveauProfil.setMedecin(ui->lineEdit_nomMed->text(), ui->lineEdit_telMed->text(), ui->checkBox_medecin->isChecked());
-			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
+			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+'_'+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
 			nouveauProfil.setPersonContact(ui->lineEdit_nomContact->text(), ui->lineEdit_telContact->text());
 
 			nouveauProfil.saveProfilInFiles(); // enregistrement des données dans le fichier publique
@@ -218,7 +218,25 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 	ui->lineEdit_telContact->setText(profil->getPersonContactTel());
 
 	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
-	// TODO: groupe sangin
+	if(profil->getGroupSanguin() == "AB_"){
+		qDebug()<<"AB";
+		ui->comboBox_groupe->setCurrentText("AB");
+		ui->comboBox_rhesus->setCurrentIndex(0);
+		qDebug()<<profil->getGroupSanguin().split("_");
+	}else{
+		qDebug()<<"else";
+		if(profil->getGroupSanguin().length()>2){
+			qDebug()<<"+-";
+			qDebug()<<profil->getGroupSanguin().split("_")[0];
+			ui->comboBox_groupe->setCurrentText(profil->getGroupSanguin().split("_")[0]);
+			ui->comboBox_rhesus->setCurrentText(profil->getGroupSanguin().split("_")[1]);
+		}else{
+			qDebug()<<"A ou B ...";
+			ui->comboBox_groupe->setCurrentText(profil->getGroupSanguin().split("_")[0]);
+			ui->comboBox_rhesus->setCurrentIndex(0);
+			qDebug()<<profil->getGroupSanguin();
+		}
+	}
 
 	// données privées
 	for(int i=0; i<profil->getAllergies().length(); i++)
