@@ -52,6 +52,7 @@ private:
 	Ui::InfoProfilGui *ui;
 	bool adminProfil;
 	bool EnableModif;
+	QString msgChampNonRempli;
 };
 
 #endif // INFOPROFILGUI_H

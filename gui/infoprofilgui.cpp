@@ -18,6 +18,7 @@ InfoProfilGui::InfoProfilGui(QWidget *parent) :
 	ui->spinBox_taille->setMaximum(300); // taille maximale
 	ui->doubleSpinBox_poids->setMaximum(300.00); // poids maximum
 	ui->dateEdit->clear();
+	msgChampNonRempli = "";
 
 	adminProfil = true; // pour le profil admin
 	EnableModif = false; // utiliser pour remplir la fenetre lorsqu'on clique sur modifier profil
@@ -129,7 +130,7 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 		}
 	}else{
 		QMessageBox::warning(this, tr("Création de profil"),
-							tr("Des champs de saisie sont vide!"),
+							msgChampNonRempli,
 							QMessageBox::Cancel,
 							QMessageBox::Cancel);
 	}
@@ -165,11 +166,17 @@ bool InfoProfilGui::verifieChampDeSaisi(){
 
 	if(ui->lineEdit_nom->text().isEmpty() || ui->lineEdit_prenom->text().isEmpty()){
 		champRempli = false;
+		msgChampNonRempli = "Vous n'avez pas saisie votre nom ou votre prenom";
 	}else if(ui->spinBox_taille->value() == 0 || ui->doubleSpinBox_poids->value() == 0.0){
 		champRempli = false;
+		msgChampNonRempli = "Vous n'avez pas saisie votre taille ou votre poids";
+	}else if(ui->lineEdit_tel->text().isEmpty()){
+		champRempli = false;
+		msgChampNonRempli = "Vous n'avez pas saisie votre numéro de téléphone";
+	}else if(ui->dateEdit->text() == "01/01/1753"){
+		champRempli = false;
+		msgChampNonRempli = "Vous n'avez pas saisie votre date de naissance";
 	}
-
-	// TODO : tester tous les champ de saisi
 
 	return champRempli;
 }

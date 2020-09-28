@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>604</width>
-    <height>735</height>
+    <height>756</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -271,7 +271,18 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDateEdit" name="dateEdit"/>
+                 <widget class="QDateEdit" name="dateEdit">
+                  <property name="dateTime">
+                   <datetime>
+                    <hour>0</hour>
+                    <minute>0</minute>
+                    <second>0</second>
+                    <year>1753</year>
+                    <month>1</month>
+                    <day>1</day>
+                   </datetime>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -754,6 +765,20 @@
                </layout>
               </item>
              </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_40">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>(*) champs obligatoires</string>
+             </property>
             </widget>
            </item>
           </layout>
