@@ -41,9 +41,11 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	for(int i=0; i<list.length(); i++){
 		comboBox->addItem(list[i]);
 	}
-	user->selectCurrentProfil(recherchePseudoAdmin()); // utilisateur se place sur le profil admin
-	comboBox->setCurrentText(recherchePseudoAdmin()); // choisir le profil admin au demarrage
-	ui->label_CurrentProfil->setText(recherchePseudoAdmin());
+	QString pseudoAdmin = recherchePseudoAdmin();
+	user->selectCurrentProfil(pseudoAdmin); // utilisateur se place sur le profil admin
+	comboBox->setCurrentText(pseudoAdmin); // choisir le profil admin au demarrage
+	ui->label_CurrentProfil->setText(pseudoAdmin);
+	ecrireDansFichierTemp(pseudoAdmin);
 	ui->pushButton_creerProfil->setDisabled(false); // activer le bouton creer un profil
 	ui->actionsupprimer_un_profil->setDisabled(false);
 	ui->actionsauvergarder_vos_donn_es->setDisabled(false);
@@ -84,6 +86,7 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		fenetreRempliInfos->setEnableModif(false);
+		fenetreRempliInfos->setInAdminProfil(false);
 		fenetreRempliInfos->clearAllQlineEdit();
 		fenetreRempliInfos->exec();
 	}
@@ -106,6 +109,12 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 	   et rajouter le mot de passe dans la creation de profil  */
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+
+		if(recherchePseudoAdmin() == lireDansFichierTemp()) // si admin
+			fenetreRempliInfos->setInAdminProfil(true);
+		else
+			fenetreRempliInfos->setInAdminProfil(false);
+
 		fenetreRempliInfos->setEnableModif(true); // autorise les modifications
 		fenetreRempliInfos->clearAllQlineEdit();
 		fenetreRempliInfos->setQlineEditWithDatas(user->getProfil());
