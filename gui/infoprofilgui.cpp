@@ -231,6 +231,17 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 		}
 	}
 
+	//checkbox prive
+	ui->checkBox_nom->setChecked(profil->getPriveNom());
+	ui->checkBox_sexe->setChecked(profil->getPriveSexe());
+	ui->checkBox_corps->setChecked(profil->getPriveCorps());
+	ui->checkBox_date->setChecked(profil->getPriveDate());
+	ui->checkBox_Tel->setChecked(profil->getPriveTel());
+	ui->checkBox_Adress->setChecked(profil->getPriveAdresse());
+	ui->checkBox_profession->setChecked(profil->getPriveProfession());
+	ui->checkBox_medecin->setChecked(profil->getPriveMedecin());
+	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
+
 	// données privées
 	for(int i=0; i<profil->getAllergies().length(); i++)
 		ui->textBrowser_allergie->append(profil->getAllergies()[i]);

@@ -47,6 +47,16 @@ public:
 	void setPersonContactNom(QString);
 	void setPersonContactTel(QString);
 
+	void setPriveNom(bool);
+	void setPriveSexe(bool);
+	void setPriveGroupSanguin(bool);
+	void setPriveDateNaissance(bool);
+	void setPriveCorps(bool);
+	void setPriveAdress(bool);
+	void setPriveTel(bool);
+	void setPriveProfession(bool);
+	void setPriveMed(bool);
+
 	// getters
 	bool getIfAdmin();
 	QString getNom();

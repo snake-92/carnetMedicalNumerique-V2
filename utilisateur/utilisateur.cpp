@@ -32,35 +32,98 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 				profilChoisi->setInAdmin(true);
 			else
 				profilChoisi->setInAdmin(false);
-		}
-		else if(element.tagName()=="nom")
-			profilChoisi->setNom(element.text());
-		else if(element.tagName()=="prenom")
-			profilChoisi->setPrenom(element.text());
-		else if(element.tagName()=="sexe")
-			profilChoisi->setSexe(element.text());
-		else if(element.tagName()=="taille")
-			profilChoisi->setTaille(element.text().toInt());
-		else if(element.tagName()=="poids")
-			profilChoisi->setPoids(element.text().toDouble());
-		else if(element.tagName()=="groupe")
-			profilChoisi->setGroupSanguin(element.text());
-		else if(element.tagName()=="date")
-			profilChoisi->setDateNaissance(element.text());
-		else if(element.tagName()=="tel")
-			profilChoisi->setTel(element.text());
-		else if(element.tagName()=="adress")
-			profilChoisi->setAdresse(element.text());
-		else if (element.tagName()=="profession")
-			profilChoisi->setProfession(element.text());
-		else if(element.tagName()=="medecin"){
+		}else if(element.tagName()=="nom"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setNom(element.text());
+				profilChoisi->setPriveNom(false);
+			}else{
+				profilChoisi->setNom(decrypter(element.text()));
+				profilChoisi->setPriveNom(true);
+			}
+		}else if(element.tagName()=="prenom"){
+			if(element.attribute("prive", "no") == "0")
+				profilChoisi->setPrenom(element.text());
+			else
+				profilChoisi->setPrenom(decrypter(element.text()));
+		}else if(element.tagName()=="sexe"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setSexe(element.text());
+				profilChoisi->setPriveSexe(false);
+			}else{
+				profilChoisi->setSexe(decrypter(element.text()));
+				profilChoisi->setPriveSexe(true);
+			}
+		}else if(element.tagName()=="taille"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setTaille(element.text().toInt());
+				profilChoisi->setPriveCorps(false);
+			}else{
+				profilChoisi->setTaille(decrypter(element.text()).toInt());
+				profilChoisi->setPriveCorps(true);
+			}
+		}else if(element.tagName()=="poids"){
+			if(element.attribute("prive", "no") == "0")
+				profilChoisi->setPoids(element.text().toDouble());
+			else
+				profilChoisi->setPoids(decrypter(element.text()).toDouble());
+		}else if(element.tagName()=="groupe"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setGroupSanguin(element.text());
+				profilChoisi->setPriveGroupSanguin(false);
+			}else{
+				profilChoisi->setGroupSanguin(decrypter(element.text()));
+				profilChoisi->setPriveGroupSanguin(true);
+			}
+		}else if(element.tagName()=="date"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setDateNaissance(element.text());
+				profilChoisi->setPriveDateNaissance(false);
+			}else{
+				profilChoisi->setDateNaissance(decrypter(element.text()));
+				profilChoisi->setPriveDateNaissance(true);
+			}
+		}else if(element.tagName()=="tel"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setTel(element.text());
+				profilChoisi->setPriveTel(false);
+			}else{
+				profilChoisi->setTel(decrypter(element.text()));
+				profilChoisi->setPriveTel(true);
+			}
+		}else if(element.tagName()=="adress"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setAdresse(element.text());
+				profilChoisi->setPriveAdress(false);
+			}else{
+				profilChoisi->setAdresse(decrypter(element.text()));
+				profilChoisi->setPriveAdress(true);
+			}
+		}else if (element.tagName()=="profession"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setProfession(element.text());
+				profilChoisi->setPriveProfession(false);
+			}else{
+				profilChoisi->setProfession(decrypter(element.text()));
+				profilChoisi->setPriveProfession(true);
+			}
+		}else if(element.tagName()=="medecin"){
 			sousElement = element.firstChild().toElement();
 			while(!sousElement.isNull())
 			{
-				if(sousElement.tagName()=="nom")
-					profilChoisi->setMedecinNom(sousElement.text());
-				else if(sousElement.tagName()=="tel")
-					profilChoisi->setMedecinTel(sousElement.text());
+				if(sousElement.tagName()=="nom"){
+					if(element.attribute("prive", "no") == "0"){
+						profilChoisi->setMedecinNom(sousElement.text());
+						profilChoisi->setPriveMed(false);
+					}else{
+						profilChoisi->setMedecinNom(decrypter(sousElement.text()));
+						profilChoisi->setPriveMed(true);
+					}
+				}else if(sousElement.tagName()=="tel"){
+					if(element.attribute("prive", "no") == "0")
+						profilChoisi->setMedecinTel(sousElement.text());
+					else
+						profilChoisi->setMedecinTel(decrypter(sousElement.text()));
+				}
 				sousElement = sousElement.nextSibling().toElement();
 			}
 		}

@@ -310,6 +310,34 @@ void Profil::setPersonContact(QString c, QString tel){
 	contact.telContact = tel;
 }
 
+void Profil::setPriveNom(bool b){
+	nom.prive = b;
+}
+void Profil::setPriveSexe(bool b){
+	sexe.prive = b;
+}
+void Profil::setPriveGroupSanguin(bool b){
+	groupe.prive = b;
+}
+void Profil::setPriveDateNaissance(bool b){
+	date.prive = b;
+}
+void Profil::setPriveCorps(bool b){
+	corps.prive = b;
+}
+void Profil::setPriveAdress(bool b){
+	adresse.prive = b;
+}
+void Profil::setPriveTel(bool b){
+	numTel.prive = b;
+}
+void Profil::setPriveProfession(bool b){
+	profession.prive = b;
+}
+void Profil::setPriveMed(bool b){
+	medecin.prive = b;
+}
+
 bool Profil::getIfAdmin(){
 	return profilAdmin;
 }
