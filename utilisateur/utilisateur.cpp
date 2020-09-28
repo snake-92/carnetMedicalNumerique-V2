@@ -80,6 +80,7 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 	file.close();
 
 	// charger les données privées
+	profilChoisi->clearAllList();
 	bool allerg = false, antPerso = false, antFam = false, prescri = false, vac = false;
 	QString ligne;
 	QFile filePriv;

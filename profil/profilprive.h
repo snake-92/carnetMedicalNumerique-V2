@@ -31,6 +31,8 @@ public:
 	QStringList getPrescription();
 	QStringList getVaccin();
 
+	void clearAllList();
+
 protected:
 
 	QString mdp; // mot de passe

@@ -214,22 +214,16 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 	// TODO: groupe sangin
 
 	// données privées
-	QStringList maux;
-	maux = profil->getAllergies();
-	for(int i=0; i<maux.length(); i++)
-		ui->textBrowser_allergie->append(maux[i]);
-	maux = profil->getAntecedentPerso();
-	for(int i=0; i<maux.length(); i++)
-		ui->textBrowser_antPerso->append(maux[i]);
-	maux = profil->getAntecedentFamil();
-	for(int i=0; i<maux.length(); i++)
-		ui->textBrowser_antFamil->append(maux[i]);
-	maux = profil->getPrescription();
-	for(int i=0; i<maux.length(); i++)
-		ui->textBrowser_Prescrip->append(maux[i]);
-	maux = profil->getVaccin();
-	for(int i=0; i<maux.length(); i++)
-		ui->textBrowser_vaccin->append(maux[i]);
+	for(int i=0; i<profil->getAllergies().length(); i++)
+		ui->textBrowser_allergie->append(profil->getAllergies()[i]);
+	for(int i=0; i<profil->getAntecedentPerso().length(); i++)
+		ui->textBrowser_antPerso->append(profil->getAntecedentPerso()[i]);
+	for(int i=0; i<profil->getAntecedentFamil().length(); i++)
+		ui->textBrowser_antFamil->append(profil->getAntecedentFamil()[i]);
+	for(int i=0; i<profil->getPrescription().length(); i++)
+		ui->textBrowser_Prescrip->append(profil->getPrescription()[i]);
+	for(int i=0; i<profil->getVaccin().length(); i++)
+		ui->textBrowser_vaccin->append(profil->getVaccin()[i]);
 }
 
 

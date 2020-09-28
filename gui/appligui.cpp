@@ -81,9 +81,6 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 	// demander le mot de passe
 	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
-	/* si les autres profils auront des mots de passe, faudra recuperer le pseudo dans le fichier temp
-	   et rajouter le mot de passe dans la creation de profil  */
-
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		fenetreRempliInfos->setEnableModif(false);
 		fenetreRempliInfos->setInAdminProfil(false);
@@ -104,19 +101,19 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 {
 	// demander le mot de passe
 	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
+	QString pseudoAdmin = recherchePseudoAdmin();
+	QString pseudoCourant = lireDansFichierTemp();
 
-	/* si les autres profils auront des mots de passe, faudra recuperer le pseudo dans le fichier temp
-	   et rajouter le mot de passe dans la creation de profil  */
+	if(password == user->getProfil()->getMotDePasse(pseudoAdmin)){
 
-	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
-
-		if(recherchePseudoAdmin() == lireDansFichierTemp()) // si admin
+		if(pseudoAdmin == pseudoCourant) // si admin
 			fenetreRempliInfos->setInAdminProfil(true);
 		else
 			fenetreRempliInfos->setInAdminProfil(false);
 
 		fenetreRempliInfos->setEnableModif(true); // autorise les modifications
 		fenetreRempliInfos->clearAllQlineEdit();
+		user->selectCurrentProfil(pseudoCourant);
 		fenetreRempliInfos->setQlineEditWithDatas(user->getProfil());
 		fenetreRempliInfos->exec();
 	}

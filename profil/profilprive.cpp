@@ -97,6 +97,15 @@ void ProfilPrive::saveProfilPriveInFile(){
 }
 
 
+void ProfilPrive::clearAllList(){
+	allergies.clear();
+	antecedentsPersonnel.clear();
+	antecedentsFamiliaux.clear();
+	prescriptions.clear();
+	vaccin.clear();
+}
+
+
 
 void ProfilPrive::ajouterAllergie(QString allergie){
 	allergies << allergie;
