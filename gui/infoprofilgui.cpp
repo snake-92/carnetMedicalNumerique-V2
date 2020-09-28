@@ -219,22 +219,15 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 
 	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
 	if(profil->getGroupSanguin() == "AB_"){
-		qDebug()<<"AB";
 		ui->comboBox_groupe->setCurrentText("AB");
 		ui->comboBox_rhesus->setCurrentIndex(0);
-		qDebug()<<profil->getGroupSanguin().split("_");
 	}else{
-		qDebug()<<"else";
 		if(profil->getGroupSanguin().length()>2){
-			qDebug()<<"+-";
-			qDebug()<<profil->getGroupSanguin().split("_")[0];
 			ui->comboBox_groupe->setCurrentText(profil->getGroupSanguin().split("_")[0]);
 			ui->comboBox_rhesus->setCurrentText(profil->getGroupSanguin().split("_")[1]);
 		}else{
-			qDebug()<<"A ou B ...";
 			ui->comboBox_groupe->setCurrentText(profil->getGroupSanguin().split("_")[0]);
 			ui->comboBox_rhesus->setCurrentIndex(0);
-			qDebug()<<profil->getGroupSanguin();
 		}
 	}
 
