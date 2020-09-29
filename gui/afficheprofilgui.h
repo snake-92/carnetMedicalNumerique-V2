@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "../profil/profilprive.h"
 
+
 namespace Ui {
 class AfficheProfilGui;
 }
@@ -18,9 +19,6 @@ public:
 
 	void desactivePage(int numPage, bool etat);
 	void remplirLaFenetre(ProfilPrive* profil);
-
-private:
-	void nettoyerLaFenetre();
 
 private slots:
 	void on_pushButton_fermer_clicked();

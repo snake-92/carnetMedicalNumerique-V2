@@ -27,14 +27,12 @@ void AfficheProfilGui::on_pushButton_fermer_clicked()
 
 void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 
-	nettoyerLaFenetre(); // vider la fenetre
-
 	// creation de tous les qlabel
 	QLabel *nomLabel = new QLabel("<strong>Nom : </strong>"+profil->getNom(), this);
 	QLabel *prenomLabel = new QLabel("<strong>Prénom : </strong>"+profil->getPrenom(), this);
 	QLabel *sexeLabel = new QLabel("<strong>Sexe : </strong>"+profil->getSexe(), this);
-	QLabel *tailleLabel = new QLabel("<strong>Taille : </strong>"+QString::number(profil->getTaille())+" cm", this);
-	QLabel *poidsLabel = new QLabel("<strong>Poids : </strong>"+QString::number(profil->getPoids())+ " Kg", this);
+	QLabel *tailleLabel = new QLabel("<strong>Taille : </strong>"+QString::number(profil->getTaille()), this);
+	QLabel *poidsLabel = new QLabel("<strong>Poids : </strong>"+QString::number(profil->getPoids()), this);
 	QLabel *dateNaissanceLabel = new QLabel("<strong>Date de naissance : </strong>"+profil->getDateNaissance(), this);
 	QLabel *groupeSanguinLabel = new QLabel("<strong>Groupe sanguin : </strong>"+profil->getGroupSanguin(), this);
 	QLabel *telLabel = new QLabel("<strong>Numéro de téléphone : </strong>"+profil->getTel(), this);
@@ -130,10 +128,10 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 
 	if(profil->getAntecedentPerso().length() > 0){
 		QLabel *antPersoLabel = new QLabel("<strong><u>Antécédents personnels :</u></strong>",this);
-		ui->verticalLayout_pri_column1->addWidget(antPersoLabel);
+		ui->verticalLayout_pri_column2->addWidget(antPersoLabel);
 		for(int i=0; i<profil->getAntecedentPerso().length(); i++){
 			QLabel *antPerso = new QLabel("- "+profil->getAntecedentPerso()[i], this);
-			ui->verticalLayout_pri_column1->addWidget(antPerso);
+			ui->verticalLayout_pri_column2->addWidget(antPerso);
 		}
 	}
 
@@ -148,10 +146,10 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 
 	if(profil->getPrescription().length() > 0){
 		QLabel *prescriptLabel = new QLabel("<strong><u>Prescriptions :</u></strong>",this);
-		ui->verticalLayout_pri_column1->addWidget(prescriptLabel);
+		ui->verticalLayout_pri_column2->addWidget(prescriptLabel);
 		for(int i=0; i<profil->getPrescription().length(); i++){
 			QLabel *prescri = new QLabel("- "+profil->getPrescription()[i], this);
-			ui->verticalLayout_pri_column1->addWidget(prescri);
+			ui->verticalLayout_pri_column2->addWidget(prescri);
 		}
 	}
 
@@ -163,9 +161,4 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 			ui->verticalLayout_pri_column1->addWidget(vaccin);
 		}
 	}
-}
-
-
-void AfficheProfilGui::nettoyerLaFenetre(){
-
 }

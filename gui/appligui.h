@@ -38,7 +38,6 @@ private:
 	Ui::AppliGui *ui;
 	Utilisateur* user;
 	InfoProfilGui* fenetreRempliInfos;
-	AfficheProfilGui* fenetreAfficheInfos;
 	QComboBox *comboBox;
 	bool fermer;
 };

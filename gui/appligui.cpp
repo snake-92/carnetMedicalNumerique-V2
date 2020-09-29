@@ -13,7 +13,6 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 
 	user = new Utilisateur(); // création de l'utilisateur
 	fenetreRempliInfos = new InfoProfilGui(this);
-	fenetreAfficheInfos = new AfficheProfilGui(this);
 	fermer = false;
 
 	QDir adminRepertoire(PROFILPATH);
@@ -64,7 +63,6 @@ AppliGui::~AppliGui()
 	delete ui;
 	delete user;
 	delete fenetreRempliInfos;
-	delete fenetreAfficheInfos;
 	delete comboBox;
 }
 
@@ -92,6 +90,7 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 
 void AppliGui::on_pushButton_afficheProfil_clicked()
 {
+	AfficheProfilGui* fenetreAfficheInfos = new AfficheProfilGui(this);
 	fenetreAfficheInfos->desactivePage(1, false); // desactive la partie des données privées
 	user->selectCurrentProfil(lireDansFichierTemp()); // mettre le profil à jour avec les infos contenu dans les fichiers
 	fenetreAfficheInfos->remplirLaFenetre(user->getProfil()); // remplir la page d'affichage
@@ -128,6 +127,7 @@ void AppliGui::on_pushButton_affiche_privateData_clicked()
 	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		AfficheProfilGui* fenetreAfficheInfos = new AfficheProfilGui(this);
 		fenetreAfficheInfos->desactivePage(1, true); // active la partie des données privées
 		user->selectCurrentProfil(lireDansFichierTemp()); // mettre le profil à jour avec les infos contenu dans les fichiers
 		fenetreAfficheInfos->remplirLaFenetre(user->getProfil()); // remplir la page d'affichage
