@@ -77,7 +77,7 @@ void AppliGui::closeEvent(QCloseEvent*)
 void AppliGui::on_pushButton_creerProfil_clicked()
 {
 	// demander le mot de passe
-	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		fenetreRempliInfos->setEnableModif(false);
@@ -101,7 +101,7 @@ void AppliGui::on_pushButton_afficheProfil_clicked()
 void AppliGui::on_pushButton_modifProfil_clicked()
 {
 	// demander le mot de passe
-	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 	QString pseudoAdmin = recherchePseudoAdmin();
 	QString pseudoCourant = lireDansFichierTemp();
 
@@ -124,7 +124,7 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 void AppliGui::on_pushButton_affiche_privateData_clicked()
 {
 	// demander le mot de passe
-	QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		AfficheProfilGui* fenetreAfficheInfos = new AfficheProfilGui(this);
@@ -176,9 +176,9 @@ void AppliGui::supprimer_profil(){
 
 	QInputDialog qDialog;
 	qDialog.setOptions(QInputDialog::UseListViewForComboBoxItems);
-	qDialog.setLabelText("Liste des profils :");
+	qDialog.setLabelText(tr("Liste des profils :"));
 	qDialog.setComboBoxItems(getListePseudoProfil());
-	qDialog.setWindowTitle("Supprimer un profil");
+	qDialog.setWindowTitle(tr("Supprimer un profil"));
 
 	if(qDialog.exec() == QDialog::Accepted){
 
@@ -195,7 +195,7 @@ void AppliGui::supprimer_profil(){
 											  QMessageBox::Ok);
 
 			// demander le mot de passe
-			QString password = QInputDialog::getText(this, "Vérification", "Entrer votre mot de passe", QLineEdit::Password);
+			QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
 			if(choice == QMessageBox::Ok){
 
@@ -215,7 +215,7 @@ bool AppliGui::fermerAppli(){
 
 
 void AppliGui::a_propos(){
-	QMessageBox::about(this, "à propos", "ecrire une description avec le numero de version qui evolu à chaque release??");
+	QMessageBox::about(this, tr("à propos"), tr("ecrire une description avec le numero de version qui evolu à chaque release??"));
 }
 
 

@@ -166,16 +166,16 @@ bool InfoProfilGui::verifieChampDeSaisi(){
 
 	if(ui->lineEdit_nom->text().isEmpty() || ui->lineEdit_prenom->text().isEmpty()){
 		champRempli = false;
-		msgChampNonRempli = "Vous n'avez pas saisie votre nom ou votre prenom";
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre nom ou votre prenom");
 	}else if(ui->spinBox_taille->value() == 0 || ui->doubleSpinBox_poids->value() == 0.0){
 		champRempli = false;
-		msgChampNonRempli = "Vous n'avez pas saisie votre taille ou votre poids";
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre taille ou votre poids");
 	}else if(ui->lineEdit_tel->text().isEmpty()){
 		champRempli = false;
-		msgChampNonRempli = "Vous n'avez pas saisie votre numéro de téléphone";
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre numéro de téléphone");
 	}else if(ui->dateEdit->text() == "01/01/1753"){
 		champRempli = false;
-		msgChampNonRempli = "Vous n'avez pas saisie votre date de naissance";
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre date de naissance");
 	}
 
 	return champRempli;
@@ -299,7 +299,7 @@ void InfoProfilGui::on_toolButton_clicked()
 	// TODO: ajouter chemin vers photo comme attribut de profil
 	// TODO: copie la photo dans le repertoire du profil
 
-	QString cheminPhoto = QFileDialog::getOpenFileName(this, "Ouvrir un fichier", QString(), "Images (*.png *.gif *.jpg *.jpeg)");
+	QString cheminPhoto = QFileDialog::getOpenFileName(this, tr("Ouvrir un fichier"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
 	QPixmap *photo = new QPixmap(cheminPhoto);
 	photo->scaled(ui->label_Photo->size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
 	ui->label_Photo->setPixmap(*photo);
