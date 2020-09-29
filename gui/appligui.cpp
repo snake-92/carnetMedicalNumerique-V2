@@ -92,7 +92,9 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 
 void AppliGui::on_pushButton_afficheProfil_clicked()
 {
-	fenetreAfficheInfos->desactivePage(1, false); // deactive la partie des données privées
+	fenetreAfficheInfos->desactivePage(1, false); // desactive la partie des données privées
+	user->selectCurrentProfil(lireDansFichierTemp()); // mettre le profil à jour avec les infos contenu dans les fichiers
+	fenetreAfficheInfos->remplirLaFenetre(user->getProfil()); // remplir la page d'affichage
 	fenetreAfficheInfos->exec();
 }
 
@@ -127,6 +129,8 @@ void AppliGui::on_pushButton_affiche_privateData_clicked()
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		fenetreAfficheInfos->desactivePage(1, true); // active la partie des données privées
+		user->selectCurrentProfil(lireDansFichierTemp()); // mettre le profil à jour avec les infos contenu dans les fichiers
+		fenetreAfficheInfos->remplirLaFenetre(user->getProfil()); // remplir la page d'affichage
 		fenetreAfficheInfos->exec();
 	}
 }
@@ -148,7 +152,6 @@ void AppliGui::name_profil_clicked(QString pseudo){
 		user->selectCurrentProfil(pseudo); // utilisateur se place sur le profil pseudo
 		ui->label_CurrentProfil->setText(pseudo);
 
-		//if(pseudo == "admin"){
 		if(user->getProfil()->getIfAdmin()){
 			fenetreRempliInfos->setInAdminProfil(true); // profil admin
 			ui->pushButton_creerProfil->setDisabled(false); // activer le bouton creer profil
@@ -212,7 +215,6 @@ bool AppliGui::fermerAppli(){
 
 
 void AppliGui::a_propos(){
-
 	QMessageBox::about(this, "à propos", "ecrire une description avec le numero de version qui evolu à chaque release??");
 }
 
