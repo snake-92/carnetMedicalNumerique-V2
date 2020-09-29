@@ -67,7 +67,7 @@ FORMS += gui/infoprofilgui.ui \
     gui/appligui.ui
 
 # fichier de traduction qui sera generé
-TRANSLATIONS = hmc_en.ts
+TRANSLATIONS += hmc_en.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
