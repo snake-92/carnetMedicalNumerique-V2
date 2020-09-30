@@ -33,6 +33,11 @@ private slots:
 	void supprimer_profil();
 	void a_propos();
 	void infoHTML();
+	void traduction_anglais();
+	void traduction_francais();
+
+protected:
+	void changeEvent(QEvent*);
 
 private:
 	Ui::AppliGui *ui;
@@ -40,6 +45,7 @@ private:
 	InfoProfilGui* fenetreRempliInfos;
 	QComboBox *comboBox;
 	bool fermer;
+	QTranslator *translate;
 };
 
 #endif // APPLIGUI_H

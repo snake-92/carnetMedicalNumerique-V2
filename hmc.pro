@@ -66,8 +66,12 @@ FORMS += gui/infoprofilgui.ui \
     gui/logingui.ui \
     gui/appligui.ui
 
+# images
+RESOURCES     += images/images.qrc
+
 # fichier de traduction qui sera generé
-TRANSLATIONS += hmc_en.ts
+RESOURCES     += traduction/traduction.qrc
+TRANSLATIONS += traduction/hmc_en.ts traduction/hmc_fr.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

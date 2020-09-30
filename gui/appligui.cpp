@@ -10,6 +10,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	ui(new Ui::AppliGui)
 {
 	ui->setupUi(this);
+	translate = new QTranslator(0);
 
 	user = new Utilisateur(); // création de l'utilisateur
 	fenetreRempliInfos = new InfoProfilGui(this);
@@ -49,12 +50,18 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	ui->actionsupprimer_un_profil->setDisabled(false);
 	ui->actionsauvergarder_vos_donn_es->setDisabled(false);
 
+	// images des langues
+	ui->actionAnglais->setIcon(QIcon(":/images/logoAnglais.png"));
+	ui->actionFran_ais->setIcon(QIcon(":/images/logoFrancais.png"));
+
 	connect(ui->actionsupprimer_un_profil, &QAction::triggered, this, &AppliGui::supprimer_profil);
 	connect(ui->actionfermer, &QAction::triggered, this, &AppliGui::close); // fermer l'application en clicquant sur fermer dans le menu
 	connect(fenetreRempliInfos, SIGNAL(newprofil(QString)), this, SLOT(rempli_comboBox(QString)));
 	connect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
 	connect(ui->action_propos, &QAction::triggered, this, &AppliGui::a_propos); // à propos
 	connect(ui->actionlire_infos, &QAction::triggered, this, &AppliGui::infoHTML); // lire info
+	connect(ui->actionAnglais, &QAction::triggered, this, &AppliGui::traduction_anglais); // anglais
+	connect(ui->actionFran_ais, &QAction::triggered, this, &AppliGui::traduction_francais); // francais
 }
 
 
@@ -223,4 +230,30 @@ void AppliGui::infoHTML(){
 	QString path = "start "+QCoreApplication::applicationDirPath()+"/doc/index.html";
 	const char* p = path.toStdString().c_str();
 	system(p);
+}
+
+
+void AppliGui::traduction_anglais(){ // traduction en anglais
+	QApplication::removeTranslator(translate);
+	translate->load("hmc_en.qm",":/traduction/");
+	QApplication::installTranslator(translate);
+}
+
+
+void AppliGui::traduction_francais(){ // traduction en francais
+	QApplication::removeTranslator(translate);
+	translate->load("hmc_fr.qm",":/traduction/");
+	QApplication::installTranslator(translate);
+}
+
+
+void AppliGui::changeEvent(QEvent* event){ // evenement lors du changement de langue
+	if(0 != event) {
+		 switch(event->type()) {
+		   case QEvent::LanguageChange:
+				ui->retranslateUi(this);
+				break;
+		 }
+	 }
+	 QMainWindow::changeEvent(event);
 }
