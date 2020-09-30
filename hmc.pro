@@ -73,6 +73,8 @@ RESOURCES     += images/images.qrc
 RESOURCES     += traduction/traduction.qrc
 TRANSLATIONS += traduction/hmc_en.ts traduction/hmc_fr.ts
 
+RC_FILE = hmc.rc
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
