@@ -236,12 +236,27 @@ void Utilisateur::genererPdf(QString path){
 	printer.setOutputFileName(path+"\\"+tr("données.pdf"));
 	printer.setPageMargins(QMarginsF(15, 15, 15, 15));
 
-	QString html = "<br><table width=100%>"
+	QString entete = "<header><h1>Dossier Médical</h1>"
+					 "</header>";
+
+	QString barreLaterale = "<nav><ul><li>Nom:"+profilChoisi->getNom()+"</li><li>Prenom:"+profilChoisi->getPrenom()+"</li>"
+							"<li>Sexe:"+profilChoisi->getSexe()+"</li>"
+							"</ul></nav>";
+
+	QString section1 = "<section><h3>Données principales</h3>"
+					   "</section>";
+
+	QString section2 = "<section><h3>Données avancées</h3>"
+					   "</section>";
+
+	QString piedDePage = "<footer>Date : "+QDateTime::currentDateTime().toString("hh:mm dd/MM/yyyy")+"</footer>";
+
+	/*QString html = "<br><table width=100%>"
 			"<tr><td align=center> </td><td align=center><strong><u>Calibration black time</u></strong></td><td align=center><strong><u>Calibration gain time</u></strong></td><td align=center><strong><u>Scanning time</u></strong></td> <td align=center><strong><u> Total </u></strong></td></tr>"
 			"<tbody>"
 			"<tr><td align=center><strong> Duration </strong></td><td align=center>xxx </td><td align=center>xxx  </td><td align=center> xx </td> <td align=center>xxx </td></tr>"
-			"</tbody></table><hr width=100%></hr>";
+			"</tbody></table><hr width=100%></hr>";*/
 
-	document.setHtml(html);
+	document.setHtml(entete+barreLaterale+section1+section2+piedDePage);
 	document.print(&printer);
 }
