@@ -2,5 +2,19 @@
 <qresource>
 	<file>../images/logoAnglais.png</file>
 	<file>../images/logoFrancais.png</file>
+	<file>../images/about.png</file>
+	<file>../images/ajouter.png</file>
+	<file>../images/consult.png</file>
+	<file>../images/delete.png</file>
+	<file>../images/fermer.png</file>
+	<file>../images/info.png</file>
+	<file>../images/msg.png</file>
+	<file>../images/order.png</file>
+	<file>../images/pdf.png</file>
+	<file>../images/pwd.png</file>
+	<file>../images/save.png</file>
+	<file>../images/create.png</file>
+	<file>../images/display.png</file>
+	<file>../images/verification.png</file>
 </qresource>
 </RCC>

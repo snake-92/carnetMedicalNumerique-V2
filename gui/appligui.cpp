@@ -15,6 +15,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 
 	user = new Utilisateur(); // création de l'utilisateur
 	fenetreRempliInfos = new InfoProfilGui(this);
+	fenetreRempliInfos->setWindowIcon(QIcon(":/images/create.png"));
 	fermer = false;
 
 	QDir adminRepertoire(PROFILPATH);
@@ -51,9 +52,20 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	ui->actionsupprimer_un_profil->setDisabled(false);
 	ui->actionsauvergarder_vos_donn_es->setDisabled(false);
 
-	// images des langues
+	// ajouter les images sur les menus
 	ui->actionAnglais->setIcon(QIcon(":/images/logoAnglais.png"));
 	ui->actionFran_ais->setIcon(QIcon(":/images/logoFrancais.png"));
+	ui->actionmessage->setIcon(QIcon(":/images/msg.png"));
+	ui->actionordonnance->setIcon(QIcon(":/images/order.png"));
+	ui->actionimprimer->setIcon(QIcon(":/images/pdf.png"));
+	ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));
+	ui->actionconsulter->setIcon(QIcon(":/images/consult.png"));
+	ui->actionsupprimer_un_profil->setIcon(QIcon(":/images/delete.png"));
+	ui->actionlire_infos->setIcon(QIcon(":/images/info.png"));
+	ui->action_propos->setIcon(QIcon(":/images/about.png"));
+	ui->actionfermer->setIcon(QIcon(":/images/fermer.png"));
+	ui->actionsauvergarder_vos_donn_es->setIcon(QIcon(":/images/save.png"));
+	ui->actionmot_de_passe_oubli->setIcon(QIcon(":/images/pwd.png"));
 
 	connect(ui->actionsupprimer_un_profil, &QAction::triggered, this, &AppliGui::supprimer_profil);
 	connect(ui->actionfermer, &QAction::triggered, this, &AppliGui::close); // fermer l'application en clicquant sur fermer dans le menu
@@ -89,6 +101,7 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		fenetreRempliInfos->setWindowTitle(tr("création d'un profil"));
 		fenetreRempliInfos->setEnableModif(false);
 		fenetreRempliInfos->setInAdminProfil(false);
 		fenetreRempliInfos->clearAllQlineEdit();
@@ -100,6 +113,8 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 void AppliGui::on_pushButton_afficheProfil_clicked()
 {
 	AfficheProfilGui* fenetreAfficheInfos = new AfficheProfilGui(this);
+	fenetreAfficheInfos->setWindowIcon(QIcon(":/images/display.png"));
+	fenetreAfficheInfos->setWindowTitle(tr("Affichage des données"));
 	fenetreAfficheInfos->desactivePage(1, false); // desactive la partie des données privées
 	user->selectCurrentProfil(lireDansFichierTemp()); // mettre le profil à jour avec les infos contenu dans les fichiers
 	fenetreAfficheInfos->remplirLaFenetre(user->getProfil()); // remplir la page d'affichage
@@ -121,6 +136,7 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 		else
 			fenetreRempliInfos->setInAdminProfil(false);
 
+		fenetreRempliInfos->setWindowTitle(tr("Modification du profil"));
 		fenetreRempliInfos->setEnableModif(true); // autorise les modifications
 		fenetreRempliInfos->clearAllQlineEdit();
 		user->selectCurrentProfil(pseudoCourant);
@@ -137,6 +153,8 @@ void AppliGui::on_pushButton_affiche_privateData_clicked()
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		AfficheProfilGui* fenetreAfficheInfos = new AfficheProfilGui(this);
+		fenetreAfficheInfos->setWindowIcon(QIcon(":/images/display.png"));
+		fenetreAfficheInfos->setWindowTitle(tr("Affichage des données"));
 		fenetreAfficheInfos->desactivePage(1, true); // active la partie des données privées
 		user->selectCurrentProfil(lireDansFichierTemp()); // mettre le profil à jour avec les infos contenu dans les fichiers
 		fenetreAfficheInfos->remplirLaFenetre(user->getProfil()); // remplir la page d'affichage
@@ -185,6 +203,7 @@ void AppliGui::supprimer_profil(){
 
 	QInputDialog qDialog;
 	qDialog.setOptions(QInputDialog::UseListViewForComboBoxItems);
+	qDialog.setWindowIcon(QIcon(":/images/delete.png"));
 	qDialog.setLabelText(tr("Liste des profils :"));
 	qDialog.setComboBoxItems(getListePseudoProfil());
 	qDialog.setWindowTitle(tr("Supprimer un profil"));
