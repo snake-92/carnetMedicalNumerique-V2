@@ -3,6 +3,7 @@
 #include "../fonctions/fonctions.h"
 #include <QInputDialog>
 #include <cstdlib>
+#include <QFileDialog>
 
 
 AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
@@ -62,6 +63,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	connect(ui->actionlire_infos, &QAction::triggered, this, &AppliGui::infoHTML); // lire info
 	connect(ui->actionAnglais, &QAction::triggered, this, &AppliGui::traduction_anglais); // anglais
 	connect(ui->actionFran_ais, &QAction::triggered, this, &AppliGui::traduction_francais); // francais
+	connect(ui->actionimprimer, &QAction::triggered, this, &AppliGui::impression); // imprimer
 }
 
 
@@ -256,4 +258,13 @@ void AppliGui::changeEvent(QEvent* event){ // evenement lors du changement de la
 		 }
 	 }
 	 QMainWindow::changeEvent(event);
+}
+
+
+void AppliGui::impression(){
+
+	QString dossier = QFileDialog::getExistingDirectory(this);
+
+	user->selectCurrentProfil(lireDansFichierTemp());
+	user->genererPdf(dossier);
 }

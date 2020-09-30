@@ -35,6 +35,7 @@ private slots:
 	void infoHTML();
 	void traduction_anglais();
 	void traduction_francais();
+	void impression();
 
 protected:
 	void changeEvent(QEvent*);

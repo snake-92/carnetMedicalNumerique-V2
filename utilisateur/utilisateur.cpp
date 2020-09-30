@@ -1,5 +1,7 @@
 #include "utilisateur.h"
 #include "../fonctions/fonctions.h"
+#include <QPrinter>
+#include <qtextdocument.h>
 
 Utilisateur::Utilisateur()
 {
@@ -222,4 +224,24 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 
 ProfilPrive* Utilisateur::getProfil(){
 	return profilChoisi;
+}
+
+
+void Utilisateur::genererPdf(QString path){
+	QTextDocument document;
+
+	QPrinter printer(QPrinter::PrinterResolution);
+	printer.setOutputFormat(QPrinter::PdfFormat);
+	printer.setPaperSize(QPrinter::A4);
+	printer.setOutputFileName(path+"\\"+tr("données.pdf"));
+	printer.setPageMargins(QMarginsF(15, 15, 15, 15));
+
+	QString html = "<br><table width=100%>"
+			"<tr><td align=center> </td><td align=center><strong><u>Calibration black time</u></strong></td><td align=center><strong><u>Calibration gain time</u></strong></td><td align=center><strong><u>Scanning time</u></strong></td> <td align=center><strong><u> Total </u></strong></td></tr>"
+			"<tbody>"
+			"<tr><td align=center><strong> Duration </strong></td><td align=center>xxx </td><td align=center>xxx  </td><td align=center> xx </td> <td align=center>xxx </td></tr>"
+			"</tbody></table><hr width=100%></hr>";
+
+	document.setHtml(html);
+	document.print(&printer);
 }
