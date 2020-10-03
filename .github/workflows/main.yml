@@ -19,4 +19,4 @@ jobs:
     - name: make
       run: |
         make.exe
-        dir
+        dir bin/
