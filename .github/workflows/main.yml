@@ -15,4 +15,4 @@ jobs:
         target: 'desktop'
         arch: 'win64_mingw73'  
     - name: Test qmake
-      run: dir $Qt5_DIR/../../Tools
+      run: dir $Qt5_DIR\..\..\Tools
