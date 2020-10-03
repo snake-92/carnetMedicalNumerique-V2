@@ -15,6 +15,4 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2017_64'
     - name: Test qmake
-      run: |
-        echo "$Qt5_DIR"
-        ls Qt5_DIR 
+      run: $Qt5_DIR/bin/qmake  hmc.pro
