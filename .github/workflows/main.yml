@@ -17,4 +17,4 @@ jobs:
     - name: Test qmake
       run: dir D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/bin/qmake.exe hmc.pro
     - name: make
-      run: dir D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/bin/make.exe
+      run: make.exe
