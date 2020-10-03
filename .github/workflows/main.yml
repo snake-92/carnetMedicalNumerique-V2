@@ -13,5 +13,6 @@ jobs:
         version: '5.12.9'
         host: 'windows'
         target: 'desktop'
+        arch: 'win64_mingw73'
     - name: Test qmake
       run: ls $Qt5_DIR/../../Tools
