@@ -15,4 +15,4 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2017_64'
     - name: Test qmake
-      run: /Qt/5.12.4/gcc_64/bin/qmake hmc.pro
+      run: /Qt/5.12.9/gcc_64/bin/qmake hmc.pro
