@@ -15,4 +15,4 @@ jobs:
         target: 'desktop'
         arch: 'win64_mingw73'  
     - name: Test qmake
-      run: dir D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/
+      run: dir D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/
