@@ -15,4 +15,4 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2017_64'
     - name: Test qmake
-      run: tree $Qt5_DIR/../../
+      run: apt install -y tree && tree $Qt5_DIR/../../
