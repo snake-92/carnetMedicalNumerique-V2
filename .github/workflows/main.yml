@@ -13,6 +13,10 @@ jobs:
         version: '5.12.9'
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_mingw73'
+        arch: 'win32_mingw53'  
     - name: Test qmake
-      run: sudo apt install -y tree && tree $Qt5_DIR/../
+      run: |
+         $Qt5_DIR/bin/qmake.exe  hmc.pro
+         ls $Qt5_DIR/bin/
+         #sudo apt-get install -y mingw-w53
+         #mingw-w64
