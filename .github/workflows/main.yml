@@ -15,4 +15,4 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2017_64'
     - name: Test qmake
-      run: ls $Qt5_DIR/../../
+      run: ls $Qt5_DIR/../../Tools/
