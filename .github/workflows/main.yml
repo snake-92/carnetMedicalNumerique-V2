@@ -118,7 +118,7 @@ jobs:
 
         if ("${{ runner.os }}" STREQUAL "Windows")
           set(qtc_output_directory "qtcreator/lib/qtcreator/plugins")
-          set(qtc_binary_name "$ENV{PLUGIN_NAME}4.dll")
+          #set(qtc_binary_name "$ENV{PLUGIN_NAME}4.dll")
           if ("${{ matrix.config.environment_script }}" MATCHES "vcvars64.bat")
             set(qtc_platform "windows_msvc2017_x64")
           elseif ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
