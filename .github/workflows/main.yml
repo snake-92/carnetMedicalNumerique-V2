@@ -13,9 +13,9 @@ jobs:
         version: '5.12.9'
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_mingw81'  
+        arch: 'win64_msvc2017_64'  
     - name: qmake
-      run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw81_64/bin/qmake.exe hmc.pro
+      run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/msvc2017_64/bin/qmake.exe hmc.pro
     - name: make
       run: make.exe
     - name: Download a single artifact
@@ -24,4 +24,4 @@ jobs:
         name: hmc
         path: |
           bin/hmc.exe
-          D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw81_64/bin/*.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/msvc2017_64/bin/*.dll
