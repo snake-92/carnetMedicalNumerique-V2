@@ -21,7 +21,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v1
       with:
-        name: hmc  
+        name: hmc.exe  
         path: bin/
     - name: Download URL
       uses: actions/download-artifact@v1
