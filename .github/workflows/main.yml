@@ -22,12 +22,12 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: hmc.exe  
-        path: bin/
+        path: ./bin/
     - name: Download URL
       uses: actions/download-artifact@v1
       with:
         name: upload_url
-        path: bin/
+        path: ./bin/
     - id: set_upload_url
       run: |
         upload_url=`cat ./upload_url`
