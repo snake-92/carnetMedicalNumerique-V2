@@ -24,6 +24,7 @@ jobs:
         path: bin/
     - name: Download URL
       uses: actions/download-artifact@v1
+      name: hmc
       with:
         name: upload_url
         path: bin/
