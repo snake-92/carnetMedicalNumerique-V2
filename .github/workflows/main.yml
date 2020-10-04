@@ -14,9 +14,20 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw73'  
-    - name: Test qmake
+    - name: qmake
       run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/bin/qmake.exe hmc.pro
     - name: make
+      run: make.exe
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        path: bin/
+    - name: Download URL
+      uses: actions/download-artifact@v1
+      with:
+        name: upload_url
+        path: bin/
+    - id: set_upload_url
       run: |
-        make.exe
-        dir bin/
+        upload_url=`cat ./upload_url`
+        echo ::set-output name=upload_url::$upload_url  
