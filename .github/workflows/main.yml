@@ -18,3 +18,14 @@ jobs:
       run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/bin/qmake.exe hmc.pro
     - name: make
       run: make.exe
+    - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: hmc
+    - shell: bash
+        run: value=`cat hmc.exe`
+    - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: hmc
+          path: ./bin/
