@@ -21,4 +21,5 @@ jobs:
     - name: Download a single artifact
       uses: actions/download-artifact@v2
       with:
-        name: bin
+        name: hmc
+        path: bin/hmc.exe
