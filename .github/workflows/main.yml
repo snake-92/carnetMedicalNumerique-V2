@@ -10,18 +10,18 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
       with:
-        version: '5.11.0'
+        version: '5.12.9'
         host: 'windows'
         target: 'desktop'
-        arch: 'win32_mingw53'  
+        arch: 'win64_mingw73'  
     - name: qmake
-      run: D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/qmake.exe hmc.pro
+      run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/win64_mingw73/bin/qmake.exe hmc.pro
     - name: make
-      run: mingw32-make.exe
+      run: make.exe
     - name: Download a single artifact
       uses: actions/upload-artifact@v2
       with:
         name: hmc
         path: |
           bin/hmc.exe
-          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/*.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/win64_mingw73/bin/*.dll
