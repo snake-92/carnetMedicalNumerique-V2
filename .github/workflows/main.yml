@@ -17,7 +17,8 @@ jobs:
     - name: qmake
       run: |
         dir D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/
-        D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/msvc2017_64/bin/qmake.exe hmc.pro
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
+        D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/msvc2017_64/bin/cmake.exe hmc.pro
     - name: make
       run: nmake
     - name: Download a single artifact
