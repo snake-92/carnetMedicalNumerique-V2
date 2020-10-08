@@ -15,7 +15,9 @@ jobs:
         target: 'desktop'
         arch: 'win64_mingw73'  
     - name: qmake
-      run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/win64_mingw73/bin/qmake.exe hmc.pro
+      run: |
+        dir D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/
+        D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/win64_mingw73/bin/qmake.exe hmc.pro
     - name: make
       run: make
     - name: Download a single artifact
