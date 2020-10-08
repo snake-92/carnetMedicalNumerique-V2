@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1345,6 +1345,18 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="label_Photo">
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>400</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>500</width>
+                    <height>700</height>
+                   </size>
+                  </property>
                   <property name="baseSize">
                    <size>
                     <width>10</width>
@@ -1353,6 +1365,9 @@
                   </property>
                   <property name="text">
                    <string>photo</string>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>

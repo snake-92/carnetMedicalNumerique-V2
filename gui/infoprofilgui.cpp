@@ -300,9 +300,8 @@ void InfoProfilGui::on_toolButton_clicked()
 	// TODO: copie la photo dans le repertoire du profil
 
 	QString cheminPhoto = QFileDialog::getOpenFileName(this, tr("Ouvrir un fichier"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
-	QPixmap *photo = new QPixmap(cheminPhoto);
-	photo->scaled(ui->label_Photo->size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
-	ui->label_Photo->setPixmap(*photo);
+	QPixmap photo(cheminPhoto);// = new QPixmap(cheminPhoto);
+	ui->label_Photo->setPixmap(photo);
 }
 
 
