@@ -31,6 +31,7 @@ public:
 	void setProfession(QString, bool);
 	void setMedecin(QString, QString, bool);
 	void setPersonContact(QString, QString);
+	void setImageProfil(QString, bool);
 
 	void setNom(QString);
 	void setPrenom(QString);
@@ -46,6 +47,7 @@ public:
 	void setMedecinTel(QString);
 	void setPersonContactNom(QString);
 	void setPersonContactTel(QString);
+	void setCheminImageProfil(QString);
 
 	void setPriveNom(bool);
 	void setPriveSexe(bool);
@@ -56,6 +58,7 @@ public:
 	void setPriveTel(bool);
 	void setPriveProfession(bool);
 	void setPriveMed(bool);
+	void setPriveImageProfil(bool);
 
 	// getters
 	bool getIfAdmin();
@@ -73,6 +76,7 @@ public:
 	QString getMedecinTel();
 	QString getPersonContactNom();
 	QString getPersonContactTel();
+	QString getCheminImageProfil();
 
 	bool getPriveNom();
 	bool getPriveSexe();
@@ -83,6 +87,7 @@ public:
 	bool getPriveTel();
 	bool getPriveMedecin();
 	bool getPriveProfession();
+	bool getPriveImageProfil();
 
 signals:
 
@@ -148,6 +153,11 @@ protected:
 		QString nom;
 		QString telContact;
 	}contact;
+
+	struct{
+		QString chemin;
+		bool prive;
+	}image;
 };
 
 #endif // PROFIL_H

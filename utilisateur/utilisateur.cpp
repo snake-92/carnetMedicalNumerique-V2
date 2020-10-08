@@ -128,8 +128,7 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 				}
 				sousElement = sousElement.nextSibling().toElement();
 			}
-		}
-		else if (element.tagName()=="contact"){
+		}else if (element.tagName()=="contact"){
 			sousElement = element.firstChild().toElement();
 			while(!sousElement.isNull())
 			{
@@ -139,8 +138,15 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 					profilChoisi->setPersonContactTel(sousElement.text());
 				sousElement = sousElement.nextSibling().toElement();
 			}
+		}else if(element.tagName()=="image"){
+			if(element.attribute("prive", "no") == "0"){
+				profilChoisi->setCheminImageProfil(element.text());
+				profilChoisi->setPriveImageProfil(false);
+			}else{
+				profilChoisi->setCheminImageProfil(decrypter(element.text()));
+				profilChoisi->setPriveImageProfil(true);
+			}
 		}
-
 		element = element.nextSibling().toElement();
 	}
 

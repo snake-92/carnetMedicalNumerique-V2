@@ -27,6 +27,8 @@ Profil::Profil(QObject *parent) : QObject(parent)
 	medecin.prive = false;
 	contact.nom = "";
 	contact.telContact = "";
+	image.prive = false;
+	image.chemin = "";
 }
 
 
@@ -245,6 +247,18 @@ void Profil::saveProfilInFiles(){
 	writer.writeEndElement();
 	writer.writeEndElement();
 
+	if(!image.prive){
+		writer.writeStartElement("image");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(image.chemin);
+		writer.writeEndElement();
+	}else{
+		writer.writeStartElement("image");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(image.chemin));
+		writer.writeEndElement();
+	}
+
 	writer.writeEndElement(); // Ferme l'element public
 	writer.writeEndDocument(); // Finalise le document XML
 
@@ -310,6 +324,11 @@ void Profil::setPersonContact(QString c, QString tel){
 	contact.telContact = tel;
 }
 
+void Profil::setImageProfil(QString c, bool b){
+	image.chemin = c;
+	image.prive = b;
+}
+
 void Profil::setPriveNom(bool b){
 	nom.prive = b;
 }
@@ -336,6 +355,9 @@ void Profil::setPriveProfession(bool b){
 }
 void Profil::setPriveMed(bool b){
 	medecin.prive = b;
+}
+void Profil::setPriveImageProfil(bool b){
+	image.prive = b;
 }
 
 bool Profil::getIfAdmin(){
@@ -398,6 +420,10 @@ QString Profil::getPersonContactTel(){
 	return contact.telContact;
 }
 
+QString Profil::getCheminImageProfil(){
+	return image.chemin;
+}
+
 // obtenir tous les etats prive des attributs
 bool Profil::getPriveNom(){return nom.prive;}
 bool Profil::getPriveSexe(){return sexe.prive;}
@@ -408,6 +434,7 @@ bool Profil::getPriveAdresse(){return adresse.prive;}
 bool Profil::getPriveTel(){return numTel.prive;}
 bool Profil::getPriveMedecin(){return medecin.prive;}
 bool Profil::getPriveProfession(){return profession.prive;}
+bool  Profil::getPriveImageProfil(){return image.prive;}
 
 //setter individuellement chaque attribut
 void Profil::setNom(QString n){nom.nom=n;}
@@ -424,3 +451,4 @@ void Profil::setMedecinNom(QString m){medecin.nomMedecin=m;}
 void Profil::setMedecinTel(QString t){medecin.telMedecin=t;}
 void Profil::setPersonContactNom(QString c){contact.nom=c;}
 void Profil::setPersonContactTel(QString t){contact.telContact=t;}
+void Profil::setCheminImageProfil(QString c){image.chemin = c;}

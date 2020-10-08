@@ -29,5 +29,7 @@ QString recherchePseudoAdmin(); // donne le nom (pseudo) de l'admin
 
 void supprimeProfil(QString nomProfil); // supprime le dossier du profil correspondant
 
+QString copyImageDansProfil(QString pathSrc, QString pseudo); // copie l'image dans le repertoire du profil et retourne le nouveau chemin
+
 
 #endif // FONCTIONS_H

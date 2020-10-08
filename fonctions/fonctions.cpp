@@ -109,3 +109,10 @@ void supprimeProfil(QString nomProfil){
 
 }
 
+
+QString copyImageDansProfil(QString pathSrc, QString pseudo){
+	QString dest = PROFILPATH+pseudo+"/"+pathSrc.split("/")[pathSrc.split("/").length()-1];
+	QFile::copy(pathSrc, dest);
+	return dest;
+}
+

@@ -19,6 +19,7 @@ InfoProfilGui::InfoProfilGui(QWidget *parent) :
 	ui->doubleSpinBox_poids->setMaximum(300.00); // poids maximum
 	ui->dateEdit->clear();
 	msgChampNonRempli = "";
+	cheminPhoto = "";
 
 	adminProfil = true; // pour le profil admin
 	EnableModif = false; // utiliser pour remplir la fenetre lorsqu'on clique sur modifier profil
@@ -46,10 +47,12 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 	if(verifieChampDeSaisi()){
 		ProfilPrive nouveauProfil;
 		bool pseudoExistDeja=false;
+		QString pseudo = "";
 		if(!EnableModif && !adminProfil){ // profil user
 
 			QString pseudoProfil = QInputDialog::getText (this, "nom du profil", "Entrer le nom de votre profil");
 			pseudoExistDeja = pseudoExist(pseudoProfil);
+			pseudo = pseudoProfil;
 
 			if(!pseudoExistDeja){// test si le profil existe déjà
 				nouveauProfil.creerFichierPublic(pseudoProfil); // fichier public
@@ -64,16 +67,18 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 		}
 
 		if(!pseudoExistDeja){
-			// recuperation des infos
+			// recuperation des
 			if(adminProfil){
-				nouveauProfil.creerFichierPublic(ui->lineEdit_prenom->text()); // specifie que c'est la creation du profil admin avec le "true"
-				nouveauProfil.creerFichierPrive(ui->lineEdit_prenom->text()); // fichier privé
-				ecrireDansFichierTemp(ui->lineEdit_prenom->text()); // enregistrement du prenom de l'admin dans le fichier temp
+				pseudo = ui->lineEdit_prenom->text();
+				nouveauProfil.creerFichierPublic(pseudo); // specifie que c'est la creation du profil admin avec le "true"
+				nouveauProfil.creerFichierPrive(pseudo); // fichier privé
+				ecrireDansFichierTemp(pseudo); // enregistrement du prenom de l'admin dans le fichier temp
 				nouveauProfil.setInAdmin(true); // signifie que le profil est admin
 			}else{
 				if(EnableModif){
-					nouveauProfil.creerFichierPublic(lireDansFichierTemp()); // fichier public
-					nouveauProfil.creerFichierPrive(lireDansFichierTemp()); // fichier privé
+					pseudo = lireDansFichierTemp();
+					nouveauProfil.creerFichierPublic(pseudo); // fichier public
+					nouveauProfil.creerFichierPrive(pseudo); // fichier privé
 				}
 				nouveauProfil.setInAdmin(false); // signifie que le profil n'est pas admin
 			}
@@ -93,6 +98,7 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			nouveauProfil.setMedecin(ui->lineEdit_nomMed->text(), ui->lineEdit_telMed->text(), ui->checkBox_medecin->isChecked());
 			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+'_'+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
 			nouveauProfil.setPersonContact(ui->lineEdit_nomContact->text(), ui->lineEdit_telContact->text());
+			nouveauProfil.setImageProfil(copyImageDansProfil(cheminPhoto, pseudo), ui->checkBox_photo->isChecked());
 
 			nouveauProfil.saveProfilInFiles(); // enregistrement des données dans le fichier publique
 
@@ -231,6 +237,11 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 		}
 	}
 
+	if(profil->getCheminImageProfil() != ""){
+		QPixmap photo(profil->getCheminImageProfil());
+		ui->label_Photo->setPixmap(photo);
+	}
+
 	//checkbox prive
 	ui->checkBox_nom->setChecked(profil->getPriveNom());
 	ui->checkBox_sexe->setChecked(profil->getPriveSexe());
@@ -241,6 +252,7 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 	ui->checkBox_profession->setChecked(profil->getPriveProfession());
 	ui->checkBox_medecin->setChecked(profil->getPriveMedecin());
 	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
+	ui->checkBox_photo->setChecked(profil->getPriveImageProfil());
 
 	// données privées
 	for(int i=0; i<profil->getAllergies().length(); i++)
@@ -273,6 +285,7 @@ void InfoProfilGui::clearAllQlineEdit(){
 	ui->comboBox_rhesus->setCurrentIndex(0);
 	ui->lineEdit_nomContact->clear();
 	ui->lineEdit_telContact->clear();
+	ui->label_Photo->clear();
 
 	// desactivé tous les checkbox "prive"
 	ui->checkBox_nom->setChecked(false);
@@ -284,6 +297,7 @@ void InfoProfilGui::clearAllQlineEdit(){
 	ui->checkBox_medecin->setChecked(false);
 	ui->checkBox_profession->setChecked(false);
 	ui->checkBox_goupeSanguin->setChecked(false);
+	ui->checkBox_photo->setChecked(false);
 
 	// initialiser tous dans la partie privée
 	ui->textBrowser_allergie->clear();
@@ -296,11 +310,9 @@ void InfoProfilGui::clearAllQlineEdit(){
 
 void InfoProfilGui::on_toolButton_clicked()
 {
-	// TODO: ajouter chemin vers photo comme attribut de profil
-	// TODO: copie la photo dans le repertoire du profil
-
-	QString cheminPhoto = QFileDialog::getOpenFileName(this, tr("Ouvrir un fichier"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
-	QPixmap photo(cheminPhoto);// = new QPixmap(cheminPhoto);
+	// recuperation de l'image du profil
+	cheminPhoto = QFileDialog::getOpenFileName(this, tr("Ouvrir un fichier"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
+	QPixmap photo(cheminPhoto);
 	ui->label_Photo->setPixmap(photo);
 }
 

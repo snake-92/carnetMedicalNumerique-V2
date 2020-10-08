@@ -53,6 +53,7 @@ private:
 	bool adminProfil;
 	bool EnableModif;
 	QString msgChampNonRempli;
+	QString cheminPhoto;
 };
 
 #endif // INFOPROFILGUI_H
