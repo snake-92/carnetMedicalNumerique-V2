@@ -17,7 +17,7 @@ jobs:
     - name: qmake
       run: |
         dir D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/
-        D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw53_32/bin/qmake.exe hmc.pro
+        D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/qmake.exe hmc.pro
     - name: make
       run: make
     - name: Download a single artifact
@@ -26,4 +26,10 @@ jobs:
         name: hmc
         path: |
           bin/hmc.exe
-          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/*.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/libgcc_s_seh-1.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/libstdc++-6.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/Qt5Core.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/Qt5Gui.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/Qt5PrintSupport.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/Qt5Widgets.dll
+          D:/a/carnetMedicalNumerique-V2/Qt/5.11.0/mingw53_32/bin/Qt5Xml.dll
