@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1304,7 +1304,11 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_AncienPwd"/>
+                   <widget class="QLineEdit" name="lineEdit_AncienPwd">
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -1318,7 +1322,11 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_NouveauPwd"/>
+                   <widget class="QLineEdit" name="lineEdit_NouveauPwd">
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -1332,7 +1340,11 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_VerifNouveauPwd"/>
+                   <widget class="QLineEdit" name="lineEdit_VerifNouveauPwd">
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>

@@ -31,5 +31,7 @@ void supprimeProfil(QString nomProfil); // supprime le dossier du profil corresp
 
 QString copyImageDansProfil(QString pathSrc, QString pseudo); // copie l'image dans le repertoire du profil et retourne le nouveau chemin
 
+QString checkMotDePasse();  // permet d'obtenir le mot de passe dans d'autres classes sans passé par la classe utilisateur
+void modifMotDePasse(QString pwd); // modifie le mot de passe
 
 #endif // FONCTIONS_H

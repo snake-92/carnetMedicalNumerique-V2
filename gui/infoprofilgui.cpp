@@ -305,6 +305,11 @@ void InfoProfilGui::clearAllQlineEdit(){
 	ui->textBrowser_antFamil->clear();
 	ui->textBrowser_Prescrip->clear();
 	ui->textBrowser_vaccin->clear();
+
+	// initialiser les champs de modif mot de passe
+	ui->lineEdit_NouveauPwd->clear();
+	ui->lineEdit_VerifNouveauPwd->clear();
+	ui->lineEdit_AncienPwd->clear();
 }
 
 
@@ -366,4 +371,47 @@ void InfoProfilGui::on_pushButton_vaccin_clicked()
 {
 	ui->textBrowser_vaccin->append(ui->lineEdit_vaccin->text());
 	ui->lineEdit_vaccin->clear();
+}
+
+
+void InfoProfilGui::on_pushButton_ModifPwd_clicked()
+{
+	// si les champs sont vides
+	if(ui->lineEdit_AncienPwd->text() != ""){
+		if(ui->lineEdit_AncienPwd->text() == checkMotDePasse()){
+			if(ui->lineEdit_NouveauPwd->text() != "" && ui->lineEdit_VerifNouveauPwd->text() != ""){
+				if(ui->lineEdit_NouveauPwd->text() == ui->lineEdit_VerifNouveauPwd->text()){
+					modifMotDePasse(ui->lineEdit_NouveauPwd->text());
+					QMessageBox::information(this, tr("Modification mot de passe"),
+												tr("Votre mot de passe a étét modifié!"),
+												QMessageBox::Ok,
+												QMessageBox::Ok);
+				}else{
+					QMessageBox::warning(this, tr("Warning"),
+												tr("Vous devez saisir le même mot de passe dans les deux derniers champs!"),
+												QMessageBox::Cancel,
+												QMessageBox::Cancel);
+					ui->lineEdit_NouveauPwd->clear();
+					ui->lineEdit_VerifNouveauPwd->clear();
+				}
+			}else{
+				QMessageBox::warning(this, tr("Warning"),
+											tr("Vous devez obligatoirement saisir un nouveau mot de passe!"),
+											QMessageBox::Cancel,
+											QMessageBox::Cancel);
+			}
+		}else{
+			QMessageBox::warning(this, tr("Warning"),
+										tr("Vous n'avez pas saisie le bon mot de passe!"
+										   "si vous l'avez oublié, allez dans le menu 'mot de passe oublié' dans gestionnaire"),
+										QMessageBox::Cancel,
+										QMessageBox::Cancel);
+			ui->lineEdit_AncienPwd->clear();
+		}
+	}else{
+		QMessageBox::warning(this, tr("Warning"),
+									tr("Vous n'avez pas saisie votre ancien mot de passe!"),
+									QMessageBox::Cancel,
+									QMessageBox::Cancel);
+	}
 }

@@ -116,3 +116,32 @@ QString copyImageDansProfil(QString pathSrc, QString pseudo){
 	return dest;
 }
 
+
+QString checkMotDePasse(){
+
+	QString pwd, readPwd;
+	QFile file(PROFILPATH+recherchePseudoAdmin()+FICHIERMOTDEPASSE);
+
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QTextStream out(&file);
+		out >> readPwd;
+		file.close();
+	}
+	pwd = decrypter(readPwd); // decrypte le texte
+	return pwd;
+}
+
+
+void modifMotDePasse(QString pwd){
+
+	QFile file;
+	file.setFileName(PROFILPATH+recherchePseudoAdmin()+FICHIERMOTDEPASSE);
+
+	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		QTextStream out(&file);
+		out << crypter(pwd); // crypter le texte
+		file.close();
+	}
+}
+
+

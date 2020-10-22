@@ -45,6 +45,8 @@ private slots:
 
 	void on_pushButton_vaccin_clicked();
 
+	void on_pushButton_ModifPwd_clicked();
+
 private:
 	bool pseudoExist(QString);
 	bool verifieChampDeSaisi();
