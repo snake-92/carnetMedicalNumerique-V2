@@ -275,8 +275,9 @@ void AppliGui::changeEvent(QEvent* event){ // evenement lors du changement de la
 				ui->retranslateUi(this);
 				break;
 		 }
-	 }
-	 QMainWindow::changeEvent(event);
+	}
+	ui->label_CurrentProfil->setText(lireDansFichierTemp()); // affiche le profil courant
+	QMainWindow::changeEvent(event);
 }
 
 
