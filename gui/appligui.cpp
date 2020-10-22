@@ -102,6 +102,7 @@ void AppliGui::on_pushButton_creerProfil_clicked()
 
 	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
 		fenetreRempliInfos->setWindowTitle(tr("création d'un profil"));
+		fenetreRempliInfos->desactiveModifMotDePasse(true);
 		fenetreRempliInfos->setEnableModif(false);
 		fenetreRempliInfos->setInAdminProfil(false);
 		fenetreRempliInfos->clearAllQlineEdit();
@@ -137,6 +138,7 @@ void AppliGui::on_pushButton_modifProfil_clicked()
 			fenetreRempliInfos->setInAdminProfil(false);
 
 		fenetreRempliInfos->setWindowTitle(tr("Modification du profil"));
+		fenetreRempliInfos->desactiveModifMotDePasse(false); // active la modification du mot de passe si admin
 		fenetreRempliInfos->setEnableModif(true); // autorise les modifications
 		fenetreRempliInfos->clearAllQlineEdit();
 		user->selectCurrentProfil(pseudoCourant);

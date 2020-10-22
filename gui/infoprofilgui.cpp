@@ -308,6 +308,21 @@ void InfoProfilGui::clearAllQlineEdit(){
 }
 
 
+void InfoProfilGui::desactiveModifMotDePasse(bool b){
+	if(b || !adminProfil){
+		ui->lineEdit_AncienPwd->setEnabled(false);
+		ui->lineEdit_NouveauPwd->setEnabled(false);
+		ui->lineEdit_VerifNouveauPwd->setEnabled(false);
+		ui->pushButton_ModifPwd->setEnabled(false);
+	}else if(!b){
+		ui->lineEdit_AncienPwd->setEnabled(true);
+		ui->lineEdit_NouveauPwd->setEnabled(true);
+		ui->lineEdit_VerifNouveauPwd->setEnabled(true);
+		ui->pushButton_ModifPwd->setEnabled(true);
+	}
+}
+
+
 void InfoProfilGui::on_toolButton_clicked()
 {
 	// recuperation de l'image du profil

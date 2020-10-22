@@ -24,6 +24,7 @@ public:
 	void setQlineEditWithDatas(ProfilPrive* profil);
 	void clearAllQlineEdit();
 	void desactivePage(int numPage, bool etat);
+	void desactiveModifMotDePasse(bool);
 
 signals:
 	void newprofil(QString);
