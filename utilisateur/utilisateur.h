@@ -14,6 +14,7 @@ public:
 
 	void selectCurrentProfil(QString pseudo);
 	ProfilPrive* getProfil();
+	void genererPdf(QString path);
 
 protected:
 	ProfilPrive* profilChoisi;

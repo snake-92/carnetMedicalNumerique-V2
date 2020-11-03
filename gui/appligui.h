@@ -33,14 +33,20 @@ private slots:
 	void supprimer_profil();
 	void a_propos();
 	void infoHTML();
+	void traduction_anglais();
+	void traduction_francais();
+	void impression();
+
+protected:
+	void changeEvent(QEvent*);
 
 private:
 	Ui::AppliGui *ui;
 	Utilisateur* user;
 	InfoProfilGui* fenetreRempliInfos;
-	AfficheProfilGui* fenetreAfficheInfos;
 	QComboBox *comboBox;
 	bool fermer;
+	QTranslator *translate;
 };
 
 #endif // APPLIGUI_H

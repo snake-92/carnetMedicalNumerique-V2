@@ -6,7 +6,7 @@
 
 QT += core gui
 QT += xml
-
+QT += printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = hmc
@@ -25,7 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += c++11
+CONFIG += c++14
 
 # copie la doc
 CONFIG *= file_copies
@@ -65,6 +65,15 @@ FORMS += gui/infoprofilgui.ui \
     gui/messagegui.ui \
     gui/logingui.ui \
     gui/appligui.ui
+
+# images
+RESOURCES     += images/images.qrc
+
+# fichier de traduction qui sera generé
+RESOURCES     += traduction/traduction.qrc
+TRANSLATIONS += traduction/hmc_en.ts traduction/hmc_fr.ts
+
+RC_FILE = hmc.rc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

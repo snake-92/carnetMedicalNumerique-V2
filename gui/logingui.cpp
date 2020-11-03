@@ -1,12 +1,16 @@
 #include "logingui.h"
 #include "ui_logingui.h"
 #include <QMessageBox>
+#include <QIcon>
 
 LoginGui::LoginGui(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::LoginGui)
 {
 	ui->setupUi(this);
+
+	this->setWindowIcon(QIcon(":/images/verification.png"));
+	this->setWindowTitle(tr("première connexion"));
 
 	connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &LoginGui::accept);
 	connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &LoginGui::reject);
