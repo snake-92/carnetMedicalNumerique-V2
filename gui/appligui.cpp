@@ -77,6 +77,8 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	connect(ui->actionAnglais, &QAction::triggered, this, &AppliGui::traduction_anglais); // anglais
 	connect(ui->actionFran_ais, &QAction::triggered, this, &AppliGui::traduction_francais); // francais
 	connect(ui->actionimprimer, &QAction::triggered, this, &AppliGui::impression); // imprimer
+	connect(ui->actionEcrire_un_message, &QAction::triggered, this, &AppliGui::on_actionEcrire_un_message_triggered);
+	connect(ui->actionLire_les_messages, &QAction::triggered, this, &AppliGui::on_actionLire_les_messages_triggered);
 }
 
 
