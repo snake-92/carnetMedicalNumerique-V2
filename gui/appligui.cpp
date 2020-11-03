@@ -14,21 +14,22 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	translate = new QTranslator(0);
 
 	user = new Utilisateur(); // création de l'utilisateur
+    ms = new MessageGui();
 	fenetreRempliInfos = new InfoProfilGui(this);
 	fenetreRempliInfos->setWindowIcon(QIcon(":/images/create.png"));
 	fermer = false;
 
 	QDir adminRepertoire(PROFILPATH);
-	if(adminRepertoire.isEmpty()){ // si le repertoire est vide (pas encore activé)
-		fenetreRempliInfos->setInAdminProfil(true); // profil admin
+    if(adminRepertoire.isEmpty()){ // si le repertoire est vide (pas encore activé)
+        fenetreRempliInfos->setInAdminProfil(true); // profil admin
 		fenetreRempliInfos->desactivePage(2, false); // desactive la page profil
 
 		if(fenetreRempliInfos->exec() == InfoProfilGui::Rejected){
-			fermer = true; // ne pas ouvrir la fenêtre principale
+           fermer = true; // ne pas ouvrir la fenêtre principale
 		}
 		else {
 			user->getProfil()->saveMotDePasse(recherchePseudoAdmin(), motDepasse);
-		}
+        }
 	}
 	fenetreRempliInfos->setInAdminProfil(false);
 	fenetreRempliInfos->desactivePage(2, true); // active la page profil
@@ -255,6 +256,17 @@ void AppliGui::infoHTML(){
 	system(p);
 }
 
+
+void AppliGui::on_actionEcrire_un_message_triggered(){
+   ms->show_writting_interface();
+}
+
+
+
+
+void AppliGui::on_actionLire_les_messages_triggered(){
+   ms->show_reading_interface();
+}
 
 void AppliGui::traduction_anglais(){ // traduction en anglais
 	QApplication::removeTranslator(translate);
