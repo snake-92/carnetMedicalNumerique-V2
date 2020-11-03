@@ -24,6 +24,7 @@ public:
 	void setQlineEditWithDatas(ProfilPrive* profil);
 	void clearAllQlineEdit();
 	void desactivePage(int numPage, bool etat);
+	void desactiveModifMotDePasse(bool);
 
 signals:
 	void newprofil(QString);
@@ -34,6 +35,18 @@ private slots:
 
 	void on_toolButton_clicked();
 
+	void on_pushButton_allergie_clicked();
+
+	void on_pushButton_AntecedentPerso_clicked();
+
+	void on_pushButton_AntecedentFamil_clicked();
+
+	void on_pushButton_prescri_clicked();
+
+	void on_pushButton_vaccin_clicked();
+
+	void on_pushButton_ModifPwd_clicked();
+
 private:
 	bool pseudoExist(QString);
 	bool verifieChampDeSaisi();
@@ -42,6 +55,8 @@ private:
 	Ui::InfoProfilGui *ui;
 	bool adminProfil;
 	bool EnableModif;
+	QString msgChampNonRempli;
+	QString cheminPhoto;
 };
 
 #endif // INFOPROFILGUI_H

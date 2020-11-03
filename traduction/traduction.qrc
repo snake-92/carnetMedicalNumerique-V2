@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>../traduction/hmc_fr.qm</file>
+    <file>../traduction/hmc_en.qm</file>
+</qresource>
+</RCC>

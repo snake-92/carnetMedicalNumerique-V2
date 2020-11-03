@@ -9,6 +9,10 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 	bool closeApp = false; // permet de savoir si on ferme la QApp
 
+	QTranslator translator;
+	translator.load("hmc_fr.qm",":/traduction/");
+	a.installTranslator(&translator);
+
 	// creation des chemins et fichier temporaire
 	QDir dataFolder("");
 	dataFolder.mkpath(PATHTEMPFILE); // chemin vers les fichiers temporaires
@@ -25,7 +29,6 @@ int main(int argc, char *argv[])
 
 		if(login->exec() == LoginGui::Accepted){
 			AppliGui* w = new AppliGui(support, login->getMotDePasse()); // fenetre principale
-
 			if(!w->fermerAppli())
 				w->show();
 			else {

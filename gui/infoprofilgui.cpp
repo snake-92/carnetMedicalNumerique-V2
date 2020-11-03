@@ -18,6 +18,8 @@ InfoProfilGui::InfoProfilGui(QWidget *parent) :
 	ui->spinBox_taille->setMaximum(300); // taille maximale
 	ui->doubleSpinBox_poids->setMaximum(300.00); // poids maximum
 	ui->dateEdit->clear();
+	msgChampNonRempli = "";
+	cheminPhoto = "";
 
 	adminProfil = true; // pour le profil admin
 	EnableModif = false; // utiliser pour remplir la fenetre lorsqu'on clique sur modifier profil
@@ -45,13 +47,16 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 	if(verifieChampDeSaisi()){
 		ProfilPrive nouveauProfil;
 		bool pseudoExistDeja=false;
+		QString pseudo = "";
 		if(!EnableModif && !adminProfil){ // profil user
 
 			QString pseudoProfil = QInputDialog::getText (this, "nom du profil", "Entrer le nom de votre profil");
 			pseudoExistDeja = pseudoExist(pseudoProfil);
+			pseudo = pseudoProfil;
 
 			if(!pseudoExistDeja){// test si le profil existe déjà
-				nouveauProfil.creerFichierPublic(pseudoProfil);
+				nouveauProfil.creerFichierPublic(pseudoProfil); // fichier public
+				nouveauProfil.creerFichierPrive(pseudoProfil); // fichier privé
 				emit newprofil(pseudoProfil); // envoi l'information de creation de profil
 			}else{
 				QMessageBox::warning(this, tr("Création de profil"),
@@ -62,12 +67,19 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 		}
 
 		if(!pseudoExistDeja){
-			// recuperation des infos
+			// recuperation des
 			if(adminProfil){
-				nouveauProfil.creerFichierPublic(ui->lineEdit_prenom->text()); // specifie que c'est la creation du profil admin avec le "true"
-				ecrireDansFichierTemp(ui->lineEdit_prenom->text()); // enregistrement du prenom de l'admin dans le fichier temp
+				pseudo = ui->lineEdit_prenom->text();
+				nouveauProfil.creerFichierPublic(pseudo); // specifie que c'est la creation du profil admin avec le "true"
+				nouveauProfil.creerFichierPrive(pseudo); // fichier privé
+				ecrireDansFichierTemp(pseudo); // enregistrement du prenom de l'admin dans le fichier temp
 				nouveauProfil.setInAdmin(true); // signifie que le profil est admin
 			}else{
+				if(EnableModif){
+					pseudo = lireDansFichierTemp();
+					nouveauProfil.creerFichierPublic(pseudo); // fichier public
+					nouveauProfil.creerFichierPrive(pseudo); // fichier privé
+				}
 				nouveauProfil.setInAdmin(false); // signifie que le profil n'est pas admin
 			}
 
@@ -84,19 +96,47 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			nouveauProfil.setTel(ui->lineEdit_tel->text(), ui->checkBox_Tel->isChecked());
 			nouveauProfil.setProfession(ui->lineEdit_profession->text(), ui->checkBox_profession->isChecked());
 			nouveauProfil.setMedecin(ui->lineEdit_nomMed->text(), ui->lineEdit_telMed->text(), ui->checkBox_medecin->isChecked());
-			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
+			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+'_'+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
 			nouveauProfil.setPersonContact(ui->lineEdit_nomContact->text(), ui->lineEdit_telContact->text());
-
-			// TODO : recuperer les donnees privées
+			nouveauProfil.setImageProfil(copyImageDansProfil(cheminPhoto, pseudo), ui->checkBox_photo->isChecked());
 
 			nouveauProfil.saveProfilInFiles(); // enregistrement des données dans le fichier publique
+
+			// recuperer les donnees privées
+			QStringList listText;
+			listText = ui->textBrowser_allergie->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterAllergie(listText[i]);
+			}
+
+			listText = ui->textBrowser_antPerso->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterAntecedentPerso(listText[i]);
+			}
+
+			listText = ui->textBrowser_antFamil->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterAntecedentFamil(listText[i]);
+			}
+
+			listText = ui->textBrowser_Prescrip->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterPrescription(listText[i]);
+			}
+
+			listText = ui->textBrowser_vaccin->toPlainText().split("\n");
+			for(int i=0; i<listText.length(); i++){
+				nouveauProfil.ajouterVaccin(listText[i]);
+			}
+
+			nouveauProfil.saveProfilPriveInFile(); // remplissage du fichier privé
 
 			this->setResult(1);
 			hide();
 		}
 	}else{
 		QMessageBox::warning(this, tr("Création de profil"),
-							tr("Des champs de saisie sont vide!"),
+							msgChampNonRempli,
 							QMessageBox::Cancel,
 							QMessageBox::Cancel);
 	}
@@ -132,11 +172,17 @@ bool InfoProfilGui::verifieChampDeSaisi(){
 
 	if(ui->lineEdit_nom->text().isEmpty() || ui->lineEdit_prenom->text().isEmpty()){
 		champRempli = false;
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre nom ou votre prenom");
 	}else if(ui->spinBox_taille->value() == 0 || ui->doubleSpinBox_poids->value() == 0.0){
 		champRempli = false;
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre taille ou votre poids");
+	}else if(ui->lineEdit_tel->text().isEmpty()){
+		champRempli = false;
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre numéro de téléphone");
+	}else if(ui->dateEdit->text() == "01/01/1753"){
+		champRempli = false;
+		msgChampNonRempli = tr("Vous n'avez pas saisie votre date de naissance");
 	}
-
-	// TODO : tester tous les champ de saisi
 
 	return champRempli;
 }
@@ -178,7 +224,47 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 	ui->lineEdit_telContact->setText(profil->getPersonContactTel());
 
 	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
-	// TODO: groupe sangin
+	if(profil->getGroupSanguin() == "AB_"){
+		ui->comboBox_groupe->setCurrentText("AB");
+		ui->comboBox_rhesus->setCurrentIndex(0);
+	}else{
+		if(profil->getGroupSanguin().length()>2){
+			ui->comboBox_groupe->setCurrentText(profil->getGroupSanguin().split("_")[0]);
+			ui->comboBox_rhesus->setCurrentText(profil->getGroupSanguin().split("_")[1]);
+		}else{
+			ui->comboBox_groupe->setCurrentText(profil->getGroupSanguin().split("_")[0]);
+			ui->comboBox_rhesus->setCurrentIndex(0);
+		}
+	}
+
+	if(profil->getCheminImageProfil() != ""){
+		QPixmap photo(profil->getCheminImageProfil());
+		ui->label_Photo->setPixmap(photo);
+	}
+
+	//checkbox prive
+	ui->checkBox_nom->setChecked(profil->getPriveNom());
+	ui->checkBox_sexe->setChecked(profil->getPriveSexe());
+	ui->checkBox_corps->setChecked(profil->getPriveCorps());
+	ui->checkBox_date->setChecked(profil->getPriveDate());
+	ui->checkBox_Tel->setChecked(profil->getPriveTel());
+	ui->checkBox_Adress->setChecked(profil->getPriveAdresse());
+	ui->checkBox_profession->setChecked(profil->getPriveProfession());
+	ui->checkBox_medecin->setChecked(profil->getPriveMedecin());
+	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
+	ui->checkBox_photo->setChecked(profil->getPriveImageProfil());
+
+	// données privées
+	for(int i=0; i<profil->getAllergies().length(); i++)
+		ui->textBrowser_allergie->append(profil->getAllergies()[i]);
+	for(int i=0; i<profil->getAntecedentPerso().length(); i++)
+		ui->textBrowser_antPerso->append(profil->getAntecedentPerso()[i]);
+	for(int i=0; i<profil->getAntecedentFamil().length(); i++)
+		ui->textBrowser_antFamil->append(profil->getAntecedentFamil()[i]);
+	for(int i=0; i<profil->getPrescription().length(); i++)
+		ui->textBrowser_Prescrip->append(profil->getPrescription()[i]);
+	for(int i=0; i<profil->getVaccin().length(); i++)
+		ui->textBrowser_vaccin->append(profil->getVaccin()[i]);
 }
 
 
@@ -199,6 +285,7 @@ void InfoProfilGui::clearAllQlineEdit(){
 	ui->comboBox_rhesus->setCurrentIndex(0);
 	ui->lineEdit_nomContact->clear();
 	ui->lineEdit_telContact->clear();
+	ui->label_Photo->clear();
 
 	// desactivé tous les checkbox "prive"
 	ui->checkBox_nom->setChecked(false);
@@ -210,21 +297,121 @@ void InfoProfilGui::clearAllQlineEdit(){
 	ui->checkBox_medecin->setChecked(false);
 	ui->checkBox_profession->setChecked(false);
 	ui->checkBox_goupeSanguin->setChecked(false);
+	ui->checkBox_photo->setChecked(false);
+
+	// initialiser tous dans la partie privée
+	ui->textBrowser_allergie->clear();
+	ui->textBrowser_antPerso->clear();
+	ui->textBrowser_antFamil->clear();
+	ui->textBrowser_Prescrip->clear();
+	ui->textBrowser_vaccin->clear();
+
+	// initialiser les champs de modif mot de passe
+	ui->lineEdit_NouveauPwd->clear();
+	ui->lineEdit_VerifNouveauPwd->clear();
+	ui->lineEdit_AncienPwd->clear();
+}
+
+
+void InfoProfilGui::desactiveModifMotDePasse(bool b){
+	if(b || !adminProfil){
+		ui->lineEdit_AncienPwd->setEnabled(false);
+		ui->lineEdit_NouveauPwd->setEnabled(false);
+		ui->lineEdit_VerifNouveauPwd->setEnabled(false);
+		ui->pushButton_ModifPwd->setEnabled(false);
+	}else if(!b){
+		ui->lineEdit_AncienPwd->setEnabled(true);
+		ui->lineEdit_NouveauPwd->setEnabled(true);
+		ui->lineEdit_VerifNouveauPwd->setEnabled(true);
+		ui->pushButton_ModifPwd->setEnabled(true);
+	}
 }
 
 
 void InfoProfilGui::on_toolButton_clicked()
 {
-	// TODO: ajouter chemin vers photo comme attribut de profil
-	// TODO: copie la photo dans le repertoire du profil
-
-	QString cheminPhoto = QFileDialog::getOpenFileName(this, "Ouvrir un fichier", QString(), "Images (*.png *.gif *.jpg *.jpeg)");
-	QPixmap *photo = new QPixmap(cheminPhoto);
-	photo->scaled(ui->label_Photo->size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
-	ui->label_Photo->setPixmap(*photo);
+	// recuperation de l'image du profil
+	cheminPhoto = QFileDialog::getOpenFileName(this, tr("Ouvrir un fichier"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
+	QPixmap photo(cheminPhoto);
+	ui->label_Photo->setPixmap(photo);
 }
 
 
 void InfoProfilGui::desactivePage(int numPage, bool etat){
 	ui->tabWidget->setTabEnabled(numPage, etat);
+}
+
+
+// ------------------ les boutons ajouter
+void InfoProfilGui::on_pushButton_allergie_clicked()
+{
+	ui->textBrowser_allergie->append(ui->lineEdit_allergie->text());
+	ui->lineEdit_allergie->clear();
+}
+
+void InfoProfilGui::on_pushButton_AntecedentPerso_clicked()
+{
+	ui->textBrowser_antPerso->append(ui->lineEdit_antPerso->text());
+	ui->lineEdit_antPerso->clear();
+}
+
+void InfoProfilGui::on_pushButton_AntecedentFamil_clicked()
+{
+	ui->textBrowser_antFamil->append(ui->lineEdit_AntFamil->text());
+	ui->lineEdit_AntFamil->clear();
+}
+
+void InfoProfilGui::on_pushButton_prescri_clicked()
+{
+	ui->textBrowser_Prescrip->append(ui->lineEdit_prescrip->text());
+	ui->lineEdit_prescrip->clear();
+}
+
+void InfoProfilGui::on_pushButton_vaccin_clicked()
+{
+	ui->textBrowser_vaccin->append(ui->lineEdit_vaccin->text());
+	ui->lineEdit_vaccin->clear();
+}
+
+
+void InfoProfilGui::on_pushButton_ModifPwd_clicked()
+{
+	// si les champs sont vides
+	if(ui->lineEdit_AncienPwd->text() != ""){
+		if(ui->lineEdit_AncienPwd->text() == checkMotDePasse()){
+			if(ui->lineEdit_NouveauPwd->text() != "" && ui->lineEdit_VerifNouveauPwd->text() != ""){
+				if(ui->lineEdit_NouveauPwd->text() == ui->lineEdit_VerifNouveauPwd->text()){
+					modifMotDePasse(ui->lineEdit_NouveauPwd->text());
+					QMessageBox::information(this, tr("Modification mot de passe"),
+												tr("Votre mot de passe a étét modifié!"),
+												QMessageBox::Ok,
+												QMessageBox::Ok);
+				}else{
+					QMessageBox::warning(this, tr("Warning"),
+												tr("Vous devez saisir le même mot de passe dans les deux derniers champs!"),
+												QMessageBox::Cancel,
+												QMessageBox::Cancel);
+					ui->lineEdit_NouveauPwd->clear();
+					ui->lineEdit_VerifNouveauPwd->clear();
+				}
+			}else{
+				QMessageBox::warning(this, tr("Warning"),
+											tr("Vous devez obligatoirement saisir un nouveau mot de passe!"),
+											QMessageBox::Cancel,
+											QMessageBox::Cancel);
+			}
+		}else{
+			QMessageBox::warning(this, tr("Warning"),
+										tr("Vous n'avez pas saisie le bon mot de passe!"
+										   "si vous l'avez oublié, allez dans le menu 'mot de passe oublié' dans gestionnaire"),
+										QMessageBox::Cancel,
+										QMessageBox::Cancel);
+			ui->lineEdit_AncienPwd->clear();
+		}
+	}else{
+		QMessageBox::warning(this, tr("Warning"),
+									tr("Vous n'avez pas saisie votre ancien mot de passe!"),
+									QMessageBox::Cancel,
+									QMessageBox::Cancel);
+	}
 }

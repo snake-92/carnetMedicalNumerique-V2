@@ -1,4 +1,5 @@
 #include "profil.h"
+#include "../fonctions/fonctions.h"
 
 Profil::Profil(QObject *parent) : QObject(parent)
 {
@@ -26,6 +27,8 @@ Profil::Profil(QObject *parent) : QObject(parent)
 	medecin.prive = false;
 	contact.nom = "";
 	contact.telContact = "";
+	image.prive = false;
+	image.chemin = "";
 }
 
 
@@ -91,74 +94,170 @@ void Profil::saveProfilInFiles(){
 
 	writer.writeStartElement("public");
 
-	if(profilAdmin)
-		writer.writeTextElement("admin", "true");
-	else
-		writer.writeTextElement("admin", "false");
+	if(profilAdmin){
+		writer.writeStartElement("admin");
+		writer.writeCharacters("true");
+		writer.writeEndElement();
+	}else{
+		writer.writeStartElement("admin");
+		writer.writeCharacters("false");
+		writer.writeEndElement();
+	}
 
 	if(!nom.prive){
-		writer.writeTextElement("nom", nom.nom);
-		writer.writeTextElement("prenom", nom.prenom);
+		writer.writeStartElement("nom");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(nom.nom);
+		writer.writeEndElement();
+		writer.writeStartElement("prenom");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(nom.prenom);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("nom");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(nom.nom));
+		writer.writeEndElement();
+		writer.writeStartElement("prenom");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(nom.prenom));
+		writer.writeEndElement();
 	}
 
 	if(!sexe.prive){
-		writer.writeTextElement("sexe", sexe.sexe);
+		writer.writeStartElement("sexe");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(sexe.sexe);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("sexe");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(sexe.sexe));
+		writer.writeEndElement();
 	}
 
 	if(!corps.prive){
-		writer.writeTextElement("taille", QString::number(corps.taille));
-		writer.writeTextElement("poids", QString::number(corps.poids));
+		writer.writeStartElement("taille");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(QString::number(corps.taille));
+		writer.writeEndElement();
+		writer.writeStartElement("poids");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(QString::number(corps.poids));
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("taille");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(QString::number(corps.taille)));
+		writer.writeEndElement();
+		writer.writeStartElement("poids");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(QString::number(corps.poids)));
+		writer.writeEndElement();
 	}
 
 	if(!date.prive){
-		writer.writeTextElement("date", date.dateNaissance);
+		writer.writeStartElement("date");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(date.dateNaissance);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("date");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(date.dateNaissance));
+		writer.writeEndElement();
 	}
 
 	if(!groupe.prive){
-		writer.writeTextElement("groupe", groupe.groupeSanguin);
+		writer.writeStartElement("groupe");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(groupe.groupeSanguin);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("groupe");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(groupe.groupeSanguin));
+		writer.writeEndElement();
 	}
 
 	if(!adresse.prive){
-		writer.writeTextElement("adress", adresse.adresse);
+		writer.writeStartElement("adress");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(adresse.adresse);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("adress");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(adresse.adresse));
+		writer.writeEndElement();
 	}
 
 	if(!numTel.prive){
-		writer.writeTextElement("tel", numTel.tel);
+		writer.writeStartElement("tel");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(numTel.tel);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("tel");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(numTel.tel));
+		writer.writeEndElement();
 	}
 
 	if(!profession.prive){
-		writer.writeTextElement("profession", profession.profession);
+		writer.writeStartElement("profession");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(profession.profession);
+		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("profession");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(profession.profession));
+		writer.writeEndElement();
 	}
 
 	if(!medecin.prive){
 		writer.writeStartElement("medecin");
-		writer.writeTextElement("nom", medecin.nomMedecin);
-		writer.writeTextElement("tel", medecin.telMedecin);
+		writer.writeAttribute("prive", "0");
+		writer.writeStartElement("nom");
+		writer.writeCharacters(medecin.nomMedecin);
+		writer.writeEndElement();
+		writer.writeStartElement("tel");
+		writer.writeCharacters(medecin.telMedecin);
+		writer.writeEndElement();
 		writer.writeEndElement();
 	}else{
-		// TODO : ecrire dans le fichier privé en cryptant
+		writer.writeStartElement("medecin");
+		writer.writeAttribute("prive", "1");
+		writer.writeStartElement("nom");
+		writer.writeCharacters(crypter(medecin.nomMedecin));
+		writer.writeEndElement();
+		writer.writeStartElement("tel");
+		writer.writeCharacters(crypter(medecin.telMedecin));
+		writer.writeEndElement();
+		writer.writeEndElement();
 	}
 
 	writer.writeStartElement("contact");
-	writer.writeTextElement("nom", contact.nom);
-	writer.writeTextElement("tel", contact.telContact);
+	writer.writeStartElement("nom");
+	writer.writeCharacters(contact.nom);
 	writer.writeEndElement();
+	writer.writeStartElement("tel");
+	writer.writeCharacters(contact.telContact);
+	writer.writeEndElement();
+	writer.writeEndElement();
+
+	if(!image.prive){
+		writer.writeStartElement("image");
+		writer.writeAttribute("prive", "0");
+		writer.writeCharacters(image.chemin);
+		writer.writeEndElement();
+	}else{
+		writer.writeStartElement("image");
+		writer.writeAttribute("prive", "1");
+		writer.writeCharacters(crypter(image.chemin));
+		writer.writeEndElement();
+	}
 
 	writer.writeEndElement(); // Ferme l'element public
 	writer.writeEndDocument(); // Finalise le document XML
@@ -225,6 +324,42 @@ void Profil::setPersonContact(QString c, QString tel){
 	contact.telContact = tel;
 }
 
+void Profil::setImageProfil(QString c, bool b){
+	image.chemin = c;
+	image.prive = b;
+}
+
+void Profil::setPriveNom(bool b){
+	nom.prive = b;
+}
+void Profil::setPriveSexe(bool b){
+	sexe.prive = b;
+}
+void Profil::setPriveGroupSanguin(bool b){
+	groupe.prive = b;
+}
+void Profil::setPriveDateNaissance(bool b){
+	date.prive = b;
+}
+void Profil::setPriveCorps(bool b){
+	corps.prive = b;
+}
+void Profil::setPriveAdress(bool b){
+	adresse.prive = b;
+}
+void Profil::setPriveTel(bool b){
+	numTel.prive = b;
+}
+void Profil::setPriveProfession(bool b){
+	profession.prive = b;
+}
+void Profil::setPriveMed(bool b){
+	medecin.prive = b;
+}
+void Profil::setPriveImageProfil(bool b){
+	image.prive = b;
+}
+
 bool Profil::getIfAdmin(){
 	return profilAdmin;
 }
@@ -285,6 +420,10 @@ QString Profil::getPersonContactTel(){
 	return contact.telContact;
 }
 
+QString Profil::getCheminImageProfil(){
+	return image.chemin;
+}
+
 // obtenir tous les etats prive des attributs
 bool Profil::getPriveNom(){return nom.prive;}
 bool Profil::getPriveSexe(){return sexe.prive;}
@@ -295,6 +434,7 @@ bool Profil::getPriveAdresse(){return adresse.prive;}
 bool Profil::getPriveTel(){return numTel.prive;}
 bool Profil::getPriveMedecin(){return medecin.prive;}
 bool Profil::getPriveProfession(){return profession.prive;}
+bool  Profil::getPriveImageProfil(){return image.prive;}
 
 //setter individuellement chaque attribut
 void Profil::setNom(QString n){nom.nom=n;}
@@ -311,3 +451,4 @@ void Profil::setMedecinNom(QString m){medecin.nomMedecin=m;}
 void Profil::setMedecinTel(QString t){medecin.telMedecin=t;}
 void Profil::setPersonContactNom(QString c){contact.nom=c;}
 void Profil::setPersonContactTel(QString t){contact.telContact=t;}
+void Profil::setCheminImageProfil(QString c){image.chemin = c;}
