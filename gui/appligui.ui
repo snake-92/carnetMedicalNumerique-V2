@@ -163,7 +163,14 @@
     <property name="title">
      <string>menu principal</string>
     </property>
-    <addaction name="actionmessage"/>
+    <widget class="QMenu" name="menumessage">
+     <property name="title">
+      <string>message</string>
+     </property>
+     <addaction name="actionEcrire_un_message"/>
+     <addaction name="actionLire_les_messages"/>
+    </widget>
+    <addaction name="menumessage"/>
     <addaction name="actionordonnance"/>
     <addaction name="actionimprimer"/>
     <addaction name="separator"/>
@@ -212,11 +219,6 @@
    <addaction name="menuinfos_pratiques"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionmessage">
-   <property name="text">
-    <string>message</string>
-   </property>
-  </action>
   <action name="actionordonnance">
    <property name="text">
     <string>ordonnance</string>
@@ -275,6 +277,16 @@
   <action name="actionmot_de_passe_oubli">
    <property name="text">
     <string>mot de passe oublié</string>
+   </property>
+  </action>
+  <action name="actionEcrire_un_message">
+   <property name="text">
+    <string>Ecrire un message</string>
+   </property>
+  </action>
+  <action name="actionLire_les_messages">
+   <property name="text">
+    <string>Lire les messages</string>
    </property>
   </action>
  </widget>

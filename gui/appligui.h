@@ -7,6 +7,7 @@
 #include "../utilisateur/utilisateur.h"
 #include "infoprofilgui.h"
 #include "afficheprofilgui.h"
+#include "../gui/messagegui.h"
 
 namespace Ui {
 class AppliGui;
@@ -34,12 +35,17 @@ private slots:
 	void a_propos();
 	void infoHTML();
 
+    void on_actionEcrire_un_message_triggered();
+
+    void on_actionLire_les_messages_triggered();
+
 private:
 	Ui::AppliGui *ui;
 	Utilisateur* user;
 	InfoProfilGui* fenetreRempliInfos;
 	AfficheProfilGui* fenetreAfficheInfos;
 	QComboBox *comboBox;
+    MessageGui* ms;
 	bool fermer;
 };
 

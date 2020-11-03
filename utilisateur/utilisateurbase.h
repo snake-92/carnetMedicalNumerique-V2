@@ -9,6 +9,10 @@ class UtilisateurBase : public QObject
 public:
 	explicit UtilisateurBase(QObject *parent = nullptr);
 	~UtilisateurBase();
+    void saveMessage(QString nomSignant, QString adresseSoignant, QString date, QString message);
+    QString readMessage();
+    void saveOrdonnance();
+
 
 signals:
 
