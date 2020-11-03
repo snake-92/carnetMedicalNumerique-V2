@@ -56,7 +56,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	// ajouter les images sur les menus
 	ui->actionAnglais->setIcon(QIcon(":/images/logoAnglais.png"));
 	ui->actionFran_ais->setIcon(QIcon(":/images/logoFrancais.png"));
-	ui->actionmessage->setIcon(QIcon(":/images/msg.png"));
+	ui->actionEcrire_un_message->setIcon(QIcon(":/images/msg.png"));
 	ui->actionordonnance->setIcon(QIcon(":/images/order.png"));
 	ui->actionimprimer->setIcon(QIcon(":/images/pdf.png"));
 	ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));

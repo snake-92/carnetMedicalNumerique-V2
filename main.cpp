@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
 
 	QDir adminRepertoire(PROFILPATH);
-    if(!adminRepertoire.isEmpty()){ // si le repertoire est vide (pas encore activé)
+	if(adminRepertoire.isEmpty()){ // si le repertoire est vide (pas encore activé)
 
 		QWidget* support = new QWidget();
 		LoginGui* login = new LoginGui(support);
