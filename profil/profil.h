@@ -6,8 +6,6 @@
 #include <qdom.h>
 #include <QFile>
 
-#include "../chemin.h"
-
 
 class Profil : public QObject
 {

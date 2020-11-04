@@ -1,5 +1,6 @@
 #include "profil.h"
 #include "../fonctions/fonctions.h"
+#include "../chemin.h"
 
 Profil::Profil(QObject *parent) : QObject(parent)
 {
