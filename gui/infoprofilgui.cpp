@@ -2,7 +2,10 @@
 #include "ui_infoprofilgui.h"
 #include <qinputdialog.h>
 #include <QFileDialog>
+#include <QMessageBox>
 #include "../fonctions/fonctions.h"
+#include "../profil/profilprive.h"
+#include "../chemin.h"
 
 
 InfoProfilGui::InfoProfilGui(QWidget *parent) :

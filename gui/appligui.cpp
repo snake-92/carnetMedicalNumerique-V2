@@ -5,6 +5,14 @@
 #include <cstdlib>
 #include <QFileDialog>
 
+#include <QWidgetAction>
+#include <QMessageBox>
+#include <QComboBox>
+#include "afficheprofilgui.h"
+#include "../utilisateur/utilisateur.h"
+#include "infoprofilgui.h"
+#include "../gui/messagegui.h"
+
 
 AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	QMainWindow(parent),

@@ -1,6 +1,7 @@
 #include "gui/appligui.h"
 #include <QApplication>
 #include <QDir>
+#include <QTranslator>
 #include "chemin.h"
 #include "gui/logingui.h"
 
