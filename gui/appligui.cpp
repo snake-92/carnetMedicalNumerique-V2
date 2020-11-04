@@ -28,6 +28,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 
 	user = new Utilisateur(); // création de l'utilisateur
     ms = new MessageGui();
+	ms->setWindowIcon(QIcon(":/images/icoMsg.png"));
 	fenetreRempliInfos = new InfoProfilGui(this);
 	fenetreRempliInfos->setWindowIcon(QIcon(":/images/create.png"));
 	fermer = false;
@@ -69,7 +70,8 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	// ajouter les images sur les menus
 	ui->actionAnglais->setIcon(QIcon(":/images/logoAnglais.png"));
 	ui->actionFran_ais->setIcon(QIcon(":/images/logoFrancais.png"));
-	ui->actionEcrire_un_message->setIcon(QIcon(":/images/msg.png"));
+	ui->actionEcrire_un_message->setIcon(QIcon(":/images/ecrireMsg.png"));
+	ui->actionLire_les_messages->setIcon(QIcon(":/images/msg.png"));
 	ui->actionordonnance->setIcon(QIcon(":/images/order.png"));
 	ui->actionimprimer->setIcon(QIcon(":/images/pdf.png"));
 	ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));

@@ -16,5 +16,7 @@
 	<file>../images/create.png</file>
 	<file>../images/display.png</file>
 	<file>../images/verification.png</file>
+	<file>../images/ecrireMsg.png</file>
+	<file>../images/icoMsg.png</file>
 </qresource>
 </RCC>
