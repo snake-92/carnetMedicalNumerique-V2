@@ -2,6 +2,8 @@
 #include "../fonctions/fonctions.h"
 #include <QPrinter>
 #include <qtextdocument.h>
+#include "../profil/profilprive.h"
+#include "../chemin.h"
 
 Utilisateur::Utilisateur()
 {

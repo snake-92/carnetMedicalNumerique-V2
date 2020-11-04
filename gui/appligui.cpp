@@ -4,14 +4,19 @@
 #include <QInputDialog>
 #include <cstdlib>
 #include <QFileDialog>
-
 #include <QWidgetAction>
 #include <QMessageBox>
 #include <QComboBox>
+#include <QDir>
+#include <QTranslator>
 #include "afficheprofilgui.h"
 #include "../utilisateur/utilisateur.h"
 #include "infoprofilgui.h"
 #include "../gui/messagegui.h"
+#include "../chemin.h"
+#include "../profil/profilprive.h"
+
+
 
 
 AppliGui::AppliGui(QWidget *parent, QString motDepasse) :

@@ -1,5 +1,7 @@
 #include "messagegui.h"
 #include "ui_messagegui.h"
+#include "../utilisateur/utilisateur.h"
+#include <QFile>
 
 
  Utilisateur *U= new Utilisateur; //creation dun pobjet utilisateur

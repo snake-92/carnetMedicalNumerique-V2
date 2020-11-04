@@ -1,7 +1,6 @@
 #ifndef MESSAGEGUI_H
 #define MESSAGEGUI_H
 
-#include "../utilisateur/utilisateur.h"
 #include <QWidget>
 
 namespace Ui {
