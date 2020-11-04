@@ -103,6 +103,9 @@ AppliGui::~AppliGui()
 	delete user;
 	delete fenetreRempliInfos;
 	delete comboBox;
+	delete ms;
+	delete translate;
+
 }
 
 
