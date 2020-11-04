@@ -1,5 +1,6 @@
 #include "afficheprofilgui.h"
 #include "ui_afficheprofilgui.h"
+#include "../profil/profilprive.h"
 
 AfficheProfilGui::AfficheProfilGui(QWidget *parent) :
 	QDialog(parent),
