@@ -3,21 +3,6 @@
 
 #include <QString>
 
-/*namespace // utiliser dans la fonction crypter
-{
-	const QByteArray printables()
-	{
-		QByteArray list;
-		for(int i = 0; i < 256; ++i)
-		{
-			if (QChar(char(i)).isPrint())
-				list+= char(i);
-		}
-		return list;
-	}
-}*/
-
-
 void ecrireDansFichierTemp(QString pseudo); // ecrire le nom du profil courant dans le fichier temp
 QString lireDansFichierTemp(); // recuperer le nom du profil courant dans le fichier temp
 
