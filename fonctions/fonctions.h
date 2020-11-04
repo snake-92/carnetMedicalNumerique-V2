@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace // utiliser dans la fonction crypter
+/*namespace // utiliser dans la fonction crypter
 {
 	const QByteArray printables()
 	{
@@ -15,12 +15,13 @@ namespace // utiliser dans la fonction crypter
 		}
 		return list;
 	}
-}
+}*/
 
 
 void ecrireDansFichierTemp(QString pseudo); // ecrire le nom du profil courant dans le fichier temp
 QString lireDansFichierTemp(); // recuperer le nom du profil courant dans le fichier temp
 
+const QByteArray printables(); // utiliser dans la fonction crypter
 const QString crypter(const QString & chaineACrypter); // crypter une chaine de caractères et recuperer le texte crypter
 const QString decrypter(const QString & chaineADecrypter); // decrypter la chaine de caractères
 

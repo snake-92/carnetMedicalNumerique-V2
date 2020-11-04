@@ -29,6 +29,16 @@ QString lireDansFichierTemp(){
 }
 
 
+const QByteArray printables(){
+	QByteArray list;
+	for(int i = 0; i < 256; ++i){
+		if (QChar(char(i)).isPrint())
+			list+= char(i);
+	}
+	return list;
+}
+
+
 const QString crypter(const QString & chaineACrypter)
 {
 	// Pour éviter de décoder en "%xx" les caractères affichables
