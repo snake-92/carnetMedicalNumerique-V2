@@ -271,7 +271,7 @@ void AppliGui::a_propos(){
 
 
 void AppliGui::infoHTML(){
-	QString path = "start "+QCoreApplication::applicationDirPath()+"/doc/index.html";
+	QString path = "start "+QCoreApplication::applicationDirPath()+"/manuel/index.html";
 	const char* p = path.toStdString().c_str();
 	system(p);
 }
