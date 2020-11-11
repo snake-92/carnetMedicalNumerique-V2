@@ -6,7 +6,9 @@
 #include <qdom.h>
 #include <QFile>
 
-
+///
+/// \brief The class Profil
+///
 class Profil : public QObject
 {
 	Q_OBJECT
