@@ -7,14 +7,27 @@
 #include <QFile>
 
 ///
-/// \brief The class Profil
+/// \brief La class Profil
 ///
 class Profil : public QObject
 {
 	Q_OBJECT
 public:
+	/**
+	 * \brief Constructeur par defaut
+	 *
+	 * Il initialise les données membres.
+	 * tous les QString à <"">, tous les bool à <false>, tous les int et double à <0> et <0.0>
+	 */
 	explicit Profil(QObject *parent = nullptr);
+
 	~Profil();
+
+	/**
+	 * \brief Constructeur copie
+	 *
+	 * Il cree un profil à partir de l'object profil passé en parametre.
+	 */
 	Profil(const Profil&); // constructeur copie
 
 	void creerFichierPublic(QString pseudo);

@@ -3,7 +3,9 @@
 
 #include"profil.h"
 
-
+///
+/// \brief La class ProfilPrive
+///
 class ProfilPrive: public Profil
 {
 	Q_OBJECT

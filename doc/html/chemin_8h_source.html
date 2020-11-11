@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,6 +36,21 @@
    </div>
    <div id="projectbrief">Health Manager Card</div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -38,17 +62,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Recherche');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
-</div><!-- top -->
+$(document).ready(function(){initNavTree('chemin_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,26 +98,38 @@ $(function() {
 <div class="title">chemin.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CHEMIN_H</span></div>
+<a href="chemin_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CHEMIN_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CHEMIN_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">const</span> QString PATHTEMPFILE = <span class="stringliteral">&quot;data/temp/&quot;</span>;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">const</span> QString PROFILPATH = <span class="stringliteral">&quot;data/profil/&quot;</span>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">const</span> QString TEMPFILE = <span class="stringliteral">&quot;data/temp/temp.txt&quot;</span>;</div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="chemin_8h.html#aca02c79665d4301b22a08bbe13cd1a12">    5</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#aca02c79665d4301b22a08bbe13cd1a12">PATHTEMPFILE</a> = <span class="stringliteral">&quot;data/temp/&quot;</span>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="chemin_8h.html#a4648731a30f9783cf30270fd636ee04d">    6</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#a4648731a30f9783cf30270fd636ee04d">PROFILPATH</a> = <span class="stringliteral">&quot;data/profil/&quot;</span>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="chemin_8h.html#a1b8e39ee3f42b39c5bad0b268285215a">    7</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#a1b8e39ee3f42b39c5bad0b268285215a">TEMPFILE</a> = <span class="stringliteral">&quot;data/temp/temp.txt&quot;</span>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">const</span> QString EXTPUBLIC = <span class="stringliteral">&quot;_publicData.xml&quot;</span>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">const</span> QString EXTPRIVATE = <span class="stringliteral">&quot;_privateData.data&quot;</span>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">const</span> QString FICHIERMOTDEPASSE = <span class="stringliteral">&quot;/cache.txt&quot;</span>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="chemin_8h.html#aebba4596f6f8934707a45bdfee4c62ac">    9</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#aebba4596f6f8934707a45bdfee4c62ac">EXTPUBLIC</a> = <span class="stringliteral">&quot;_publicData.xml&quot;</span>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="chemin_8h.html#af42d4cd51cd06530ecab11eee402938a">   10</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#af42d4cd51cd06530ecab11eee402938a">EXTPRIVATE</a> = <span class="stringliteral">&quot;_privateData.data&quot;</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="chemin_8h.html#ad6afbc4145fedf7e4a2be7536153031b">   11</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#ad6afbc4145fedf7e4a2be7536153031b">FICHIERMOTDEPASSE</a> = <span class="stringliteral">&quot;/cache.txt&quot;</span>;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">const</span> QString ADMINPUBLICFILE = <span class="stringliteral">&quot;admin_publicData.xml&quot;</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">const</span> QString ADMINPRIVATEFILE = <span class="stringliteral">&quot;admin_privateData.data&quot;</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="chemin_8h.html#a6d74827ee983bb3c9b6211723a5efd42">   13</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#a6d74827ee983bb3c9b6211723a5efd42">ADMINPUBLICFILE</a> = <span class="stringliteral">&quot;admin_publicData.xml&quot;</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="chemin_8h.html#af9f17b68a063f3f6b939cc306ddf891a">   14</a></span>&#160;<span class="keyword">const</span> QString <a class="code" href="chemin_8h.html#af9f17b68a063f3f6b939cc306ddf891a">ADMINPRIVATEFILE</a> = <span class="stringliteral">&quot;admin_privateData.data&quot;</span>;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif // CHEMIN_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="achemin_8h_html_a1b8e39ee3f42b39c5bad0b268285215a"><div class="ttname"><a href="chemin_8h.html#a1b8e39ee3f42b39c5bad0b268285215a">TEMPFILE</a></div><div class="ttdeci">const QString TEMPFILE</div><div class="ttdef"><b>Definition:</b> chemin.h:7</div></div>
+<div class="ttc" id="achemin_8h_html_a4648731a30f9783cf30270fd636ee04d"><div class="ttname"><a href="chemin_8h.html#a4648731a30f9783cf30270fd636ee04d">PROFILPATH</a></div><div class="ttdeci">const QString PROFILPATH</div><div class="ttdef"><b>Definition:</b> chemin.h:6</div></div>
+<div class="ttc" id="achemin_8h_html_af9f17b68a063f3f6b939cc306ddf891a"><div class="ttname"><a href="chemin_8h.html#af9f17b68a063f3f6b939cc306ddf891a">ADMINPRIVATEFILE</a></div><div class="ttdeci">const QString ADMINPRIVATEFILE</div><div class="ttdef"><b>Definition:</b> chemin.h:14</div></div>
+<div class="ttc" id="achemin_8h_html_af42d4cd51cd06530ecab11eee402938a"><div class="ttname"><a href="chemin_8h.html#af42d4cd51cd06530ecab11eee402938a">EXTPRIVATE</a></div><div class="ttdeci">const QString EXTPRIVATE</div><div class="ttdef"><b>Definition:</b> chemin.h:10</div></div>
+<div class="ttc" id="achemin_8h_html_a6d74827ee983bb3c9b6211723a5efd42"><div class="ttname"><a href="chemin_8h.html#a6d74827ee983bb3c9b6211723a5efd42">ADMINPUBLICFILE</a></div><div class="ttdeci">const QString ADMINPUBLICFILE</div><div class="ttdef"><b>Definition:</b> chemin.h:13</div></div>
+<div class="ttc" id="achemin_8h_html_aca02c79665d4301b22a08bbe13cd1a12"><div class="ttname"><a href="chemin_8h.html#aca02c79665d4301b22a08bbe13cd1a12">PATHTEMPFILE</a></div><div class="ttdeci">const QString PATHTEMPFILE</div><div class="ttdef"><b>Definition:</b> chemin.h:5</div></div>
+<div class="ttc" id="achemin_8h_html_aebba4596f6f8934707a45bdfee4c62ac"><div class="ttname"><a href="chemin_8h.html#aebba4596f6f8934707a45bdfee4c62ac">EXTPUBLIC</a></div><div class="ttdeci">const QString EXTPUBLIC</div><div class="ttdef"><b>Definition:</b> chemin.h:9</div></div>
+<div class="ttc" id="achemin_8h_html_ad6afbc4145fedf7e4a2be7536153031b"><div class="ttname"><a href="chemin_8h.html#ad6afbc4145fedf7e4a2be7536153031b">FICHIERMOTDEPASSE</a></div><div class="ttdeci">const QString FICHIERMOTDEPASSE</div><div class="ttdef"><b>Definition:</b> chemin.h:11</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Généré par&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="chemin_8h.html">chemin.h</a></li>
+    <li class="footer">Généré par <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+  </ul>
+</div>
 </body>
 </html>
