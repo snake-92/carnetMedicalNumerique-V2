@@ -2,34 +2,11 @@
 #include "../fonctions/fonctions.h"
 #include "../chemin.h"
 
-Profil::Profil(QObject *parent) : QObject(parent)
+Profil::Profil(QObject *parent) : QObject(parent),
+	profilAdmin(false), nom{"","",false}, sexe{"",false}, groupe{"",false},
+	date{"",false}, corps{0,0.0,false}, adresse{"",false}, numTel{"",false},
+	profession{"",false}, medecin{"","",false}, contact{"",""}, image{"",false}
 {
-	profilAdmin = false; // n'est pas admin lors de la creation
-	nom.nom = "";
-	nom.prenom = "";
-	nom.prive = false;
-	sexe.sexe = "";
-	sexe.prive = false;
-	groupe.groupeSanguin = "";
-	groupe.prive = false;
-	date.dateNaissance = "";
-	date.prive = false;
-	corps.taille = 0;
-	corps.poids = 0.0;
-	corps.prive = false;
-	adresse.adresse = "";
-	adresse.prive = false;
-	numTel.tel = "";
-	numTel.prive = false;
-	profession.profession = "";
-	profession.prive = false;
-	medecin.nomMedecin = "";
-	medecin.telMedecin = "";
-	medecin.prive = false;
-	contact.nom = "";
-	contact.telContact = "";
-	image.prive = false;
-	image.chemin = "";
 }
 
 
