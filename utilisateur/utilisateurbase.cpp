@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QDebug>
 #include "chemin.h"
+#include "../fonctions/fonctions.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ UtilisateurBase::UtilisateurBase(QObject *parent) : QObject(parent)
 void UtilisateurBase::saveMessage(QString nomSoignant, QString adresseSoignant, QString date, QString message)
 {
 
-    QFile file( "data/profil/Ami.txt");
+   QFile file( PROFILPATH+lireDansFichierTemp()+"/"+lireDansFichierTemp()+"_message.txt");
     if ( file.open(QIODevice::WriteOnly | QIODevice::Text|  QIODevice::Append) )
     {
         // je sauvegarde les date dans un fichier txt

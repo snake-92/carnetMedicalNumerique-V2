@@ -22,7 +22,12 @@ QString lireDansFichierTemp(){
 	QFile filetemp(TEMPFILE);
 	if (filetemp.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		QTextStream out(&filetemp);
-		out >> pseudo;
+        while(!out.atEnd()) {
+            QString pseudo = out.readLine();
+             if(pseudo!="" )
+                 return pseudo;
+           }
+
 		filetemp.close();
 	}
 	return pseudo;

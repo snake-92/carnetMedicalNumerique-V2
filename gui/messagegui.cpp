@@ -1,5 +1,7 @@
 #include "messagegui.h"
 #include "ui_messagegui.h"
+#include "../fonctions/fonctions.h"
+
 
 
  Utilisateur *U= new Utilisateur; //creation dun pobjet utilisateur
@@ -13,6 +15,7 @@ MessageGui::MessageGui(QWidget *parent) :
 MessageGui::~MessageGui()
 {
 	delete ui;
+    delete fm;
 }
 
 
@@ -20,7 +23,7 @@ MessageGui::~MessageGui()
 void MessageGui::show_reading_interface()
 {
     ui->B_save_message->setEnabled(false);
-    ui->B_read_message->setEnabled(true);
+
     ui->B_write_message->setEnabled(true);
 
 
@@ -39,20 +42,22 @@ void MessageGui::show_reading_interface()
     ui->messageValue->clear();
 
 
-    QFile file("data/profil/Ami.txt");
+    QFile file( PROFILPATH+lireDansFichierTemp()+"/"+lireDansFichierTemp()+"_message.txt");
     file.open(QFile::ReadOnly | QFile::Text);
     ui->messageValue->setText(file.readAll()); // on lit l'ensemble du file
+     ui->messageValue->setReadOnly(true);
+     // permet l'interaction avec la sourir et le clavier
+      ui->messageValue->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
+
    // ui->messageValue->setText(ui->messageValue->toPlainText(messegeOnFile)+"\n");
 
-
-    show();
+        this->show();
 
 }
 
  void MessageGui::show_writting_interface()
  {
      ui->B_save_message->setEnabled(true);
-     ui->B_read_message->setEnabled(true);
 
      ui->nomMedValue->setVisible(true);
      ui->nomMedLab->setVisible(true);
@@ -67,8 +72,9 @@ void MessageGui::show_reading_interface()
      ui->messageValue->clear(); // le contenue de linterfce
       ui->nomMedValue->clear(); // on vide le nom medecin
       ui->adressMedValue->clear(); // on vide l'adresse
+      ui->messageValue->setReadOnly(false);
+      this->show();
 
-     show();
 
  }
 
@@ -90,15 +96,11 @@ void MessageGui::on_B_save_message_clicked()
                    "Adresse du cabinet: "+U->getAdressesSoignant(),
                    "Date de visite: "+U->getdateSoin(),
                    "Message: "+U->getmessageSoignant());
-
-
-}
-
-void MessageGui::on_B_read_message_clicked()
-{
      show_reading_interface();
 
+
 }
+
 
 void MessageGui::on_B_write_message_clicked()
 {
@@ -108,6 +110,6 @@ void MessageGui::on_B_write_message_clicked()
 
 void MessageGui::on_B_retour_menu_principal_clicked()
 {
-    close();
+    this->close();
 
 }

@@ -19,17 +19,17 @@ public:
     void show_writting_interface();
 
 
+
 private slots:
     void on_B_save_message_clicked();
-
-    void on_B_read_message_clicked();
-
     void on_B_write_message_clicked();
 
     void on_B_retour_menu_principal_clicked();
 
 private:
 	Ui::MessageGui *ui;
+    MessageGui *fm;
+
 
 };
 
