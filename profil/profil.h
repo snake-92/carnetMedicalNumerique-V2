@@ -6,9 +6,10 @@
 #include <qdom.h>
 #include <QFile>
 
-///
-/// \brief La class Profil
-///
+/*! \class Profil
+   * \brief classe representant un profil publique
+   *
+   */
 class Profil : public QObject
 {
 	Q_OBJECT
@@ -30,6 +31,11 @@ public:
 	 */
 	Profil(const Profil&); // constructeur copie
 
+	/*!
+	 *  \brief Création du fichier contenant les données publiques
+	 *
+	 *  \param pseudo : nom du profil
+	 */
 	void creerFichierPublic(QString pseudo);
 
 	// setters
