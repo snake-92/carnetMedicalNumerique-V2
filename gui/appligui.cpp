@@ -317,8 +317,12 @@ void AppliGui::changeEvent(QEvent* event){ // evenement lors du changement de la
 
 void AppliGui::impression(){
 
-	QString dossier = QFileDialog::getExistingDirectory(this);
+	// demander le mot de passe
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
-	user->selectCurrentProfil(lireDansFichierTemp());
-	user->genererPdf(dossier);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		QString dossier = QFileDialog::getExistingDirectory(this);
+		user->selectCurrentProfil(lireDansFichierTemp());
+		user->genererPdf(dossier);
+	}
 }
