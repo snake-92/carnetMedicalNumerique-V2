@@ -35,7 +35,7 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 	QLabel *tailleLabel = new QLabel(tr("<strong>Taille : </strong>")+QString::number(profil->getTaille()), this);
 	QLabel *poidsLabel = new QLabel(tr("<strong>Poids : </strong>")+QString::number(profil->getPoids()), this);
 	QLabel *dateNaissanceLabel = new QLabel(tr("<strong>Date de naissance : </strong>")+profil->getDateNaissance(), this);
-	QLabel *groupeSanguinLabel = new QLabel(tr("<strong>Groupe sanguin : </strong>")+profil->getGroupSanguin(), this);
+	QLabel *groupeSanguinLabel = new QLabel(tr("<strong>Groupe sanguin : </strong>")+profil->getGroupSanguin().split('_')[0]+profil->getGroupSanguin().split('_')[1], this);
 	QLabel *telLabel = new QLabel(tr("<strong>Numéro de téléphone : </strong>")+profil->getTel(), this);
 
 	// parcours de données qui sont dans la classe Profil
