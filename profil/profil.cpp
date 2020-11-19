@@ -4,8 +4,8 @@
 
 Profil::Profil(QObject *parent) : QObject(parent),
 	profilAdmin(false), nom{"","",false}, sexe{"",false}, groupe{"",false},
-	date{"",false}, corps{0,0.0,false}, adresse{"",false}, numTel{"",false},
-	profession{"",false}, medecin{"","",false}, contact{"",""}, image{"",false}
+	date{"",false}, corps{0,0.0,false}, adresse{"",false}, numTel{"","",false},
+	profession{"",false}, medecin{"","","",false}, contact{"","", ""}, image{"",false}
 {
 }
 
@@ -173,11 +173,13 @@ void Profil::saveProfilInFiles(){
 	if(!numTel.prive){
 		writer.writeStartElement("tel");
 		writer.writeAttribute("prive", "0");
+		writer.writeAttribute("pays", numTel.pays);
 		writer.writeCharacters(numTel.tel);
 		writer.writeEndElement();
 	}else{
 		writer.writeStartElement("tel");
 		writer.writeAttribute("prive", "1");
+		writer.writeAttribute("pays", crypter(numTel.pays));
 		writer.writeCharacters(crypter(numTel.tel));
 		writer.writeEndElement();
 	}
@@ -201,6 +203,7 @@ void Profil::saveProfilInFiles(){
 		writer.writeCharacters(medecin.nomMedecin);
 		writer.writeEndElement();
 		writer.writeStartElement("tel");
+		writer.writeAttribute("pays", medecin.pays);
 		writer.writeCharacters(medecin.telMedecin);
 		writer.writeEndElement();
 		writer.writeEndElement();
@@ -211,6 +214,7 @@ void Profil::saveProfilInFiles(){
 		writer.writeCharacters(crypter(medecin.nomMedecin));
 		writer.writeEndElement();
 		writer.writeStartElement("tel");
+		writer.writeAttribute("pays", crypter(medecin.pays));
 		writer.writeCharacters(crypter(medecin.telMedecin));
 		writer.writeEndElement();
 		writer.writeEndElement();
@@ -221,6 +225,7 @@ void Profil::saveProfilInFiles(){
 	writer.writeCharacters(contact.nom);
 	writer.writeEndElement();
 	writer.writeStartElement("tel");
+	writer.writeAttribute("pays", contact.pays);
 	writer.writeCharacters(contact.telContact);
 	writer.writeEndElement();
 	writer.writeEndElement();
@@ -378,6 +383,10 @@ QString Profil::getTel(){
 	return numTel.tel;
 }
 
+QString Profil::getPaysTel(){
+	return numTel.pays;
+}
+
 QString Profil::getProfession(){
 	return profession.profession;
 }
@@ -390,12 +399,20 @@ QString Profil::getMedecinTel(){
 	return medecin.telMedecin;
 }
 
+QString Profil::getPaysTelMed(){
+	return medecin.pays;
+}
+
 QString Profil::getPersonContactNom(){
 	return contact.nom;
 }
 
 QString Profil::getPersonContactTel(){
 	return contact.telContact;
+}
+
+QString Profil::getPaysTelContact(){
+	return contact.pays;
 }
 
 QString Profil::getCheminImageProfil(){
@@ -424,9 +441,12 @@ void Profil::setTaille(int t){corps.taille=t;}
 void Profil::setPoids(double p){corps.poids=p;}
 void Profil::setAdresse(QString a){adresse.adresse=a;}
 void Profil::setTel(QString t){numTel.tel=t;}
+void Profil::setPaysTel(QString t){numTel.pays=t;}
 void Profil::setProfession(QString p){profession.profession=p;}
 void Profil::setMedecinNom(QString m){medecin.nomMedecin=m;}
 void Profil::setMedecinTel(QString t){medecin.telMedecin=t;}
+void Profil::setPaysTelMed(QString t){medecin.pays=t;}
 void Profil::setPersonContactNom(QString c){contact.nom=c;}
 void Profil::setPersonContactTel(QString t){contact.telContact=t;}
+void Profil::setPaysTelContact(QString t){contact.pays=t;}
 void Profil::setCheminImageProfil(QString c){image.chemin = c;}

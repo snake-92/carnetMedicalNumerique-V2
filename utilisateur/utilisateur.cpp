@@ -89,9 +89,11 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 		}else if(element.tagName()=="tel"){
 			if(element.attribute("prive", "no") == "0"){
 				profilChoisi->setTel(element.text());
+				profilChoisi->setPaysTel(element.attribute("pays"));
 				profilChoisi->setPriveTel(false);
 			}else{
 				profilChoisi->setTel(decrypter(element.text()));
+				profilChoisi->setPaysTel(decrypter(element.attribute("pays")));
 				profilChoisi->setPriveTel(true);
 			}
 		}else if(element.tagName()=="adress"){
@@ -115,7 +117,7 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 			while(!sousElement.isNull())
 			{
 				if(sousElement.tagName()=="nom"){
-					if(element.attribute("prive", "no") == "0"){
+					if(sousElement.attribute("prive", "no") == "0"){
 						profilChoisi->setMedecinNom(sousElement.text());
 						profilChoisi->setPriveMed(false);
 					}else{
@@ -123,10 +125,13 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 						profilChoisi->setPriveMed(true);
 					}
 				}else if(sousElement.tagName()=="tel"){
-					if(element.attribute("prive", "no") == "0")
+					if(sousElement.attribute("prive", "no") == "0"){
 						profilChoisi->setMedecinTel(sousElement.text());
-					else
+						profilChoisi->setPaysTel(sousElement.attribute("pays"));
+					}else{
 						profilChoisi->setMedecinTel(decrypter(sousElement.text()));
+						profilChoisi->setPaysTel(decrypter(sousElement.attribute("pays")));
+					}
 				}
 				sousElement = sousElement.nextSibling().toElement();
 			}
@@ -136,8 +141,10 @@ void Utilisateur::selectCurrentProfil(QString pseudo){
 			{
 				if(sousElement.tagName()=="nom")
 					profilChoisi->setPersonContactNom(sousElement.text());
-				else if(sousElement.tagName()=="tel")
+				else if(sousElement.tagName()=="tel"){
 					profilChoisi->setPersonContactTel(sousElement.text());
+					profilChoisi->setPaysTel(decrypter(sousElement.attribute("pays")));
+				}
 				sousElement = sousElement.nextSibling().toElement();
 			}
 		}else if(element.tagName()=="image"){

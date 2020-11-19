@@ -61,11 +61,14 @@ public:
 	void setPoids(double);
 	void setAdresse(QString);
 	void setTel(QString);
+	void setPaysTel(QString);
 	void setProfession(QString);
 	void setMedecinNom(QString);
 	void setMedecinTel(QString);
+	void setPaysTelMed(QString);
 	void setPersonContactNom(QString);
 	void setPersonContactTel(QString);
+	void setPaysTelContact(QString);
 	void setCheminImageProfil(QString);
 
 	void setPriveNom(bool);
@@ -90,11 +93,14 @@ public:
 	double getPoids();
 	QString getAdresse();
 	QString getTel();
+	QString getPaysTel();
 	QString getProfession();
 	QString getMedecinNom();
 	QString getMedecinTel();
+	QString getPaysTelMed();
 	QString getPersonContactNom();
 	QString getPersonContactTel();
+	QString getPaysTelContact();
 	QString getCheminImageProfil();
 
 	bool getPriveNom();
@@ -154,6 +160,7 @@ protected:
 
 	struct{
 		QString tel;
+		QString pays;
 		bool prive;
 	}numTel;
 
@@ -165,12 +172,14 @@ protected:
 	struct{
 		QString nomMedecin;
 		QString telMedecin;
+		QString pays;
 		bool prive;
 	}medecin;
 
 	struct{
 		QString nom;
 		QString telContact;
+		QString pays;
 	}contact;
 
 	struct{
