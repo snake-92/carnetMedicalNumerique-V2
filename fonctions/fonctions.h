@@ -11,7 +11,7 @@ namespace // utiliser dans la fonction crypter
 		for(int i = 0; i < 256; ++i)
 		{
 			if (QChar(char(i)).isPrint())
-				list+= char(i);
+                list+= char(i);
 		}
 		return list;
 	}
@@ -34,4 +34,6 @@ QString copyImageDansProfil(QString pathSrc, QString pseudo); // copie l'image d
 QString checkMotDePasse();  // permet d'obtenir le mot de passe dans d'autres classes sans passé par la classe utilisateur
 void modifMotDePasse(QString pwd); // modifie le mot de passe
 
+
+QList<int> listeNumLigneDV();
 #endif // FONCTIONS_H

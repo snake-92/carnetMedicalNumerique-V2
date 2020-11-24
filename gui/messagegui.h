@@ -15,8 +15,10 @@ class MessageGui : public QWidget
 public:
 	explicit MessageGui(QWidget *parent = nullptr);
 	~MessageGui();
+    void settingReadingInterface();
     void show_reading_interface();
     void show_writting_interface();
+
 
 
 

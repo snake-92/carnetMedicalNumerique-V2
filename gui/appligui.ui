@@ -289,6 +289,11 @@
     <string>Lire les messages</string>
    </property>
   </action>
+  <action name="actionLire_les_5_derniers_messages">
+   <property name="text">
+    <string>Lire les 5 derniers messages</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

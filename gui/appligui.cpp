@@ -264,8 +264,6 @@ void AppliGui::on_actionEcrire_un_message_triggered(){
 }
 
 
-
-
 void AppliGui::on_actionLire_les_messages_triggered(){
    ms->show_reading_interface();
 }
@@ -304,3 +302,5 @@ void AppliGui::impression(){
 	user->selectCurrentProfil(lireDansFichierTemp());
 	user->genererPdf(dossier);
 }
+
+

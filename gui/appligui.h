@@ -38,6 +38,8 @@ private slots:
 	void traduction_francais();
 	void impression();
 
+
+
 protected:
 	void changeEvent(QEvent*);
 

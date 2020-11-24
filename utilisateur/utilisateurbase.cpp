@@ -18,48 +18,28 @@ UtilisateurBase::UtilisateurBase(QObject *parent) : QObject(parent)
 
 void UtilisateurBase::saveMessage(QString nomSoignant, QString adresseSoignant, QString date, QString message)
 {
+    QByteArray buffer;
 
    QFile file( PROFILPATH+lireDansFichierTemp()+"/"+lireDansFichierTemp()+"_message.txt");
-    if ( file.open(QIODevice::WriteOnly | QIODevice::Text|  QIODevice::Append) )
-    {
-        // je sauvegarde les date dans un fichier txt
-        QTextStream stream( &file );
-        stream << date<<"\n" ;
-        stream << nomSoignant <<"\n";
-        stream << adresseSoignant<<"\n";
-        stream << message<<"\n"<<"\n"<<"\n";
-
-         file.close();
-
-    }
-    else
-        qDebug() << "FAILED TO CREATE FILE / FILE DOES NOT EXIST";
-         return;
+  if(!file.open(QFile::ReadWrite | QFile::Text))
+  {
+      qDebug()<<"impossible ouverture ficher message en lecture";
+      return;
+  }
+  else {
+            buffer = file.readAll(); // sauvegarde tempon
+            file.resize(0); // on redimenssionne le fichier
+            QTextStream stream( &file );
+            stream << date<<"\n" ;
+            stream << nomSoignant <<"\n";
+            stream << adresseSoignant<<"\n";
+            stream << message<<"\n"<<"\n"<<"\n";
+            stream <<buffer;
+            file.close();
+      }
 }
 
 
-// not use
-QString UtilisateurBase ::readMessage()
-{
-    //QString filename="profilAdmin/Ami.txt";
-      // QFile file(filename);
-       string line;
-       string result = " \n";
-       QString contentfile;
-       ifstream myfile ("data/profil/Ami.txt");
-
-       if (myfile.is_open())
-        {
-           while ( getline (myfile,line) )
-              {
-                result += line;
-              }
-              myfile.close();
-            }
-       contentfile = QString::fromStdString(result);
-       return contentfile;
-
-       }
 
 
 UtilisateurBase::~UtilisateurBase()
