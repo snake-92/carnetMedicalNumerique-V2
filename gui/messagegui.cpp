@@ -1,6 +1,9 @@
 #include "messagegui.h"
 #include "ui_messagegui.h"
 #include "../fonctions/fonctions.h"
+#include <QFile>
+#include "../utilisateur/utilisateur.h"
+#include "chemin.h"
 #include<QMessageBox>
 
 
