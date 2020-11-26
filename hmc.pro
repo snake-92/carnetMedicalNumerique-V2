@@ -30,8 +30,8 @@ CONFIG += c++14
 # copie la doc
 CONFIG *= file_copies
 COPIES += myDocumentation
-myDocumentation.files = $$files(doc/*)
-myDocumentation.path = $$OUT_PWD/bin/doc
+myDocumentation.files = $$files(manuel/*)
+myDocumentation.path = $$OUT_PWD/bin/manuel
 
 SOURCES += \
         main.cpp \

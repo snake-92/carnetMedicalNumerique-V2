@@ -6,17 +6,36 @@
 #include <qdom.h>
 #include <QFile>
 
-#include "../chemin.h"
-
-
+/*! \class Profil
+   * \brief classe representant un profil publique
+   *
+   */
 class Profil : public QObject
 {
 	Q_OBJECT
 public:
+	/**
+	 * \brief Constructeur par defaut
+	 *
+	 * Il initialise les données membres.
+	 * tous les QString à <"">, tous les bool à <false>, tous les int et double à <0> et <0.0>
+	 */
 	explicit Profil(QObject *parent = nullptr);
+
 	~Profil();
+
+	/**
+	 * \brief Constructeur copie
+	 *
+	 * Il cree un profil à partir de l'object profil passé en parametre.
+	 */
 	Profil(const Profil&); // constructeur copie
 
+	/*!
+	 *  \brief Création du fichier contenant les données publiques
+	 *
+	 *  \param pseudo : nom du profil
+	 */
 	void creerFichierPublic(QString pseudo);
 
 	// setters
@@ -42,11 +61,14 @@ public:
 	void setPoids(double);
 	void setAdresse(QString);
 	void setTel(QString);
+	void setPaysTel(QString);
 	void setProfession(QString);
 	void setMedecinNom(QString);
 	void setMedecinTel(QString);
+	void setPaysTelMed(QString);
 	void setPersonContactNom(QString);
 	void setPersonContactTel(QString);
+	void setPaysTelContact(QString);
 	void setCheminImageProfil(QString);
 
 	void setPriveNom(bool);
@@ -71,11 +93,14 @@ public:
 	double getPoids();
 	QString getAdresse();
 	QString getTel();
+	QString getPaysTel();
 	QString getProfession();
 	QString getMedecinNom();
 	QString getMedecinTel();
+	QString getPaysTelMed();
 	QString getPersonContactNom();
 	QString getPersonContactTel();
+	QString getPaysTelContact();
 	QString getCheminImageProfil();
 
 	bool getPriveNom();
@@ -135,6 +160,7 @@ protected:
 
 	struct{
 		QString tel;
+		QString pays;
 		bool prive;
 	}numTel;
 
@@ -146,12 +172,14 @@ protected:
 	struct{
 		QString nomMedecin;
 		QString telMedecin;
+		QString pays;
 		bool prive;
 	}medecin;
 
 	struct{
 		QString nom;
 		QString telContact;
+		QString pays;
 	}contact;
 
 	struct{

@@ -2,12 +2,12 @@
 #define APPLIGUI_H
 
 #include <QMainWindow>
-#include <QComboBox>
-#include <QWidgetAction>
-#include "../utilisateur/utilisateur.h"
-#include "infoprofilgui.h"
-#include "afficheprofilgui.h"
-#include "../gui/messagegui.h"
+
+class QComboBox;
+class Utilisateur;
+class InfoProfilGui;
+class MessageGui;
+class QTranslator;
 
 namespace Ui {
 class AppliGui;

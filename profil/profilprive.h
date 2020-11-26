@@ -3,7 +3,11 @@
 
 #include"profil.h"
 
-
+/*! \class ProfilPrive
+   * \brief classe representant un profil privé
+   *
+   *  elle hérite de la classe Profil
+   */
 class ProfilPrive: public Profil
 {
 	Q_OBJECT

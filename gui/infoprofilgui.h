@@ -2,9 +2,8 @@
 #define INFOPROFILGUI_H
 
 #include <QDialog>
-#include <QMessageBox>
-#include "../profil/profilprive.h"
-#include "../chemin.h"
+
+class ProfilPrive;
 
 namespace Ui {
 class InfoProfilGui;

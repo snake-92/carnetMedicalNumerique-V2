@@ -2,8 +2,8 @@
 #define UTILISATEUR_H
 
 #include "utilisateurmedecin.h"
-#include "../profil/profilprive.h"
-#include "../chemin.h"
+
+class ProfilPrive;
 
 class Utilisateur: public UtilisateurMedecin
 {

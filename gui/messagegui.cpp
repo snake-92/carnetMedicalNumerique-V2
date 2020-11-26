@@ -4,7 +4,6 @@
 #include<QMessageBox>
 
 
-
  Utilisateur *U= new Utilisateur; //creation dun pobjet utilisateur
 MessageGui::MessageGui(QWidget *parent) :
 	QWidget(parent),

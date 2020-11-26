@@ -1,5 +1,6 @@
 #include "afficheprofilgui.h"
 #include "ui_afficheprofilgui.h"
+#include "../profil/profilprive.h"
 
 AfficheProfilGui::AfficheProfilGui(QWidget *parent) :
 	QDialog(parent),
@@ -34,8 +35,8 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 	QLabel *tailleLabel = new QLabel(tr("<strong>Taille : </strong>")+QString::number(profil->getTaille()), this);
 	QLabel *poidsLabel = new QLabel(tr("<strong>Poids : </strong>")+QString::number(profil->getPoids()), this);
 	QLabel *dateNaissanceLabel = new QLabel(tr("<strong>Date de naissance : </strong>")+profil->getDateNaissance(), this);
-	QLabel *groupeSanguinLabel = new QLabel(tr("<strong>Groupe sanguin : </strong>")+profil->getGroupSanguin(), this);
-	QLabel *telLabel = new QLabel(tr("<strong>Numéro de téléphone : </strong>")+profil->getTel(), this);
+	QLabel *groupeSanguinLabel = new QLabel(tr("<strong>Groupe sanguin : </strong>")+profil->getGroupSanguin().split('_')[0]+profil->getGroupSanguin().split('_')[1], this);
+	QLabel *telLabel = new QLabel(tr("<strong>Numéro de téléphone : </strong>")+profil->getPaysTel()+profil->getTel(), this);
 
 	// parcours de données qui sont dans la classe Profil
 	if(profil->getPriveNom()){
@@ -98,7 +99,7 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 
 	if(profil->getMedecinNom() != ""){
 		QLabel *nomMedLabel = new QLabel(tr("<strong>Nom Médecin : </strong>")+profil->getMedecinNom(), this);
-		QLabel *telMedLabel = new QLabel(tr("<strong>Tel Médecin : </strong>")+profil->getMedecinTel(), this);
+		QLabel *telMedLabel = new QLabel(tr("<strong>Tel Médecin : </strong>")+profil->getPaysTelMed()+profil->getMedecinTel(), this);
 		if(profil->getPriveMedecin()){
 			ui->verticalLayout_pri_column1->addWidget(nomMedLabel);
 			ui->verticalLayout_pri_column2->addWidget(telMedLabel);
@@ -110,7 +111,7 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 
 	if(profil->getPersonContactNom() != ""){
 		QLabel *nomContactLabel = new QLabel(tr("<strong>Personne à contacter : </strong>")+profil->getPersonContactNom(), this);
-		QLabel *telContactLabel = new QLabel(tr("<strong>Tel : </strong>")+profil->getPersonContactTel(), this);
+		QLabel *telContactLabel = new QLabel(tr("<strong>Tel : </strong>")+profil->getPaysTelContact()+profil->getPersonContactTel(), this);
 		ui->verticalLayout_pub_column1->addWidget(nomContactLabel);
 		ui->verticalLayout_pub_column2->addWidget(telContactLabel);
 	}

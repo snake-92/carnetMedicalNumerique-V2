@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HMC:  Fichier source de utilisateur/utilisateur.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.PNG"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HMC
+   &#160;<span id="projectnumber">Version 1.0</span>
+   </div>
+   <div id="projectbrief">Health Manager Card</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('utilisateur_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">utilisateur.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="utilisateur_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef UTILISATEUR_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define UTILISATEUR_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utilisateurmedecin_8h.html">utilisateurmedecin.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span><a class="code" href="class_profil_prive.html">ProfilPrive</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_utilisateur.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_utilisateur.html">Utilisateur</a>: <span class="keyword">public</span> <a class="code" href="class_utilisateur_medecin.html">UtilisateurMedecin</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_utilisateur.html#ae76433a6d353c5f5ad0c6a6af64022ad">Utilisateur</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_utilisateur.html#a6631539ceecd6140fe525eb91485537b">~Utilisateur</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_utilisateur.html#ada5dbfb34030af413c990e07bd0fa080">selectCurrentProfil</a>(QString pseudo);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_profil_prive.html">ProfilPrive</a>* <a class="code" href="class_utilisateur.html#a129af60ab7739cb79de881589e454aa5">getProfil</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_utilisateur.html#a83d97c58adb9fb4f70dedbbeb8cc0c95">genererPdf</a>(QString path);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_utilisateur.html#a7a88179d49d2642f551a84d91bf19c98">   20</a></span>&#160;    <a class="code" href="class_profil_prive.html">ProfilPrive</a>* <a class="code" href="class_utilisateur.html#a7a88179d49d2642f551a84d91bf19c98">profilChoisi</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // UTILISATEUR_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="aclass_utilisateur_html_a7a88179d49d2642f551a84d91bf19c98"><div class="ttname"><a href="class_utilisateur.html#a7a88179d49d2642f551a84d91bf19c98">Utilisateur::profilChoisi</a></div><div class="ttdeci">ProfilPrive * profilChoisi</div><div class="ttdef"><b>Definition:</b> utilisateur.h:20</div></div>
+<div class="ttc" id="aclass_utilisateur_html_a6631539ceecd6140fe525eb91485537b"><div class="ttname"><a href="class_utilisateur.html#a6631539ceecd6140fe525eb91485537b">Utilisateur::~Utilisateur</a></div><div class="ttdeci">~Utilisateur()</div><div class="ttdef"><b>Definition:</b> utilisateur.cpp:14</div></div>
+<div class="ttc" id="aclass_utilisateur_html_ae76433a6d353c5f5ad0c6a6af64022ad"><div class="ttname"><a href="class_utilisateur.html#ae76433a6d353c5f5ad0c6a6af64022ad">Utilisateur::Utilisateur</a></div><div class="ttdeci">Utilisateur()</div><div class="ttdef"><b>Definition:</b> utilisateur.cpp:8</div></div>
+<div class="ttc" id="aclass_utilisateur_html"><div class="ttname"><a href="class_utilisateur.html">Utilisateur</a></div><div class="ttdef"><b>Definition:</b> utilisateur.h:9</div></div>
+<div class="ttc" id="aclass_utilisateur_html_a129af60ab7739cb79de881589e454aa5"><div class="ttname"><a href="class_utilisateur.html#a129af60ab7739cb79de881589e454aa5">Utilisateur::getProfil</a></div><div class="ttdeci">ProfilPrive * getProfil()</div><div class="ttdef"><b>Definition:</b> utilisateur.cpp:233</div></div>
+<div class="ttc" id="aclass_profil_prive_html"><div class="ttname"><a href="class_profil_prive.html">ProfilPrive</a></div><div class="ttdoc">La class ProfilPrive.</div><div class="ttdef"><b>Definition:</b> profilprive.h:10</div></div>
+<div class="ttc" id="aclass_utilisateur_html_a83d97c58adb9fb4f70dedbbeb8cc0c95"><div class="ttname"><a href="class_utilisateur.html#a83d97c58adb9fb4f70dedbbeb8cc0c95">Utilisateur::genererPdf</a></div><div class="ttdeci">void genererPdf(QString path)</div><div class="ttdef"><b>Definition:</b> utilisateur.cpp:238</div></div>
+<div class="ttc" id="aclass_utilisateur_medecin_html"><div class="ttname"><a href="class_utilisateur_medecin.html">UtilisateurMedecin</a></div><div class="ttdef"><b>Definition:</b> utilisateurmedecin.h:10</div></div>
+<div class="ttc" id="autilisateurmedecin_8h_html"><div class="ttname"><a href="utilisateurmedecin_8h.html">utilisateurmedecin.h</a></div></div>
+<div class="ttc" id="aclass_utilisateur_html_ada5dbfb34030af413c990e07bd0fa080"><div class="ttname"><a href="class_utilisateur.html#ada5dbfb34030af413c990e07bd0fa080">Utilisateur::selectCurrentProfil</a></div><div class="ttdeci">void selectCurrentProfil(QString pseudo)</div><div class="ttdef"><b>Definition:</b> utilisateur.cpp:19</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_1c0967bc22219bc0e35dfbc7760ee55e.html">utilisateur</a></li><li class="navelem"><a class="el" href="utilisateur_8h.html">utilisateur.h</a></li>
+    <li class="footer">Généré par <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+  </ul>
+</div>
+</body>
+</html>

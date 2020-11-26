@@ -4,6 +4,19 @@
 #include <QInputDialog>
 #include <cstdlib>
 #include <QFileDialog>
+#include <QWidgetAction>
+#include <QMessageBox>
+#include <QComboBox>
+#include <QDir>
+#include <QTranslator>
+#include "afficheprofilgui.h"
+#include "../utilisateur/utilisateur.h"
+#include "infoprofilgui.h"
+#include "../gui/messagegui.h"
+#include "../chemin.h"
+#include "../profil/profilprive.h"
+
+
 
 
 AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
@@ -15,6 +28,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 
 	user = new Utilisateur(); // création de l'utilisateur
     ms = new MessageGui();
+	ms->setWindowIcon(QIcon(":/images/icoMsg.png"));
 	fenetreRempliInfos = new InfoProfilGui(this);
 	fenetreRempliInfos->setWindowIcon(QIcon(":/images/create.png"));
 	fermer = false;
@@ -56,7 +70,8 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	// ajouter les images sur les menus
 	ui->actionAnglais->setIcon(QIcon(":/images/logoAnglais.png"));
 	ui->actionFran_ais->setIcon(QIcon(":/images/logoFrancais.png"));
-	ui->actionEcrire_un_message->setIcon(QIcon(":/images/msg.png"));
+	ui->actionEcrire_un_message->setIcon(QIcon(":/images/ecrireMsg.png"));
+	ui->actionLire_les_messages->setIcon(QIcon(":/images/msg.png"));
 	ui->actionordonnance->setIcon(QIcon(":/images/order.png"));
 	ui->actionimprimer->setIcon(QIcon(":/images/pdf.png"));
 	ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));
@@ -88,6 +103,9 @@ AppliGui::~AppliGui()
 	delete user;
 	delete fenetreRempliInfos;
 	delete comboBox;
+	delete ms;
+	delete translate;
+
 }
 
 
@@ -253,7 +271,7 @@ void AppliGui::a_propos(){
 
 
 void AppliGui::infoHTML(){
-	QString path = "start "+QCoreApplication::applicationDirPath()+"/doc/index.html";
+	QString path = "start "+QCoreApplication::applicationDirPath()+"/manuel/index.html";
 	const char* p = path.toStdString().c_str();
 	system(p);
 }
@@ -297,10 +315,14 @@ void AppliGui::changeEvent(QEvent* event){ // evenement lors du changement de la
 
 void AppliGui::impression(){
 
-	QString dossier = QFileDialog::getExistingDirectory(this);
+	// demander le mot de passe
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
-	user->selectCurrentProfil(lireDansFichierTemp());
-	user->genererPdf(dossier);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		QString dossier = QFileDialog::getExistingDirectory(this);
+		user->selectCurrentProfil(lireDansFichierTemp());
+		user->genererPdf(dossier);
+	}
 }
 
 

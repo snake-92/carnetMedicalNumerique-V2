@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HMC:  Fichier source de fonctions/fonctions.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.PNG"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HMC
+   &#160;<span id="projectnumber">Version 1.0</span>
+   </div>
+   <div id="projectbrief">Health Manager Card</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('fonctions_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">fonctions.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="fonctions_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef FONCTIONS_H_INCLUDED</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define FONCTIONS_H_INCLUDED</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_8h.html#a3e224674f12ea0b01f62d9b6dd3e5f2e">ecrireDansFichierTemp</a>(QString pseudo); <span class="comment">// ecrire le nom du profil courant dans le fichier temp</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;QString <a class="code" href="fonctions_8h.html#a7b22ce77d1f7afb1f2c1b93f1bfb310a">lireDansFichierTemp</a>(); <span class="comment">// recuperer le nom du profil courant dans le fichier temp</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">const</span> QByteArray <a class="code" href="fonctions_8h.html#a9bc9cdce2e0990647d3641c54068e145">printables</a>(); <span class="comment">// utiliser dans la fonction crypter</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">const</span> QString <a class="code" href="fonctions_8h.html#aa83d408dcd204ffc13d004eda45920a4">crypter</a>(<span class="keyword">const</span> QString &amp; chaineACrypter); <span class="comment">// crypter une chaine de caractères et recuperer le texte crypter</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">const</span> QString <a class="code" href="fonctions_8h.html#a67657080a72ce35733cfd3e2e8295312">decrypter</a>(<span class="keyword">const</span> QString &amp; chaineADecrypter); <span class="comment">// decrypter la chaine de caractères</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;QStringList <a class="code" href="fonctions_8h.html#a5970a2ed0d085df3859377bf6ad43077">getListePseudoProfil</a>(); <span class="comment">// donne la liste des noms de profil</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;QString <a class="code" href="fonctions_8h.html#a5d9ce8cd028463b30af18f3f2ba86dc6">recherchePseudoAdmin</a>(); <span class="comment">// donne le nom (pseudo) de l&#39;admin</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_8h.html#a0ebe74c178ed2bb27b6f4fb6d6d7feac">supprimeProfil</a>(QString nomProfil); <span class="comment">// supprime le dossier du profil correspondant</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;QString <a class="code" href="fonctions_8h.html#a6523272bd130269e61a4b466f1763235">copyImageDansProfil</a>(QString pathSrc, QString pseudo); <span class="comment">// copie l&#39;image dans le repertoire du profil et retourne le nouveau chemin</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;QString <a class="code" href="fonctions_8h.html#abc3ee39d40a441f06f59318c57083518">checkMotDePasse</a>();  <span class="comment">// permet d&#39;obtenir le mot de passe dans d&#39;autres classes sans passé par la classe utilisateur</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_8h.html#ad63d249d3aa1f068b995cd39ec91b27e">modifMotDePasse</a>(QString pwd); <span class="comment">// modifie le mot de passe</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // FONCTIONS_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="afonctions_8h_html_aa83d408dcd204ffc13d004eda45920a4"><div class="ttname"><a href="fonctions_8h.html#aa83d408dcd204ffc13d004eda45920a4">crypter</a></div><div class="ttdeci">const QString crypter(const QString &amp;chaineACrypter)</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:42</div></div>
+<div class="ttc" id="afonctions_8h_html_a67657080a72ce35733cfd3e2e8295312"><div class="ttname"><a href="fonctions_8h.html#a67657080a72ce35733cfd3e2e8295312">decrypter</a></div><div class="ttdeci">const QString decrypter(const QString &amp;chaineADecrypter)</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:60</div></div>
+<div class="ttc" id="afonctions_8h_html_ad63d249d3aa1f068b995cd39ec91b27e"><div class="ttname"><a href="fonctions_8h.html#ad63d249d3aa1f068b995cd39ec91b27e">modifMotDePasse</a></div><div class="ttdeci">void modifMotDePasse(QString pwd)</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:145</div></div>
+<div class="ttc" id="afonctions_8h_html_a9bc9cdce2e0990647d3641c54068e145"><div class="ttname"><a href="fonctions_8h.html#a9bc9cdce2e0990647d3641c54068e145">printables</a></div><div class="ttdeci">const QByteArray printables()</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:32</div></div>
+<div class="ttc" id="afonctions_8h_html_a3e224674f12ea0b01f62d9b6dd3e5f2e"><div class="ttname"><a href="fonctions_8h.html#a3e224674f12ea0b01f62d9b6dd3e5f2e">ecrireDansFichierTemp</a></div><div class="ttdeci">void ecrireDansFichierTemp(QString pseudo)</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:10</div></div>
+<div class="ttc" id="afonctions_8h_html_a5970a2ed0d085df3859377bf6ad43077"><div class="ttname"><a href="fonctions_8h.html#a5970a2ed0d085df3859377bf6ad43077">getListePseudoProfil</a></div><div class="ttdeci">QStringList getListePseudoProfil()</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:66</div></div>
+<div class="ttc" id="afonctions_8h_html_a5d9ce8cd028463b30af18f3f2ba86dc6"><div class="ttname"><a href="fonctions_8h.html#a5d9ce8cd028463b30af18f3f2ba86dc6">recherchePseudoAdmin</a></div><div class="ttdeci">QString recherchePseudoAdmin()</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:78</div></div>
+<div class="ttc" id="afonctions_8h_html_a6523272bd130269e61a4b466f1763235"><div class="ttname"><a href="fonctions_8h.html#a6523272bd130269e61a4b466f1763235">copyImageDansProfil</a></div><div class="ttdeci">QString copyImageDansProfil(QString pathSrc, QString pseudo)</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:123</div></div>
+<div class="ttc" id="afonctions_8h_html_a7b22ce77d1f7afb1f2c1b93f1bfb310a"><div class="ttname"><a href="fonctions_8h.html#a7b22ce77d1f7afb1f2c1b93f1bfb310a">lireDansFichierTemp</a></div><div class="ttdeci">QString lireDansFichierTemp()</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:20</div></div>
+<div class="ttc" id="afonctions_8h_html_a0ebe74c178ed2bb27b6f4fb6d6d7feac"><div class="ttname"><a href="fonctions_8h.html#a0ebe74c178ed2bb27b6f4fb6d6d7feac">supprimeProfil</a></div><div class="ttdeci">void supprimeProfil(QString nomProfil)</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:112</div></div>
+<div class="ttc" id="afonctions_8h_html_abc3ee39d40a441f06f59318c57083518"><div class="ttname"><a href="fonctions_8h.html#abc3ee39d40a441f06f59318c57083518">checkMotDePasse</a></div><div class="ttdeci">QString checkMotDePasse()</div><div class="ttdef"><b>Definition:</b> fonctions.cpp:130</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_1da341ca2736582eeb08d845a8ba64dc.html">fonctions</a></li><li class="navelem"><a class="el" href="fonctions_8h.html">fonctions.h</a></li>
+    <li class="footer">Généré par <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+  </ul>
+</div>
+</body>
+</html>
