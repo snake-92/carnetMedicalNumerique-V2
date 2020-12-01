@@ -15,7 +15,7 @@
 #include "../gui/messagegui.h"
 #include "../chemin.h"
 #include "../profil/profilprive.h"
-
+#include "JlCompress.h"
 
 
 
@@ -222,7 +222,9 @@ void AppliGui::name_profil_clicked(QString pseudo){
 		ecrireDansFichierTemp(pseudo); // enregistre le pseudo du profil selectionner dans le fichier temp
 
 	}else{
+		disconnect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
 		comboBox->setCurrentText(ui->label_CurrentProfil->text());
+		connect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
 	}
 }
 
@@ -338,10 +340,20 @@ void AppliGui::on_sauvegarde(){
 		QString dest = QFileDialog::getExistingDirectory(this, tr("Choisir un repertoire de sauvegarde"));
 		copyPath(PROFILPATH, dest+tr("/sauvegarde_hmc/"));
 
-		QMessageBox::information(this, tr("Sauvergarde de données"),
-										  tr("Vos données ont bien été sauvegardé"),
-										  QMessageBox::Ok,
-										  QMessageBox::Ok);
+		if(JlCompress::compressDir(dest+tr("/sauvegarde_hmc.zip"), dest+tr("/sauvegarde_hmc/"))){
+			QDir d(dest+tr("/sauvegarde_hmc"));
+			d.removeRecursively(); // supprimer le dossier non zipper
+			QMessageBox::information(this, tr("Sauvergarde de données"),
+											  tr("Vos données ont bien été sauvegardé"),
+											  QMessageBox::Ok,
+											  QMessageBox::Ok);
+		}else{
+			QMessageBox::critical(this, tr("Erreur"),
+											  tr("Une erreur c'est produite lors de la sauvegarde des données"),
+											  QMessageBox::Ok,
+											  QMessageBox::Ok);
+		}
+
 	}
 }
 
@@ -358,7 +370,23 @@ void AppliGui::on_charger_sauvegarde(){
 										  QMessageBox::Ok);
 
 		if(choice == QMessageBox::Ok){
-			QString chemin = QFileDialog::getOpenFileName(this, tr("Choisir le fichier de sauvegarde"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
+			QString dataZipFile = QFileDialog::getOpenFileName(this, tr("Choisir le fichier de sauvegarde"), QString(), "ZIP (*.zip *.rar)");
+			QStringList listFile = JlCompress::extractDir(dataZipFile, "data/profil");
+
+			// mettre la liste des profils à jour
+			QStringList list = getListePseudoProfil();
+
+			disconnect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
+			comboBox->clear();
+			for(int i=0; i<list.length(); i++){
+				comboBox->addItem(list[i]);
+			}
+			connect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
+
+			QMessageBox::information(this, tr("Chargement des données"),
+											  tr("Les données ont été chargé!"),
+											  QMessageBox::Ok,
+											  QMessageBox::Ok);
 		}
 	}
 

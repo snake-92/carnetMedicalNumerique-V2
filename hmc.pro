@@ -66,6 +66,12 @@ FORMS += gui/infoprofilgui.ui \
     gui/logingui.ui \
     gui/appligui.ui
 
+# zip
+CMAKE_CXXFLAGS += -std=gnu++14
+INCLUDEPATH += "../library/include"
+LIBS += -L"../library/lib"
+LIBS += -lquazip -lz
+
 # images
 RESOURCES     += images/images.qrc
 
