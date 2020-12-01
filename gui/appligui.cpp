@@ -210,11 +210,13 @@ void AppliGui::name_profil_clicked(QString pseudo){
 			ui->pushButton_creerProfil->setDisabled(false); // activer le bouton creer profil
 			ui->actionsupprimer_un_profil->setDisabled(false);
 			ui->actionsauvergarder_vos_donn_es->setDisabled(false);
+			ui->actioncharger_vos_donn_es_sauvegard_es->setDisabled(false);
 		}else{
 			fenetreRempliInfos->setInAdminProfil(false); // profil user
 			ui->pushButton_creerProfil->setDisabled(true); // desactiver le bouton creer profil
 			ui->actionsupprimer_un_profil->setDisabled(true);
 			ui->actionsauvergarder_vos_donn_es->setDisabled(true);
+			ui->actioncharger_vos_donn_es_sauvegard_es->setDisabled(true);
 		}
 
 		ecrireDansFichierTemp(pseudo); // enregistre le pseudo du profil selectionner dans le fichier temp
@@ -331,10 +333,34 @@ void AppliGui::impression(){
 
 void AppliGui::on_sauvegarde(){
 
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		QString dest = QFileDialog::getExistingDirectory(this, tr("Choisir un repertoire de sauvegarde"));
+		copyPath(PROFILPATH, dest+tr("/sauvegarde_hmc/"));
+
+		QMessageBox::information(this, tr("Sauvergarde de données"),
+										  tr("Vos données ont bien été sauvegardé"),
+										  QMessageBox::Ok,
+										  QMessageBox::Ok);
+	}
 }
 
 
 void AppliGui::on_charger_sauvegarde(){
+
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+
+		int choice = QMessageBox::warning(this, tr("Charger vos données"),
+										  tr("Attention cette action va remplacer les données existantes par\n"
+											 "celles que vous allez choisir!"),
+										  QMessageBox::Ok | QMessageBox::Cancel,
+										  QMessageBox::Ok);
+
+		if(choice == QMessageBox::Ok){
+			QString chemin = QFileDialog::getOpenFileName(this, tr("Choisir le fichier de sauvegarde"), QString(), "Images (*.png *.gif *.jpg *.jpeg)");
+		}
+	}
 
 }
 
