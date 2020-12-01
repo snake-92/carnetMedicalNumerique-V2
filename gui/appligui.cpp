@@ -81,6 +81,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	ui->action_propos->setIcon(QIcon(":/images/about.png"));
 	ui->actionfermer->setIcon(QIcon(":/images/fermer.png"));
 	ui->actionsauvergarder_vos_donn_es->setIcon(QIcon(":/images/save.png"));
+	ui->actioncharger_vos_donn_es_sauvegard_es->setIcon(QIcon(":/images/charger.png"));
 	ui->actionmot_de_passe_oubli->setIcon(QIcon(":/images/pwd.png"));
 
 	connect(ui->actionsupprimer_un_profil, &QAction::triggered, this, &AppliGui::supprimer_profil);
@@ -94,6 +95,8 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	connect(ui->actionimprimer, &QAction::triggered, this, &AppliGui::impression); // imprimer
 	connect(ui->actionEcrire_un_message, &QAction::triggered, this, &AppliGui::on_actionEcrire_un_message_triggered);
 	connect(ui->actionLire_les_messages, &QAction::triggered, this, &AppliGui::on_actionLire_les_messages_triggered);
+	connect(ui->actionsauvergarder_vos_donn_es, &QAction::triggered, this, &AppliGui::on_sauvegarde);
+	connect(ui->actioncharger_vos_donn_es_sauvegard_es, &QAction::triggered, this, &AppliGui::on_charger_sauvegarde);
 }
 
 
@@ -324,5 +327,16 @@ void AppliGui::impression(){
 		user->genererPdf(dossier);
 	}
 }
+
+
+void AppliGui::on_sauvegarde(){
+
+}
+
+
+void AppliGui::on_charger_sauvegarde(){
+
+}
+
 
 

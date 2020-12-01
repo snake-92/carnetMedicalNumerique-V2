@@ -37,6 +37,8 @@ private slots:
 	void traduction_anglais();
 	void traduction_francais();
 	void impression();
+	void on_sauvegarde();
+	void on_charger_sauvegarde();
 
 
 
