@@ -17,6 +17,7 @@
 #include "../profil/profilprive.h"
 #include "JlCompress.h"
 #include "../smtp/smtp.h"
+#include <time.h>
 
 
 
@@ -26,6 +27,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 {
 	ui->setupUi(this);
 	translate = new QTranslator(0);
+	srand(time(NULL)); // initialise le générateur aléatoire pour la fonction generateurMotDePasse
 
 	user = new Utilisateur(); // création de l'utilisateur
     ms = new MessageGui();
