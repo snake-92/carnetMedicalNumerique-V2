@@ -16,6 +16,7 @@
 #include "../chemin.h"
 #include "../profil/profilprive.h"
 #include "JlCompress.h"
+#include "../smtp/smtp.h"
 
 
 
@@ -97,6 +98,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	connect(ui->actionLire_les_messages, &QAction::triggered, this, &AppliGui::on_actionLire_les_messages_triggered);
 	connect(ui->actionsauvergarder_vos_donn_es, &QAction::triggered, this, &AppliGui::on_sauvegarde);
 	connect(ui->actioncharger_vos_donn_es_sauvegard_es, &QAction::triggered, this, &AppliGui::on_charger_sauvegarde);
+	connect(ui->actionmot_de_passe_oubli, &QAction::triggered, this, &AppliGui::on_mdp_oublier);
 }
 
 
@@ -108,7 +110,7 @@ AppliGui::~AppliGui()
 	delete comboBox;
 	delete ms;
 	delete translate;
-
+	delete smtp;
 }
 
 
@@ -390,6 +392,18 @@ void AppliGui::on_charger_sauvegarde(){
 		}
 	}
 
+}
+
+
+void AppliGui::on_mdp_oublier(){
+	// demande de l'adresse mail
+	QString adressMail = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre adresse mail"));
+
+	if(!adressMail.isEmpty()){
+		smtp = new Smtp("sidjenzalighislain@gmail.com", "ghislain", "smtp.gmail.com");
+		smtp->sendMail("sidjenzalighislain@gmail.com", adressMail, "Qt test", "votre mail est envoyé");
+
+	}
 }
 
 
