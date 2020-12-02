@@ -401,8 +401,16 @@ void AppliGui::on_mdp_oublier(){
 
 	if(!adressMail.isEmpty()){
 		smtp = new Smtp("sidjenzalighislain@gmail.com", "ghislain", "smtp.gmail.com");
-		smtp->sendMail("sidjenzalighislain@gmail.com", adressMail, "Qt test", "votre mail est envoyé");
-
+		QString nouveauMdp = generateurMotDePasse(8);
+		QString object = "Votre nouveau de passe";
+		QString mail = "Bonjour "+user->getProfil()->getPrenom()+",\n\n"
+				"Votre mot de passe a été modifié.\n"
+				"Votre mot de passe de connexion est désormais :\n\n\t"+nouveauMdp+"\n\n"
+				"Nous vous conseillons de le modifier en allant dans 'modifier les données' dans l'onglet 'Profil'"
+				"\n\nCordialement,\n"
+				"l'équipe HMC";
+		smtp->sendMail("sidjenzalighislain@gmail.com", adressMail, object, mail);
+		modifMotDePasse(nouveauMdp);
 	}
 }
 

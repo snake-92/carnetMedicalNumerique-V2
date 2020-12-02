@@ -22,6 +22,7 @@ void modifMotDePasse(QString pwd); // modifie le mot de passe
 
 void copyPath(QString src, QString dst); // permet de copier un repertoire dans unn autre
 
+QString generateurMotDePasse(int); // génére un mot de passe de 8 caractère aléatoire
 
 QList<int> listeNumLigneDV();
 #endif // FONCTIONS_H
