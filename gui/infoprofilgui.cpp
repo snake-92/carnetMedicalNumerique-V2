@@ -2,7 +2,10 @@
 #include "ui_infoprofilgui.h"
 #include <qinputdialog.h>
 #include <QFileDialog>
+#include <QMessageBox>
 #include "../fonctions/fonctions.h"
+#include "../profil/profilprive.h"
+#include "../chemin.h"
 
 
 InfoProfilGui::InfoProfilGui(QWidget *parent) :
@@ -94,10 +97,13 @@ void InfoProfilGui::on_pushButton_Ok_clicked()
 			nouveauProfil.setDateNaissance(ui->dateEdit->text(), ui->checkBox_date->isChecked());
 			nouveauProfil.setAdresse(ui->lineEdit_adresse->text(), ui->checkBox_Adress->isChecked());
 			nouveauProfil.setTel(ui->lineEdit_tel->text(), ui->checkBox_Tel->isChecked());
+			nouveauProfil.setPaysTel(ui->comboBoxTel->currentText());
 			nouveauProfil.setProfession(ui->lineEdit_profession->text(), ui->checkBox_profession->isChecked());
 			nouveauProfil.setMedecin(ui->lineEdit_nomMed->text(), ui->lineEdit_telMed->text(), ui->checkBox_medecin->isChecked());
+			nouveauProfil.setPaysTelMed(ui->comboBoxTelMed->currentText());
 			nouveauProfil.setGroupSanguin(ui->comboBox_groupe->currentText()+'_'+ui->comboBox_rhesus->currentText(), ui->checkBox_goupeSanguin->isChecked());
 			nouveauProfil.setPersonContact(ui->lineEdit_nomContact->text(), ui->lineEdit_telContact->text());
+			nouveauProfil.setPaysTelContact(ui->comboBoxTelContact->currentText());
 			nouveauProfil.setImageProfil(copyImageDansProfil(cheminPhoto, pseudo), ui->checkBox_photo->isChecked());
 
 			nouveauProfil.saveProfilInFiles(); // enregistrement des données dans le fichier publique
@@ -206,6 +212,7 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 
 	ui->checkBox_Tel->setChecked(profil->getPriveTel());
 	ui->lineEdit_tel->setText(profil->getTel());
+	ui->comboBoxTel->setCurrentText(profil->getPaysTel());
 
 	ui->checkBox_date->setChecked(profil->getPriveDate());
 	ui->dateEdit->setDate(QDate::fromString(profil->getDateNaissance(), "dd/MM/yyyy"));
@@ -216,12 +223,14 @@ void InfoProfilGui::setQlineEditWithDatas(ProfilPrive* profil){
 	ui->checkBox_medecin->setChecked(profil->getPriveMedecin());
 	ui->lineEdit_nomMed->setText(profil->getMedecinNom());
 	ui->lineEdit_telMed->setText(profil->getMedecinTel());
+	ui->comboBoxTelMed->setCurrentText(profil->getPaysTelMed());
 
 	ui->checkBox_profession->setChecked(profil->getPriveProfession());
 	ui->lineEdit_profession->setText(profil->getProfession());
 
 	ui->lineEdit_nomContact->setText(profil->getPersonContactNom());
 	ui->lineEdit_telContact->setText(profil->getPersonContactTel());
+	ui->comboBoxTelContact->setCurrentText(profil->getPaysTelContact());
 
 	ui->checkBox_goupeSanguin->setChecked(profil->getPriveGroupe());
 	if(profil->getGroupSanguin() == "AB_"){

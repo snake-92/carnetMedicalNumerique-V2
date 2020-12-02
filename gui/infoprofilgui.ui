@@ -457,6 +457,55 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QComboBox" name="comboBoxTel">
+                    <item>
+                     <property name="text">
+                      <string>+33</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+44</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+237</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+229</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+49</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+41</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+213</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+225</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>+241</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QLineEdit" name="lineEdit_tel"/>
                   </item>
                  </layout>
@@ -575,6 +624,55 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QComboBox" name="comboBoxTelMed">
+                  <item>
+                   <property name="text">
+                    <string>+33</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+44</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+237</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+229</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+49</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+41</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+213</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+225</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+241</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLineEdit" name="lineEdit_telMed"/>
                 </item>
                </layout>
@@ -633,6 +731,55 @@
                   <property name="text">
                    <string>N° de tél</string>
                   </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBoxTelContact">
+                  <item>
+                   <property name="text">
+                    <string>+33</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+44</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+237</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+229</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+49</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+41</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+213</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+225</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>+241</string>
+                   </property>
+                  </item>
                  </widget>
                 </item>
                 <item>

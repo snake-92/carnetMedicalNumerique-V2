@@ -2,12 +2,13 @@
 #define APPLIGUI_H
 
 #include <QMainWindow>
-#include <QComboBox>
-#include <QWidgetAction>
-#include "../utilisateur/utilisateur.h"
-#include "infoprofilgui.h"
-#include "afficheprofilgui.h"
-#include "../gui/messagegui.h"
+
+class QComboBox;
+class Utilisateur;
+class InfoProfilGui;
+class MessageGui;
+class QTranslator;
+class Smtp;
 
 namespace Ui {
 class AppliGui;
@@ -37,6 +38,11 @@ private slots:
 	void traduction_anglais();
 	void traduction_francais();
 	void impression();
+	void on_sauvegarde();
+	void on_charger_sauvegarde();
+	void on_mdp_oublier();
+
+
 
 protected:
 	void changeEvent(QEvent*);
@@ -53,6 +59,7 @@ private:
     MessageGui* ms;
 	bool fermer;
 	QTranslator *translate;
+	Smtp* smtp;
 };
 
 #endif // APPLIGUI_H

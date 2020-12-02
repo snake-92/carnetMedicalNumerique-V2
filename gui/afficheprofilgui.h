@@ -2,8 +2,8 @@
 #define AFFICHEPROFILGUI_H
 
 #include <QDialog>
-#include "../profil/profilprive.h"
 
+class ProfilPrive;
 
 namespace Ui {
 class AfficheProfilGui;

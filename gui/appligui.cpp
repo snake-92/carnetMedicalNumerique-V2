@@ -4,6 +4,21 @@
 #include <QInputDialog>
 #include <cstdlib>
 #include <QFileDialog>
+#include <QWidgetAction>
+#include <QMessageBox>
+#include <QComboBox>
+#include <QDir>
+#include <QTranslator>
+#include "afficheprofilgui.h"
+#include "../utilisateur/utilisateur.h"
+#include "infoprofilgui.h"
+#include "../gui/messagegui.h"
+#include "../chemin.h"
+#include "../profil/profilprive.h"
+#include "JlCompress.h"
+#include "../smtp/smtp.h"
+#include <time.h>
+
 
 
 AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
@@ -12,9 +27,11 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 {
 	ui->setupUi(this);
 	translate = new QTranslator(0);
+	srand(time(NULL)); // initialise le générateur aléatoire pour la fonction generateurMotDePasse
 
 	user = new Utilisateur(); // création de l'utilisateur
     ms = new MessageGui();
+	ms->setWindowIcon(QIcon(":/images/icoMsg.png"));
 	fenetreRempliInfos = new InfoProfilGui(this);
 	fenetreRempliInfos->setWindowIcon(QIcon(":/images/create.png"));
 	fermer = false;
@@ -56,7 +73,8 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	// ajouter les images sur les menus
 	ui->actionAnglais->setIcon(QIcon(":/images/logoAnglais.png"));
 	ui->actionFran_ais->setIcon(QIcon(":/images/logoFrancais.png"));
-	ui->actionEcrire_un_message->setIcon(QIcon(":/images/msg.png"));
+	ui->actionEcrire_un_message->setIcon(QIcon(":/images/ecrireMsg.png"));
+	ui->actionLire_les_messages->setIcon(QIcon(":/images/msg.png"));
 	ui->actionordonnance->setIcon(QIcon(":/images/order.png"));
 	ui->actionimprimer->setIcon(QIcon(":/images/pdf.png"));
 	ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));
@@ -66,6 +84,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	ui->action_propos->setIcon(QIcon(":/images/about.png"));
 	ui->actionfermer->setIcon(QIcon(":/images/fermer.png"));
 	ui->actionsauvergarder_vos_donn_es->setIcon(QIcon(":/images/save.png"));
+	ui->actioncharger_vos_donn_es_sauvegard_es->setIcon(QIcon(":/images/charger.png"));
 	ui->actionmot_de_passe_oubli->setIcon(QIcon(":/images/pwd.png"));
 
 	connect(ui->actionsupprimer_un_profil, &QAction::triggered, this, &AppliGui::supprimer_profil);
@@ -79,6 +98,9 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	connect(ui->actionimprimer, &QAction::triggered, this, &AppliGui::impression); // imprimer
 	connect(ui->actionEcrire_un_message, &QAction::triggered, this, &AppliGui::on_actionEcrire_un_message_triggered);
 	connect(ui->actionLire_les_messages, &QAction::triggered, this, &AppliGui::on_actionLire_les_messages_triggered);
+	connect(ui->actionsauvergarder_vos_donn_es, &QAction::triggered, this, &AppliGui::on_sauvegarde);
+	connect(ui->actioncharger_vos_donn_es_sauvegard_es, &QAction::triggered, this, &AppliGui::on_charger_sauvegarde);
+	connect(ui->actionmot_de_passe_oubli, &QAction::triggered, this, &AppliGui::on_mdp_oublier);
 }
 
 
@@ -88,6 +110,9 @@ AppliGui::~AppliGui()
 	delete user;
 	delete fenetreRempliInfos;
 	delete comboBox;
+	delete ms;
+	delete translate;
+	delete smtp;
 }
 
 
@@ -189,17 +214,21 @@ void AppliGui::name_profil_clicked(QString pseudo){
 			ui->pushButton_creerProfil->setDisabled(false); // activer le bouton creer profil
 			ui->actionsupprimer_un_profil->setDisabled(false);
 			ui->actionsauvergarder_vos_donn_es->setDisabled(false);
+			ui->actioncharger_vos_donn_es_sauvegard_es->setDisabled(false);
 		}else{
 			fenetreRempliInfos->setInAdminProfil(false); // profil user
 			ui->pushButton_creerProfil->setDisabled(true); // desactiver le bouton creer profil
 			ui->actionsupprimer_un_profil->setDisabled(true);
 			ui->actionsauvergarder_vos_donn_es->setDisabled(true);
+			ui->actioncharger_vos_donn_es_sauvegard_es->setDisabled(true);
 		}
 
 		ecrireDansFichierTemp(pseudo); // enregistre le pseudo du profil selectionner dans le fichier temp
 
 	}else{
+		disconnect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
 		comboBox->setCurrentText(ui->label_CurrentProfil->text());
+		connect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
 	}
 }
 
@@ -253,7 +282,7 @@ void AppliGui::a_propos(){
 
 
 void AppliGui::infoHTML(){
-	QString path = "start "+QCoreApplication::applicationDirPath()+"/doc/index.html";
+	QString path = "start "+QCoreApplication::applicationDirPath()+"/manuel/index.html";
 	const char* p = path.toStdString().c_str();
 	system(p);
 }
@@ -262,8 +291,6 @@ void AppliGui::infoHTML(){
 void AppliGui::on_actionEcrire_un_message_triggered(){
    ms->show_writting_interface();
 }
-
-
 
 
 void AppliGui::on_actionLire_les_messages_triggered(){
@@ -299,8 +326,95 @@ void AppliGui::changeEvent(QEvent* event){ // evenement lors du changement de la
 
 void AppliGui::impression(){
 
-	QString dossier = QFileDialog::getExistingDirectory(this);
+	// demander le mot de passe
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
 
-	user->selectCurrentProfil(lireDansFichierTemp());
-	user->genererPdf(dossier);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		QString dossier = QFileDialog::getExistingDirectory(this);
+		user->selectCurrentProfil(lireDansFichierTemp());
+		user->genererPdf(dossier);
+	}
 }
+
+
+void AppliGui::on_sauvegarde(){
+
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+		QString dest = QFileDialog::getExistingDirectory(this, tr("Choisir un repertoire de sauvegarde"));
+		copyPath(PROFILPATH, dest+tr("/sauvegarde_hmc/"));
+
+		if(JlCompress::compressDir(dest+tr("/sauvegarde_hmc.zip"), dest+tr("/sauvegarde_hmc/"))){
+			QDir d(dest+tr("/sauvegarde_hmc"));
+			d.removeRecursively(); // supprimer le dossier non zipper
+			QMessageBox::information(this, tr("Sauvergarde de données"),
+											  tr("Vos données ont bien été sauvegardé"),
+											  QMessageBox::Ok,
+											  QMessageBox::Ok);
+		}else{
+			QMessageBox::critical(this, tr("Erreur"),
+											  tr("Une erreur c'est produite lors de la sauvegarde des données"),
+											  QMessageBox::Ok,
+											  QMessageBox::Ok);
+		}
+
+	}
+}
+
+
+void AppliGui::on_charger_sauvegarde(){
+
+	QString password = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre mot de passe"), QLineEdit::Password);
+	if(password == user->getProfil()->getMotDePasse(recherchePseudoAdmin())){
+
+		int choice = QMessageBox::warning(this, tr("Charger vos données"),
+										  tr("Attention cette action va remplacer les données existantes par\n"
+											 "celles que vous allez choisir!"),
+										  QMessageBox::Ok | QMessageBox::Cancel,
+										  QMessageBox::Ok);
+
+		if(choice == QMessageBox::Ok){
+			QString dataZipFile = QFileDialog::getOpenFileName(this, tr("Choisir le fichier de sauvegarde"), QString(), "ZIP (*.zip *.rar)");
+			QStringList listFile = JlCompress::extractDir(dataZipFile, "data/profil");
+
+			// mettre la liste des profils à jour
+			QStringList list = getListePseudoProfil();
+
+			disconnect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
+			comboBox->clear();
+			for(int i=0; i<list.length(); i++){
+				comboBox->addItem(list[i]);
+			}
+			connect(comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(name_profil_clicked(QString)));
+
+			QMessageBox::information(this, tr("Chargement des données"),
+											  tr("Les données ont été chargé!"),
+											  QMessageBox::Ok,
+											  QMessageBox::Ok);
+		}
+	}
+
+}
+
+
+void AppliGui::on_mdp_oublier(){
+	// demande de l'adresse mail
+	QString adressMail = QInputDialog::getText(this, tr("Vérification"), tr("Entrer votre adresse mail"));
+
+	if(!adressMail.isEmpty()){
+		smtp = new Smtp("sidjenzalighislain@gmail.com", "ghislain", "smtp.gmail.com");
+		QString nouveauMdp = generateurMotDePasse(8);
+		QString object = "Votre nouveau de passe";
+		QString mail = "Bonjour "+user->getProfil()->getPrenom()+",\n\n"
+				"Votre mot de passe a été modifié.\n"
+				"Votre mot de passe de connexion est désormais :\n\n\t"+nouveauMdp+"\n\n"
+				"Nous vous conseillons de le modifier en allant dans 'modifier les données' dans l'onglet 'Profil'"
+				"\n\nCordialement,\n"
+				"l'équipe HMC";
+		smtp->sendMail("sidjenzalighislain@gmail.com", adressMail, object, mail);
+		modifMotDePasse(nouveauMdp);
+	}
+}
+
+
+

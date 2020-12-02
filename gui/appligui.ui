@@ -210,6 +210,7 @@
     <addaction name="menuchanger_de_langue"/>
     <addaction name="actionsupprimer_un_profil"/>
     <addaction name="actionsauvergarder_vos_donn_es"/>
+    <addaction name="actioncharger_vos_donn_es_sauvegard_es"/>
     <addaction name="actionmot_de_passe_oubli"/>
    </widget>
    <addaction name="menumenu_principal"/>
@@ -287,6 +288,16 @@
   <action name="actionLire_les_messages">
    <property name="text">
     <string>Lire les messages</string>
+   </property>
+  </action>
+  <action name="actionLire_les_5_derniers_messages">
+   <property name="text">
+    <string>Lire les 5 derniers messages</string>
+   </property>
+  </action>
+  <action name="actioncharger_vos_donn_es_sauvegard_es">
+   <property name="text">
+    <string>charger vos données sauvegardées</string>
    </property>
   </action>
  </widget>

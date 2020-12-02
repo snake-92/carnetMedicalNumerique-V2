@@ -1,6 +1,7 @@
 #include "gui/appligui.h"
 #include <QApplication>
 #include <QDir>
+#include <QTranslator>
 #include "chemin.h"
 #include "gui/logingui.h"
 
@@ -29,6 +30,7 @@ int main(int argc, char *argv[])
 
 		if(login->exec() == LoginGui::Accepted){
 			AppliGui* w = new AppliGui(support, login->getMotDePasse()); // fenetre principale
+			w->setWindowTitle("HMC");
 			if(!w->fermerAppli())
 				w->show();
 			else {
@@ -40,6 +42,7 @@ int main(int argc, char *argv[])
 
 	}else{
 		AppliGui* w = new AppliGui(); // fenetre principale
+		w->setWindowTitle("HMC");
 		w->show();
 	}
 
