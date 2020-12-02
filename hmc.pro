@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui
+QT += core gui network
 QT += xml
 QT += printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -45,7 +45,8 @@ SOURCES += \
     gui/messagegui.cpp \
     gui/logingui.cpp \
     gui/appligui.cpp \
-    fonctions/fonctions.cpp
+    fonctions/fonctions.cpp \
+    smtp/smtp.cpp
 
 HEADERS += profil/profil.h \
     profil/profilprive.h \
@@ -58,13 +59,20 @@ HEADERS += profil/profil.h \
     gui/logingui.h \
     chemin.h \
     gui/appligui.h \
-    fonctions/fonctions.h
+    fonctions/fonctions.h \
+    smtp/smtp.h
 
 FORMS += gui/infoprofilgui.ui \
     gui/afficheprofilgui.ui \
     gui/messagegui.ui \
     gui/logingui.ui \
     gui/appligui.ui
+
+# zip
+CMAKE_CXXFLAGS += -std=gnu++14
+INCLUDEPATH += "../library/include"
+LIBS += -L"../library/lib"
+LIBS += -lquazip -lz
 
 # images
 RESOURCES     += images/images.qrc

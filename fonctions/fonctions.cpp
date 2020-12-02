@@ -157,3 +157,58 @@ void modifMotDePasse(QString pwd){
 }
 
 
+void copyPath(QString src, QString dst)
+{
+	QDir dir(src);
+	if (! dir.exists())
+		return;
+
+	foreach (QString d, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+		QString dst_path = dst + QDir::separator() + d;
+		dir.mkpath(dst_path);
+		copyPath(src+ QDir::separator() + d, dst_path);
+	}
+
+	foreach (QString f, dir.entryList(QDir::Files)) {
+		QFile::copy(src + QDir::separator() + f, dst + QDir::separator() + f);
+	}
+}
+
+
+QString generateurMotDePasse(int longueur){
+	QString miniscule = "aqwzsxedcrfvtgbyhnujikolpm";
+	QString majuscule = "AQWZSXEDCRFVTGBYHNUJIKOLPM";
+	QString nombre = "0123456789";
+	QString symbol = "&(-%_@)=#{[]}|\/";
+	QString mdp;
+	bool str1=true,str2=false,str3=false,str4=false;
+
+	for(int i=0; i<longueur; i++){
+
+		if(str1){
+			int nb = rand() % miniscule.size();
+			mdp.append(miniscule.at(nb));
+			str1 = false;
+			str2 = true;
+		}else if(str2){
+			int nb = rand() % majuscule.size();
+			mdp.append(majuscule.at(nb));
+			str2 = false;
+			str3 = true;
+		}else if(str3){
+			int nb = rand() % nombre.size();
+			mdp.append(nombre.at(nb));
+			str3 = false;
+			str4 = true;
+		}else if(str4){
+			int nb = rand() % symbol.size();
+			mdp.append(symbol.at(nb));
+			str4 = false;
+			str1 = true;
+		}
+	}
+
+	return mdp;
+}
+
+

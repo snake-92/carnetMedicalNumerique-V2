@@ -8,6 +8,7 @@ class Utilisateur;
 class InfoProfilGui;
 class MessageGui;
 class QTranslator;
+class Smtp;
 
 namespace Ui {
 class AppliGui;
@@ -37,6 +38,9 @@ private slots:
 	void traduction_anglais();
 	void traduction_francais();
 	void impression();
+	void on_sauvegarde();
+	void on_charger_sauvegarde();
+	void on_mdp_oublier();
 
 
 
@@ -55,6 +59,7 @@ private:
     MessageGui* ms;
 	bool fermer;
 	QTranslator *translate;
+	Smtp* smtp;
 };
 
 #endif // APPLIGUI_H
