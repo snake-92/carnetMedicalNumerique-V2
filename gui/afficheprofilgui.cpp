@@ -116,6 +116,14 @@ void AfficheProfilGui::remplirLaFenetre(ProfilPrive* profil){
 		ui->verticalLayout_pub_column2->addWidget(telContactLabel);
 	}
 
+	if(profil->getPriveImageProfil()){
+		QPixmap photo(profil->getCheminImageProfil());
+		ui->label_4->setPixmap(photo);
+	}else{
+		QPixmap photo(profil->getCheminImageProfil());
+		ui->label_3->setPixmap(photo);
+	}
+
 
 	// parcours des données qui sont dans la classe ProfilPrive
 	if(profil->getAllergies().length() > 0){
