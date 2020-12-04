@@ -21,8 +21,9 @@ jobs:
     - name: make
       run: make
     - name: deploiement
-      run: D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/bin/qtenv2.bat
-           bin/windeployqt .
+      run: |
+          D:/a/carnetMedicalNumerique-V2/Qt/5.12.9/mingw73_64/bin/qtenv2.bat
+          bin/windeployqt .
     - name: Download a single artifact
       uses: actions/upload-artifact@v2
       with:
