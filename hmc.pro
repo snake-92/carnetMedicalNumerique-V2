@@ -70,8 +70,8 @@ FORMS += gui/infoprofilgui.ui \
 
 # zip
 CMAKE_CXXFLAGS += -std=gnu++14
-INCLUDEPATH += "../library/include"
-LIBS += -L"../library/lib"
+INCLUDEPATH += "dependances/include"
+LIBS += -L"dependances/lib"
 LIBS += -lquazip -lz
 
 # images
