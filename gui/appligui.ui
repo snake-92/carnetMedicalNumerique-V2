@@ -180,7 +180,16 @@
     <property name="title">
      <string>pièces jointes</string>
     </property>
-    <addaction name="actionajouter"/>
+    <widget class="QMenu" name="menuajouter">
+     <property name="title">
+      <string>ajouter</string>
+     </property>
+     <addaction name="actionOrdonance"/>
+     <addaction name="actionBilan_sanguin"/>
+     <addaction name="actionImagerie"/>
+     <addaction name="actionPi_ces_personnelles"/>
+    </widget>
+    <addaction name="menuajouter"/>
     <addaction name="actionconsulter"/>
    </widget>
    <widget class="QMenu" name="menuinfos_pratiques">
@@ -233,11 +242,6 @@
   <action name="actionfermer">
    <property name="text">
     <string>fermer</string>
-   </property>
-  </action>
-  <action name="actionajouter">
-   <property name="text">
-    <string>ajouter</string>
    </property>
   </action>
   <action name="actionconsulter">
@@ -298,6 +302,26 @@
   <action name="actioncharger_vos_donn_es_sauvegard_es">
    <property name="text">
     <string>charger vos données sauvegardées</string>
+   </property>
+  </action>
+  <action name="actionOrdonance">
+   <property name="text">
+    <string>Ordonance</string>
+   </property>
+  </action>
+  <action name="actionBilan_sanguin">
+   <property name="text">
+    <string>Bilan sanguin</string>
+   </property>
+  </action>
+  <action name="actionImagerie">
+   <property name="text">
+    <string>Imagerie</string>
+   </property>
+  </action>
+  <action name="actionPi_ces_personnelles">
+   <property name="text">
+    <string>Pièces personnelles</string>
    </property>
   </action>
  </widget>

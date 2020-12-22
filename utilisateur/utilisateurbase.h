@@ -12,7 +12,7 @@ public:
     void saveMessage(QString nomSignant, QString adresseSoignant, QString date, QString message);
     QString readMessage();
     void saveOrdonnance();
-
+     void ajoutPieces(QString pathDestination, QWidget *p);
 
 signals:
 

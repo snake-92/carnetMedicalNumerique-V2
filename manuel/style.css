@@ -1,0 +1,102 @@
+
+#conteneurMenu{
+	/* The image used */
+  background-image: url("welcome.png");
+
+  min-height: 950px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Needed to position the navbar */
+  position: relative;
+}
+
+	
+	
+	
+	
+	
+	
+/*on enleve les puces*/
+ #menu { /* Pour le menu principal */  
+    list-style-type: none;      
+    margin: 30px;     
+    padding: 0px; 
+	line-height: 5px;
+	position: fixed;
+	top:-20px;
+}
+#menu ul {  / *Pour les sous-menus */
+   list-style-type: none; 
+    margin: 0px;
+    padding: 0px;
+	display: none; /* masquer le sous menu */
+	line-height: 5px;
+}
+
+/* alignement horizontal grace display */
+#menu li {
+display:inline-block;
+position:relative;
+border-radius:8px 8px 0 0;
+}
+
+/* menu principale: on désouligne et centre */
+	
+#menu a{
+	display: block;
+    width: 250px;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px 32px;
+    text-align: center;
+	text-decoration:none;
+	 min-width:140px;
+	
+}
+
+#menu li:hover ul{
+	display: block ;
+     position: absolute;
+     top: 36px; 
+     left: 0px; 
+     z-index: 100; 
+}
+
+
+#menu ul a {
+     display: block;
+	
+ }
+ 
+
+ 
+ 
+ /* Gestion des couleurs */
+#menu li { 
+    background-color: #1770c9; /* Couleur d'arriere-plan du menu */
+}
+#menu li a { 
+    color:  #FFFFFF; /* Couleur du texte du menu */ 
+}
+#menu li:hover {
+    background-color: #000; /* Couleur d'arriere-plan du menu au survol */
+}
+#menu li:hover a {
+    color: #fff; /* Couleur du texte du menu au survol */ 
+}
+#menu ul li { 
+    background-color: #d50991; /* Couleur d'arriere-plan des sous-menu */ 
+}
+#menu ul li:hover {
+    background-color: #000; /* Couleur d'arriere-plan des sous-menu au survol */ 
+}
+#menu ul li a {
+    color: #666; /* Couleur du texte des sous-menu */ 
+}
+#menu ul li:hover a {
+    color: #f00; /* Couleur du texte des sous-menu au survol */
+}

@@ -77,7 +77,7 @@ AppliGui::AppliGui(QWidget *parent, QString motDepasse) :
 	ui->actionLire_les_messages->setIcon(QIcon(":/images/msg.png"));
 	ui->actionordonnance->setIcon(QIcon(":/images/order.png"));
 	ui->actionimprimer->setIcon(QIcon(":/images/pdf.png"));
-	ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));
+    //ui->actionajouter->setIcon(QIcon(":/images/ajouter.png"));
 	ui->actionconsulter->setIcon(QIcon(":/images/consult.png"));
 	ui->actionsupprimer_un_profil->setIcon(QIcon(":/images/delete.png"));
 	ui->actionlire_infos->setIcon(QIcon(":/images/info.png"));
@@ -418,3 +418,33 @@ void AppliGui::on_mdp_oublier(){
 
 
 
+
+void AppliGui::on_actionBilan_sanguin_triggered()
+{
+     QString pathDestination( PROFILPATH+lireDansFichierTemp()+"/Bilan_sanguin");
+     QString filePath= QFileDialog::getOpenFileName(this, "selectioner votre fichier", QString());
+     user->ajoutPieces(pathDestination,this);
+}
+
+void AppliGui::on_actionImagerie_triggered()
+{
+    QString pathDestination( PROFILPATH+lireDansFichierTemp()+"/Imagerie");
+   // QString filePath= QFileDialog::getOpenFileName(this, "selectioner votre fichier", QString());
+    user->ajoutPieces(pathDestination, this);
+}
+
+void AppliGui::on_actionOrdonance_triggered()
+{
+    QString pathDestination( PROFILPATH+lireDansFichierTemp()+"/Ordonnance");
+    // QString filePath= QFileDialog::getOpenFileName(this, "selectioner votre fichier", QString());
+     user->ajoutPieces(pathDestination, this);
+
+}
+
+void AppliGui::on_actionPi_ces_personnelles_triggered()
+{
+    QString pathDestination( PROFILPATH+lireDansFichierTemp()+"/Pieces_perso");
+    //QString filePath= QFileDialog::getOpenFileName(this, "selectioner votre fichier", QString());
+    user->ajoutPieces(pathDestination,this);
+
+}

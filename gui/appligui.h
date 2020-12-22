@@ -44,6 +44,14 @@ private slots:
 
 
 
+    void on_actionBilan_sanguin_triggered();
+
+    void on_actionImagerie_triggered();
+
+    void on_actionOrdonance_triggered();
+
+    void on_actionPi_ces_personnelles_triggered();
+
 protected:
 	void changeEvent(QEvent*);
 
